@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 下拉刷新控件id -->
+    <item name="view_pull_to_refresh" type="id"/>
+    <!-- 状态布局控件id -->
+    <item name="view_state_layout" type="id"/>
+
+</resources>

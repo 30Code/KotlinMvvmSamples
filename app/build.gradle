@@ -36,15 +36,15 @@ dependencies {
 
     //leakCanary
     debugImplementation rootProject.ext.testDeps["leakcanary-debug"]
-    releaseImplementation rootProject.ext.testDeps["leakcanary-release"]
+//    releaseImplementation rootProject.ext.testDeps["leakcanary-release"]
     // Support库
     implementation rootProject.ext.supportLibs
     // 基类库
     implementation rootProject.ext.linHomeLibs
     // kotlinx-coroutines
     implementation rootProject.ext.kotlinxCoroutines
-//    // 网络请求库
-//    implementation rootProject.ext.networkLibs
+    // 网络请求库
+    implementation rootProject.ext.networkLibs
 //    // RxJava2
 //    implementation rootProject.ext.rxJavaLibs
 //    //commonLibs
