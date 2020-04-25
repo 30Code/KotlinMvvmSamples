@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import cn.linhome.kotlinmvvmsamples.base.BaseViewModel
 import cn.linhome.kotlinmvvmsamples.ext.executeResponse
 import cn.linhome.kotlinmvvmsamples.model.bean.BaseResponse
+import cn.linhome.kotlinmvvmsamples.model.bean.LoginData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -14,7 +15,7 @@ import kotlinx.coroutines.withContext
  */
 class LoginViewModel : BaseViewModel() {
 
-    val mLoginData : MutableLiveData<BaseResponse<Any>> = MutableLiveData()
+    val mLoginData : MutableLiveData<BaseResponse<LoginData>> = MutableLiveData()
 
     fun login(username : String, password : String) {
         launch {

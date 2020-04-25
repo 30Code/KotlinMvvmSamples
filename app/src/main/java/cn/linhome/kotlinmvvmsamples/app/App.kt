@@ -1,7 +1,10 @@
 package cn.linhome.kotlinmvvmsamples.app
 
 import android.content.Context
+import cn.linhome.kotlinmvpsamples.common.GlobalEncryptConverter
+import cn.linhome.kotlinmvpsamples.common.GsonObjectConverter
 import cn.linhome.kotlinmvvmsamples.BuildConfig
+import cn.linhome.lib.cache.FDisk
 import cn.linhome.lib.utils.extend.FActivityStack
 import cn.linhome.library.app.FApplication
 import cn.linhome.library.utils.LogUtil
@@ -35,6 +38,10 @@ class App : FApplication(){
         LogUtil.isDebug = BuildConfig.DEBUG
         SDEventManager.register(this)
         FActivityStack.getInstance().setDebug(BuildConfig.DEBUG)
+        //FDisk
+        FDisk.init(this)
+        FDisk.setGlobalObjectConverter(GsonObjectConverter())
+        FDisk.setGlobalEncryptConverter(GlobalEncryptConverter())
     }
 
     fun onEventMainThread(event: SubscriberExceptionEvent) {

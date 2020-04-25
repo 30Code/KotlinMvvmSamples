@@ -13,6 +13,8 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
 
+        multiDexEnabled true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -45,8 +47,8 @@ dependencies {
     implementation rootProject.ext.kotlinxCoroutines
     // 网络请求库
     implementation rootProject.ext.networkLibs
-//    // RxJava2
-//    implementation rootProject.ext.rxJavaLibs
-//    //commonLibs
-//    implementation rootProject.ext.commonLibs
+    // RxJava2
+    implementation rootProject.ext.rxJavaLibs
+    //commonLibs
+    implementation rootProject.ext.commonLibs
 }

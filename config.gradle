@@ -12,7 +12,7 @@ ext {
 
     dependVersion = [
             libcoreVersion          : "1.1.6.v1",
-            viewpagerVersion        : "1.0.20",
+            viewpagerVersion        : "1.0.22",
             indicatorVersion        : "1.0.4",
             select_extendsVersion   : "1.0.2",
             titleVersion            : "1.0.7",
@@ -21,14 +21,14 @@ ext {
             pulltorefreshVersion    : "1.0.44.v3",
 //            statelayoutVersion      : "1.1.1",
             inputVersion            : "1.0.3",
-//            jsonVersion             : "1.0.5",
-//            cacheVersion            : "1.0.20",
+            jsonVersion             : "1.0.5",
+            cacheVersion            : "1.0.20",
 //            webviewVersion          : "1.0.3",
 //            jshandlerVersion        : "1.0.3",
             retrofitSdkVersion      : "2.6.0",
 //            rxJava                  : "2.2.8",
-//            rxAndroid               : "2.1.1",
-//            rxpermissions           : "0.10.2",
+            rxAndroid               : "2.1.1",
+            rxpermissions           : "0.10.2",
 //            glideSdkVersion         : "4.9.0",
     ]
 
@@ -50,8 +50,8 @@ ext {
             "pulltorefresh" : "com.github.30Code:pulltorefresh:${dependVersion.pulltorefreshVersion}",
 //            "statelayout"   : "com.github.30Code:statelayout:${dependVersion.statelayoutVersion}",
             "input"         : "com.github.30Code:input:${dependVersion.inputVersion}",
-//            "json"          : "com.github.30Code:json:${dependVersion.jsonVersion}",
-//            "cache"         : "com.github.30Code:cache:${dependVersion.cacheVersion}",
+            "json"          : "com.github.30Code:json:${dependVersion.jsonVersion}",
+            "cache"         : "com.github.30Code:cache:${dependVersion.cacheVersion}",
 //            "webview"       : "com.github.30Code:webview:${dependVersion.webviewVersion}",
 //            "jshandler"     : "com.github.30Code:basejshandler:${dependVersion.jshandlerVersion}",
     ]
@@ -72,7 +72,7 @@ ext {
 
     rxJava = [
 //            "rxJava"   : "io.reactivex.rxjava2:rxjava:${dependVersion.rxJava}",
-//            "rxAndroid": "io.reactivex.rxjava2:rxandroid:${dependVersion.rxAndroid}",
+            "rxAndroid": "io.reactivex.rxjava2:rxandroid:${dependVersion.rxAndroid}",
     ]
 
     testDeps = [
@@ -81,20 +81,19 @@ ext {
     ]
 
     commonDeps = [
-//            "rxpermissions"     : "com.github.tbruyelle:rxpermissions:${dependVersion.rxpermissions}",
+            "rxpermissions"     : "com.github.tbruyelle:rxpermissions:${dependVersion.rxpermissions}",
 //            "glide"             : "com.github.bumptech.glide:glide:${dependVersion.glideSdkVersion}",
 //            "gif-drawable"      : 'pl.droidsonroids.gif:android-gif-drawable:1.2.7',
 //            "banner"            : 'cn.bingoogolapple:bga-banner:3.0.0',
 //            "flexbox"           : 'com.google.android:flexbox:1.0.0',
 //            "spinkit"           : 'com.github.ybq:Android-SpinKit:1.2.0',
 //            "autosize"          : 'me.jessyan:autosize:1.2.1',
-//            "rxpermission"     : 'com.github.tbruyelle:rxpermissions:0.10.2',
     ]
 
     supportLibs = supportDeps.values()
     linHomeLibs = librarys.values()
     kotlinxCoroutines = kotlinx_coroutines.values()
     networkLibs = retrofit.values()
-//    rxJavaLibs = rxJava.values()
-//    commonLibs = commonDeps.values()
+    rxJavaLibs = rxJava.values()
+    commonLibs = commonDeps.values()
 }

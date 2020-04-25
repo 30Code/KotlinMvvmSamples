@@ -30,6 +30,8 @@
     <string name="user_register">注册用户</string>
     <string name="register_tip">用户注册后才可以登录！</string>
 
+    <string name="text_permission_external_storage_tip">为了您有更好的产品体验，请将【权限】中的【读写储存卡】设置为允许哦</string>
+
     <!--初始化页面延迟毫秒数-->
     <integer name="init_delayed_time">500</integer>
 </resources>

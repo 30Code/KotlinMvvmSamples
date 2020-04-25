@@ -1,6 +1,7 @@
 package cn.linhome.kotlinmvvmsamples.model.api
 
 import cn.linhome.kotlinmvvmsamples.model.bean.BaseResponse
+import cn.linhome.kotlinmvvmsamples.model.bean.LoginData
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -19,6 +20,6 @@ interface ApiService {
     @POST("user/login")
     @FormUrlEncoded
     suspend fun login(@Field("username") username : String,
-                      @Field("password") password : String) : BaseResponse<Any>
+                      @Field("password") password : String) : BaseResponse<LoginData>
 
 }

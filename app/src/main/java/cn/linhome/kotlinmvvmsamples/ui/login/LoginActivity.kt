@@ -3,6 +3,7 @@ package cn.linhome.kotlinmvvmsamples.ui.login
 import androidx.lifecycle.Observer
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.base.BaseVMActivity
+import cn.linhome.kotlinmvvmsamples.dao.UserBeanDao
 import cn.linhome.kotlinmvvmsamples.ui.login.vm.LoginViewModel
 import cn.linhome.kotlinmvvmsamples.ui.main.MainActivity
 import cn.linhome.lib.utils.context.FToast
@@ -36,7 +37,7 @@ class LoginActivity : BaseVMActivity<LoginViewModel>() {
         mViewModel.apply {
             mLoginData.observe(this@LoginActivity, Observer {
                 hideLoading()
-                FToast.show(getString(R.string.login_success))
+                UserBeanDao.insertOrUpdate(it.data)
                 startActivity<MainActivity>()
                 finish()
             })
