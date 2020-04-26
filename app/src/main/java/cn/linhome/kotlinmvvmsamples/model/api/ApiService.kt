@@ -1,10 +1,7 @@
 package cn.linhome.kotlinmvvmsamples.model.api
 
-import cn.linhome.kotlinmvvmsamples.model.bean.BaseResponse
-import cn.linhome.kotlinmvvmsamples.model.bean.LoginData
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import cn.linhome.kotlinmvvmsamples.model.bean.*
+import retrofit2.http.*
 
 /**
  *  des : ApiService
@@ -21,5 +18,21 @@ interface ApiService {
     @FormUrlEncoded
     suspend fun login(@Field("username") username : String,
                       @Field("password") password : String) : BaseResponse<LoginData>
+
+    /**
+     * 获取公众号列表
+     * http://wanandroid.com/wxarticle/chapters/json
+     */
+    @GET("/wxarticle/chapters/json")
+    suspend fun getWXChapters() : BaseResponse<MutableList<WXChapterBean>>
+
+    /**
+     * 知识体系下的文章
+     * http://www.wanandroid.com/article/list/0/json?cid=168
+     * @param page
+     * @param cid
+     */
+    @GET("article/list/{page}/json")
+    suspend fun getArticlesList(@Path("page") page: Int, @Query("cid") cid: Int) : BaseResponse<ArticleResponseBody>
 
 }

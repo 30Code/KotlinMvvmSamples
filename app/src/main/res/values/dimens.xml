@@ -1,0 +1,38 @@
+<resources>
+
+    <dimen name="height_title_bar">45dp</dimen>
+    <dimen name="width_title_item">40dp</dimen>
+    <dimen name="width_title_item_image">20dp</dimen>
+    <dimen name="height_title_item_image">20dp</dimen>
+
+    <!-- 首页底部菜单栏高度 -->
+    <dimen name="height_main_bottom_bar">55dp</dimen>
+
+    <!-- 首页底部菜单栏图片宽度 -->
+    <dimen name="width_main_bottom_tab_image">25dp</dimen>
+    <!-- 首页底部菜单栏图片高度 -->
+    <dimen name="height_main_bottom_tab_image">25dp</dimen>
+
+    <!-- 直播间观众列表头像宽度 -->
+    <dimen name="width_viewer_head_image">30dp</dimen>
+    <!-- 直播间观众列表头像高度 -->
+    <dimen name="height_viewer_head_image">30dp</dimen>
+
+    <dimen name="height_search_bar">40dp</dimen>
+
+    <dimen name="height_photo_view">10dip</dimen>
+
+    <!-- 指示器间距 -->
+    <dimen name="lib_vpg_indicator_margin">10dp</dimen>
+
+    <!--个人中心和他人个人中心-->
+    <!--向右箭头大小-->
+    <dimen name="width_arrow_right">6dp</dimen>
+    <dimen name="height_arrow_right">11dp</dimen>
+
+    <!-- 圆角大小 -->
+    <dimen name="border_radius_size">5dp</dimen>
+
+    <!-- 指示器宽度 -->
+    <dimen name="banner_indicator_width">15dp</dimen>
+</resources>

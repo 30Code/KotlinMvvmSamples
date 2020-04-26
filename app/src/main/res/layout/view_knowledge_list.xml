@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <cn.linhome.lib.pulltorefresh.FPullToRefreshView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@id/view_pull_to_refresh"
+        android:background="@color/viewBackground">
+
+        <cn.linhome.library.view.SDRecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_knowledge_list"/>
+
+    </cn.linhome.lib.pulltorefresh.FPullToRefreshView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

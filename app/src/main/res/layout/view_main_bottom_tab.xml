@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_main_bottom_bar"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_tab_home"
+        android:paddingBottom="2dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <cn.linhome.kotlinmvvmsamples.view.TabMainMenuView
+            android:id="@+id/view_tab_home"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:stateListAnimator="@drawable/selector_press_scale_out"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home"
+            android:textColor="@color/res_text_gray_s"
+            android:textSize="11sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tab_square"
+        android:paddingBottom="2dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <cn.linhome.kotlinmvvmsamples.view.TabMainMenuView
+            android:id="@+id/view_tab_square"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:stateListAnimator="@drawable/selector_press_scale_out"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/square"
+            android:textColor="@color/res_text_gray_s"
+            android:textSize="11sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tab_wechat"
+        android:paddingBottom="2dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <cn.linhome.kotlinmvvmsamples.view.TabMainMenuView
+            android:id="@+id/view_tab_wechat"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:stateListAnimator="@drawable/selector_press_scale_out"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wechat"
+            android:textColor="@color/res_text_gray_s"
+            android:textSize="11sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tab_knowledge_system"
+        android:layout_width="0dp"
+        android:paddingBottom="2dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <cn.linhome.kotlinmvvmsamples.view.TabMainMenuView
+            android:id="@+id/view_tab_knowledge_system"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:stateListAnimator="@drawable/selector_press_scale_out"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/knowledge_system"
+            android:textColor="@color/res_text_gray_s"
+            android:textSize="11sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tab_project"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingBottom="2dp"
+        android:orientation="vertical">
+
+        <cn.linhome.kotlinmvvmsamples.view.TabMainMenuView
+            android:id="@+id/view_tab_project"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:stateListAnimator="@drawable/selector_press_scale_out"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/project"
+            android:textColor="@color/res_text_gray_s"
+            android:textSize="11sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
