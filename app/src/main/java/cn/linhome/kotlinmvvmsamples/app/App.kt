@@ -4,12 +4,15 @@ import android.content.Context
 import cn.linhome.kotlinmvpsamples.common.GlobalEncryptConverter
 import cn.linhome.kotlinmvpsamples.common.GsonObjectConverter
 import cn.linhome.kotlinmvvmsamples.BuildConfig
+import cn.linhome.kotlinmvvmsamples.di.appModule
 import cn.linhome.lib.cache.FDisk
 import cn.linhome.lib.utils.extend.FActivityStack
 import cn.linhome.library.app.FApplication
 import cn.linhome.library.utils.LogUtil
 import com.sunday.eventbus.SDEventManager
 import de.greenrobot.event.SubscriberExceptionEvent
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import kotlin.properties.Delegates
 
 /**
@@ -32,6 +35,11 @@ class App : FApplication(){
         super.onCreate()
         instance = this
         mContext = applicationContext
+
+        startKoin {
+            androidContext(this@App)
+            modules(appModule)
+        }
     }
 
     override fun onCreateMainProcess() {

@@ -1,29 +1,30 @@
 package cn.linhome.kotlinmvvmsamples.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 
 /**
- *  des :
+ *  des : BaseVMFragment
  *  Created by 30Code
- *  date : 2020/4/24
+ *  date : 2021/1/11
  */
-abstract class BaseVMActivity/*<VM : BaseViewModel>*/ : BaseActivity(), IView {
+abstract class BaseVMFragment/*<VM : BaseViewModel>*/ : BaseFragment() {
 
 //    lateinit var mViewModel: VM
 //
-//    abstract fun attachVMClass() : Class<VM>?
+//    abstract fun attachVMClass(): Class<VM>?
 //
 //    open fun startObserver() {}
 //
-//    override fun init(savedInstanceState: Bundle?) {
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 //        initVM()
-//        super.init(savedInstanceState)
 //        startObserver()
+//        super.onViewCreated(view, savedInstanceState)
 //    }
 //
 //    private fun initVM() {
@@ -41,15 +42,17 @@ abstract class BaseVMActivity/*<VM : BaseViewModel>*/ : BaseActivity(), IView {
 //        super.onDestroy()
 //    }
 
-    protected inline fun <reified T : ViewDataBinding> binding(@LayoutRes resId: Int) : Lazy<T> = lazy {
-        DataBindingUtil.setContentView<T>(this, resId).apply {
-        lifecycleOwner = this@BaseVMActivity }
+    protected  fun < T : ViewDataBinding> binding(inflater: LayoutInflater, @LayoutRes layoutId: Int, container: ViewGroup?) : T =
+        DataBindingUtil.inflate<T>(inflater,layoutId, container,false).apply {
+        lifecycleOwner = this@BaseVMFragment
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         startObserve()
+        initView()
+        super.onViewCreated(view, savedInstanceState)
     }
 
+    abstract fun initView()
     abstract fun startObserve()
 }
