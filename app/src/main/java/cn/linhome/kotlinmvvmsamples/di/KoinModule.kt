@@ -1,5 +1,9 @@
 package cn.linhome.kotlinmvvmsamples.di
 
+import cn.linhome.kotlinmvvmsamples.CoroutinesDispatcherProvider
+import cn.linhome.kotlinmvvmsamples.http.RetrofitClient
+import cn.linhome.kotlinmvvmsamples.model.api.ApiService
+import cn.linhome.kotlinmvvmsamples.model.repository.LoginRepository
 import cn.linhome.kotlinmvvmsamples.ui.login.vm.LoginViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -21,9 +25,9 @@ val viewModelModule = module {
 }
 
 val repositoryModule = module {
-//    single { WanRetrofitClient.getService(WanService::class.java, WanService.BASE_URL) }
-//    single { CoroutinesDispatcherProvider() }
-//    single { LoginRepository(get()) }
+    single { RetrofitClient.getService(ApiService::class.java, ApiService.BASE_URL) }
+    single { CoroutinesDispatcherProvider() }
+    single { LoginRepository(get()) }
 //    single { SquareRepository() }
 //    single { HomeRepository() }
 //    single { ProjectRepository() }

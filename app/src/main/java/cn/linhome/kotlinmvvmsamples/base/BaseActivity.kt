@@ -30,16 +30,6 @@ abstract class BaseActivity : SDBaseActivity(), FTitle.Callback {
 
     private lateinit var mTitleView : FTitle
 
-    override fun init(savedInstanceState: Bundle?) {
-        showTitle(false)
-        initData()
-    }
-
-    /**
-     * 初始化数据
-     */
-    open fun initData() {}
-
     override fun onCreateTitleViewResId(): Int = R.layout.include_title_simple
 
     override fun setStatusBar() {
@@ -47,23 +37,27 @@ abstract class BaseActivity : SDBaseActivity(), FTitle.Callback {
         StatusBarCompat.setStatusBarColor(this, resources.getColor(R.color.res_main_color))
     }
 
+    override fun init(savedInstanceState: Bundle?) {
+
+    }
+
     override fun onInitTitleView(view: View) {
         super.onInitTitleView(view)
-        mTitleView = view.findViewById(R.id.title)
-        mTitleView.setCallback(this)
-        mTitleView.itemLeft.setImageLeft(R.drawable.ic_arrow_left_white)
+//        mTitleView = view.findViewById(R.id.title)
+//        mTitleView.setCallback(this)
+//        mTitleView.itemLeft.setImageLeft(R.drawable.ic_arrow_left_white)
     }
 
-    fun getTitleView(): FTitle {
-        return mTitleView
-    }
+//    fun getTitleView(): FTitle {
+//        return mTitleView
+//    }
 
     protected open fun showTitle(show: Boolean) {
-        if (show) {
-            FViewUtil.setVisibility(getTitleView(), View.VISIBLE)
-        } else {
-            FViewUtil.setVisibility(getTitleView(), View.GONE)
-        }
+//        if (show) {
+//            FViewUtil.setVisibility(getTitleView(), View.VISIBLE)
+//        } else {
+//            FViewUtil.setVisibility(getTitleView(), View.GONE)
+//        }
     }
 
     override fun onClickItemRightTitleBar(index: Int, item: FTitleItem?) {

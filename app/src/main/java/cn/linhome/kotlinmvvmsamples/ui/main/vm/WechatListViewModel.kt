@@ -18,14 +18,14 @@ class WechatListViewModel : BaseViewModel() {
     val mArticleResponseBody : MutableLiveData<BaseResponse<ArticleResponseBody>> = MutableLiveData()
 
     fun getArticlesList(page: Int, cid: Int) {
-        launch {
-            val response  = withContext(Dispatchers.IO) {
-                repository.getArticlesList(page, cid)
-            }
-            executeResponse(response,
-                {mArticleResponseBody.value = response},
-                {mErrorMsg.value = response.errorMsg})
-        }
+//        launch {
+//            val response  = withContext(Dispatchers.IO) {
+//                repository.getArticlesList(page, cid)
+//            }
+//            executeResponse(response,
+//                {mArticleResponseBody.value = response},
+//                {mErrorMsg.value = response.errorMsg})
+//        }
     }
 
 }

@@ -36,12 +36,12 @@ abstract class BaseAppVMView<VM : BaseViewModel> : BaseAppView, IView {
         }
         attachVMClass()?.let {
             mViewModel = ViewModelProviders.of(baseActivity).get(it)
-            baseActivity.lifecycle.addObserver(mViewModel)
+//            baseActivity.lifecycle.addObserver(mViewModel)
         }
     }
 
     override fun onActivityDestroyed(activity: Activity) {
-        baseActivity.lifecycle.removeObserver(mViewModel)
+//        baseActivity.lifecycle.removeObserver(mViewModel)
         super.onActivityDestroyed(activity)
     }
 

@@ -11,16 +11,16 @@ import cn.linhome.kotlinmvvmsamples.model.bean.*
  */
 class RepositoryHelper : BaseRepository() {
 
-    suspend fun login(username : String, password : String) : BaseResponse<LoginData> {
-        return apiCall { RetrofitHelper.mService.login(username, password) }
-    }
-
-    suspend fun getWXChapters() : BaseResponse<MutableList<WXChapterBean>> {
-        return apiCall { RetrofitHelper.mService.getWXChapters() }
-    }
-
-    suspend fun getArticlesList(page: Int, cid: Int) : BaseResponse<ArticleResponseBody> {
-        return apiCall { RetrofitHelper.mService.getArticlesList(page, cid) }
-    }
+//    suspend fun login(username : String, password : String) : BaseResponse<LoginData> {
+//        return apiCall { RetrofitHelper.mService.login(username, password) }
+//    }
+//
+//    suspend fun getWXChapters() : BaseResponse<MutableList<WXChapterBean>> {
+//        return apiCall { RetrofitHelper.mService.getWXChapters() }
+//    }
+//
+//    suspend fun getArticlesList(page: Int, cid: Int) : BaseResponse<ArticleResponseBody> {
+//        return apiCall { RetrofitHelper.mService.getArticlesList(page, cid) }
+//    }
 
 }

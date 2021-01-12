@@ -18,13 +18,13 @@ class WechatViewModel : BaseViewModel() {
     val mWXChapterBean : MutableLiveData<BaseResponse<MutableList<WXChapterBean>>> = MutableLiveData()
 
     fun getWXChapters() {
-        launch {
-            val response = withContext(Dispatchers.IO) {
-                repository.getWXChapters()
-            }
-            executeResponse(response,
-                {mWXChapterBean.value = response},
-                {mErrorMsg.value = response.errorMsg})
-        }
+//        launch {
+//            val response = withContext(Dispatchers.IO) {
+//                repository.getWXChapters()
+//            }
+//            executeResponse(response,
+//                {mWXChapterBean.value = response},
+//                {mErrorMsg.value = response.errorMsg})
+//        }
     }
 }
