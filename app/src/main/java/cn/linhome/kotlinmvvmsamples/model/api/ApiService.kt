@@ -19,6 +19,12 @@ interface ApiService {
     suspend fun login(@Field("username") username : String,
                       @Field("password") password : String) : BaseResponse<LoginData>
 
+    @GET("/banner/json")
+    suspend fun getBanner(): BaseResponse<List<Banner>>
+
+    @GET("/article/list/{page}/json")
+    suspend fun getHomeArticles(@Path("page") page: Int): BaseResponse<ArticleList>
+
     /**
      * 获取公众号列表
      * http://wanandroid.com/wxarticle/chapters/json

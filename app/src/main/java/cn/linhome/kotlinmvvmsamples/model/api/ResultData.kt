@@ -5,10 +5,10 @@ package cn.linhome.kotlinmvvmsamples.model.api
  *  Created by 30Code
  *  date : 2020/4/24
  */
-sealed class Result<out T : Any> {
+sealed class ResultData<out T : Any> {
 
-    data class Success<out T : Any>(val data: T) : Result<T>()
-    data class Error(val exception: Exception) : Result<Nothing>()
+    data class Success<out T : Any>(val data: T) : ResultData<T>()
+    data class Error(val exception: Exception) : ResultData<Nothing>()
 
     override fun toString(): String {
         return when (this) {

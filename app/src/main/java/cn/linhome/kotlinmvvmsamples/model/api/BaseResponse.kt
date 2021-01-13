@@ -12,14 +12,14 @@ import java.io.IOException
 data class BaseResponse<out T>(val errorCode: Int, val errorMsg: String, val data: T)
 
 suspend fun <T : Any> BaseResponse<T>.executeResponse(successBlock: (suspend CoroutineScope.() -> Unit)? = null,
-                                                     errorBlock: (suspend CoroutineScope.() -> Unit)? = null): Result<T> {
+                                                     errorBlock: (suspend CoroutineScope.() -> Unit)? = null): ResultData<T> {
     return coroutineScope {
         if (errorCode == -1) {
             errorBlock?.let { it() }
-            Result.Error(IOException(errorMsg))
+            ResultData.Error(IOException(errorMsg))
         } else {
             successBlock?.let { it() }
-            Result.Success(data)
+            ResultData.Success(data)
         }
     }
 }

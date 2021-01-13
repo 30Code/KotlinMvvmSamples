@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 import cn.linhome.library.fragment.SDBaseFragment
 
 /**
@@ -12,7 +13,7 @@ import cn.linhome.library.fragment.SDBaseFragment
  *  Created by 30Code
  *  date : 2021/1/11
  */
-abstract class BaseFragment : SDBaseFragment() {
+abstract class BaseFragment : Fragment() {
 
     /**
      * 视图是否加载完毕

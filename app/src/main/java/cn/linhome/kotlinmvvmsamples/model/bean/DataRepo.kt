@@ -50,7 +50,7 @@ data class ArticleResponseBody(
 )
 
 //文章
-data class Article(
+data class Articles(
     val apkLink: String,
     val audit: Int,
     val author: String,
@@ -87,7 +87,7 @@ data class Tag(
     val url: String
 )
 
-data class Banner(
+data class Banners(
     val desc: String,
     val id: Int,
     val imagePath: String,

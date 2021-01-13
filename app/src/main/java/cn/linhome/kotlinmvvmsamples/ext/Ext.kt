@@ -1,7 +1,7 @@
 package cn.linhome.kotlinmvvmsamples.ext
 
 import cn.linhome.kotlinmvvmsamples.constants.ResponseCode
-import cn.linhome.kotlinmvvmsamples.model.bean.BaseResponse
+import cn.linhome.kotlinmvvmsamples.model.bean.BaseResponseResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
 
@@ -11,7 +11,7 @@ import kotlinx.coroutines.coroutineScope
  *  date : 2020/4/24
  */
 suspend fun executeResponse(
-    response: BaseResponse<Any>,
+    response: BaseResponseResult<Any>,
     successBlock: suspend CoroutineScope.() -> Unit,
     errorBlock: suspend CoroutineScope.() -> Unit) {
         coroutineScope {

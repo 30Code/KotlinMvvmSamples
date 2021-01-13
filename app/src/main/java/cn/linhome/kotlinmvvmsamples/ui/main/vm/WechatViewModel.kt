@@ -2,11 +2,8 @@ package cn.linhome.kotlinmvvmsamples.ui.main.vm
 
 import androidx.lifecycle.MutableLiveData
 import cn.linhome.kotlinmvvmsamples.base.BaseViewModel
-import cn.linhome.kotlinmvvmsamples.ext.executeResponse
-import cn.linhome.kotlinmvvmsamples.model.bean.BaseResponse
+import cn.linhome.kotlinmvvmsamples.model.bean.BaseResponseResult
 import cn.linhome.kotlinmvvmsamples.model.bean.WXChapterBean
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 /**
  *  des :
@@ -15,7 +12,7 @@ import kotlinx.coroutines.withContext
  */
 class WechatViewModel : BaseViewModel() {
 
-    val mWXChapterBean : MutableLiveData<BaseResponse<MutableList<WXChapterBean>>> = MutableLiveData()
+    val mWXChapterBean : MutableLiveData<BaseResponseResult<MutableList<WXChapterBean>>> = MutableLiveData()
 
     fun getWXChapters() {
 //        launch {

@@ -2,11 +2,8 @@ package cn.linhome.kotlinmvvmsamples.ui.main.vm
 
 import androidx.lifecycle.MutableLiveData
 import cn.linhome.kotlinmvvmsamples.base.BaseViewModel
-import cn.linhome.kotlinmvvmsamples.ext.executeResponse
 import cn.linhome.kotlinmvvmsamples.model.bean.ArticleResponseBody
-import cn.linhome.kotlinmvvmsamples.model.bean.BaseResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import cn.linhome.kotlinmvvmsamples.model.bean.BaseResponseResult
 
 /**
  *  des :
@@ -15,7 +12,7 @@ import kotlinx.coroutines.withContext
  */
 class WechatListViewModel : BaseViewModel() {
 
-    val mArticleResponseBody : MutableLiveData<BaseResponse<ArticleResponseBody>> = MutableLiveData()
+    val mArticleResponseBody : MutableLiveData<BaseResponseResult<ArticleResponseBody>> = MutableLiveData()
 
     fun getArticlesList(page: Int, cid: Int) {
 //        launch {

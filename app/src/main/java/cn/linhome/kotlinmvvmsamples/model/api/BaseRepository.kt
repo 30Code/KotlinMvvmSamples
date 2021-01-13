@@ -1,6 +1,5 @@
 package cn.linhome.kotlinmvvmsamples.model.api
 
-import cn.linhome.kotlinmvvmsamples.model.bean.BaseResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
 import java.io.IOException
@@ -16,24 +15,24 @@ open class BaseRepository {
         return call.invoke()
     }
 
-    suspend fun <T : Any> safeApiCall(call: suspend () -> Result<T>, errorMessage: String): Result<T> {
+    suspend fun <T : Any> safeApiCall(call: suspend () -> ResultData<T>, errorMessage: String): ResultData<T> {
         return try {
             call()
         } catch (e: Exception) {
             // An exception was thrown when calling the API so we're converting this to an IOException
-            Result.Error(IOException(errorMessage, e))
+            ResultData.Error(IOException(errorMessage, e))
         }
     }
 
     suspend fun <T : Any> executeResponse(response: BaseResponse<T>, successBlock: (suspend CoroutineScope.() -> Unit)? = null,
-                                          errorBlock: (suspend CoroutineScope.() -> Unit)? = null): Result<T> {
+                                          errorBlock: (suspend CoroutineScope.() -> Unit)? = null): ResultData<T> {
         return coroutineScope {
             if (response.errorCode == -1) {
                 errorBlock?.let { it() }
-                Result.Error(IOException(response.errorMsg))
+                ResultData.Error(IOException(response.errorMsg))
             } else {
                 successBlock?.let { it() }
-                Result.Success(response.data)
+                ResultData.Success(response.data)
             }
         }
     }

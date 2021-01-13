@@ -5,15 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import cn.linhome.kotlinmvvmsamples.CoroutinesDispatcherProvider
 import cn.linhome.kotlinmvvmsamples.base.BaseViewModel
-import cn.linhome.kotlinmvvmsamples.ext.executeResponse
-import cn.linhome.kotlinmvvmsamples.model.bean.BaseResponse
 import cn.linhome.kotlinmvvmsamples.model.bean.LoginData
 import cn.linhome.kotlinmvvmsamples.model.repository.LoginRepository
 import cn.linhome.kotlinmvvmsamples.ui.login.LoginUiState
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.withContext
 
 /**
  *  des :

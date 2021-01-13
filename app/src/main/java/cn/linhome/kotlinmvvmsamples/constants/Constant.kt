@@ -7,4 +7,6 @@ package cn.linhome.kotlinmvvmsamples.constants
  */
 object Constant {
     const val USER_INFO = "user_info"
+
+    val APP_START ="app start"
 }

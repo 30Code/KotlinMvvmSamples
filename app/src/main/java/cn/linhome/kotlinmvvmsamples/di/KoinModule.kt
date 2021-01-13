@@ -3,7 +3,9 @@ package cn.linhome.kotlinmvvmsamples.di
 import cn.linhome.kotlinmvvmsamples.CoroutinesDispatcherProvider
 import cn.linhome.kotlinmvvmsamples.http.RetrofitClient
 import cn.linhome.kotlinmvvmsamples.model.api.ApiService
+import cn.linhome.kotlinmvvmsamples.model.repository.HomePageRepository
 import cn.linhome.kotlinmvvmsamples.model.repository.LoginRepository
+import cn.linhome.kotlinmvvmsamples.ui.home.HomePageViewModel
 import cn.linhome.kotlinmvvmsamples.ui.login.vm.LoginViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -16,7 +18,7 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel { LoginViewModel(get(),get()) }
-//    viewModel { ArticleViewModel(get(), get(), get(), get(), get()) }
+    viewModel { HomePageViewModel(get()) }
 //    viewModel { SystemViewModel(get(), get()) }
 //    viewModel { NavigationViewModel(get()) }
 //    viewModel { ProjectViewModel(get()) }
@@ -29,7 +31,7 @@ val repositoryModule = module {
     single { CoroutinesDispatcherProvider() }
     single { LoginRepository(get()) }
 //    single { SquareRepository() }
-//    single { HomeRepository() }
+    single { HomePageRepository() }
 //    single { ProjectRepository() }
 //    single { CollectRepository() }
 //    single { SystemRepository() }

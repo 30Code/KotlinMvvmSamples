@@ -27,21 +27,15 @@ class SplashActivity : BaseActivity() {
 
     private var mPermissionDialog : PermissionDialog? = null
 
-    override fun onCreateContentView(): Int = R.layout.act_splash
+    override fun getLayoutResId(): Int = R.layout.act_splash
 
-    override fun onResume() {
-        super.onResume()
-        if (mFlag)
-        {
-            requestExternalStoragePermission()
-            mFlag = false
-        }
-    }
-
-    override fun init(savedInstanceState: Bundle?) {
-        super.init(savedInstanceState)
+    override fun initView() {
+        StatusBarCompat.translucentStatusBar(this)
 
         requestExternalStoragePermission()
+    }
+
+    override fun initData() {
     }
 
     private fun requestExternalStoragePermission() {
@@ -49,7 +43,7 @@ class SplashActivity : BaseActivity() {
             Manifest.permission.READ_EXTERNAL_STORAGE)
             .subscribe { permission ->
                 if (permission.granted) {
-                    val init_delayed_time = activity.resources.getInteger(R.integer.init_delayed_time)
+                    val init_delayed_time = resources.getInteger(R.integer.init_delayed_time)
                     mDelayRunnable.runDelay(init_delayed_time.toLong())
                 } else {
                     showPermissionDialog(getString(R.string.text_permission_external_storage_tip))
@@ -77,18 +71,16 @@ class SplashActivity : BaseActivity() {
 
     private val mDelayRunnable: FDelayRunnable = object : FDelayRunnable() {
         override fun run() {
-            var loginData = UserBeanDao.query()
-            if (loginData != null) {
-                startActivity<MainActivity>()
-            } else {
-                startActivity<LoginActivity>()
-            }
+//            val loginData = UserBeanDao.query()
+//            if (loginData != null) {
+//                startActivity<MainActivity>()
+//            } else {
+//                startActivity<LoginActivity>()
+//            }
+
+            startActivity<MainActivity>()
             finish()
         }
     }
 
-    override fun setStatusBar() {
-        super.setStatusBar()
-        StatusBarCompat.translucentStatusBar(this)
-    }
 }
