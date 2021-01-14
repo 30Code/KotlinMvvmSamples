@@ -41,4 +41,10 @@ interface ApiService {
     @GET("article/list/{page}/json")
     suspend fun getArticlesList(@Path("page") page: Int, @Query("cid") cid: Int) : BaseResponse<ArticleResponseBody>
 
+    @GET("/user_article/list/{page}/json")
+    suspend fun getSquareArticleList(@Path("page") page: Int): BaseResponse<ArticleList>
+
+    @GET("/article/listproject/{page}/json")
+    suspend fun getLastedProject(@Path("page") page: Int): BaseResponse<ArticleList>
+
 }

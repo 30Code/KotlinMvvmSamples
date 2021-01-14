@@ -2,14 +2,13 @@ package cn.linhome.kotlinmvvmsamples.ui.main.fragment
 
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.base.BaseFragment
 import cn.linhome.kotlinmvvmsamples.ui.home.HomePageFragment
 import cn.linhome.kotlinmvvmsamples.ui.navigation.NavigationFragment
-import cn.linhome.kotlinmvvmsamples.ui.project.ProjectTypeFragment
+import cn.linhome.kotlinmvvmsamples.ui.project.ProjectLastedFragment
 import cn.linhome.kotlinmvvmsamples.ui.square.SquareFragment
 import cn.linhome.kotlinmvvmsamples.ui.system.SystemFragment
 import com.google.android.material.tabs.TabLayoutMediator
@@ -28,7 +27,7 @@ class HomeFragment : BaseFragment() {
     private val fragmentList = arrayListOf<Fragment>()
     private val homeFragment by lazy { HomePageFragment() } // 首页
     private val squareFragment by lazy { SquareFragment() } // 广场
-    private val lastedProjectFragment by lazy { ProjectTypeFragment() } // 最新项目
+    private val lastedProjectFragment by lazy { ProjectLastedFragment() } // 最新项目
     private val systemFragment by lazy { SystemFragment() } // 体系
     private val navigationFragment by lazy { NavigationFragment() } // 导航
     private var mOnPageChangeCallback: ViewPager2.OnPageChangeCallback? = null

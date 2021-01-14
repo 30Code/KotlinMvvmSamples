@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="cn.linhome.kotlinmvvmsamples.ui.home.HomePageViewModel" />
+            type="cn.linhome.kotlinmvvmsamples.ui.home.vm.HomePageViewModel" />
 
         <variable
             name="adapter"
@@ -17,9 +17,11 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        isRefresh="@{viewModel.uiState.showLoading}">
+        isRefresh="@{viewModel.uiState.showLoading}"
+        onRefresh="@{viewModel.refreshHome}">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/homePageRecycleView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             binding:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

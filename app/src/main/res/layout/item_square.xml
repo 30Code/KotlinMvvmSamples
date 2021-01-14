@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="article"
+            type="cn.linhome.kotlinmvvmsamples.model.bean.Article" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        tools:ignore="MissingConstraints" >
+
+        <TextView
+            android:id="@+id/shareTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/knowledge_system"
+            app:htmlText="@{article.title}"
+            android:textColor="@color/res_text_gray_m"
+            android:textSize="@dimen/res_text_l"/>
+
+        <ImageView
+            android:id="@+id/squareMan"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/home_hot"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shareTitle"/>
+
+        <TextView
+            android:id="@+id/shareAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/knowledge_system"
+            android:text="@{article.shareUser}"
+            android:textColor="@color/res_text_gray_s"
+            android:textSize="@dimen/res_text_s"
+            app:layout_constraintLeft_toRightOf="@+id/squareMan"
+            app:layout_constraintTop_toTopOf="@+id/squareMan"
+            app:layout_constraintBottom_toBottomOf="@+id/squareMan"/>
+
+        <ImageView
+            android:id="@+id/squareTime"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_time"
+            app:layout_constraintLeft_toRightOf="@id/shareAuthor"
+            app:layout_constraintTop_toTopOf="@id/shareAuthor"
+            app:layout_constraintBottom_toBottomOf="@id/shareAuthor"/>
+
+        <TextView
+            android:id="@+id/shareTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/knowledge_system"
+            android:text="@{article.niceShareDate}"
+            android:textColor="@color/res_text_gray_s"
+            android:textSize="@dimen/res_text_s"
+            app:layout_constraintLeft_toRightOf="@id/squareTime"
+            app:layout_constraintTop_toTopOf="@id/squareTime"
+            app:layout_constraintBottom_toBottomOf="@id/squareTime"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

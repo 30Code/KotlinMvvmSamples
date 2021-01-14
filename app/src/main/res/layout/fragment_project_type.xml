@@ -2,19 +2,35 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:binding="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="cn.linhome.kotlinmvvmsamples.ui.project.vm.ProjectLastedViewModel" />
+
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        isRefresh="@{viewModel.uiState.showLoading}"
+        onRefresh="@{viewModel.refreshLastedProject}">
 
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="120dp"
-            android:text="@string/project"
-            android:gravity="center"
-            android:textColor="@color/res_text_gray_l"
-            android:textSize="@dimen/res_text_l"
-            android:layout_centerInParent="true"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lastedProjectRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            binding:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginTop="20dp"
+            itemBottomPadding="10dp"
+            adapter="@{adapter}">
 
-    </RelativeLayout>
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </layout>

@@ -1,23 +1,21 @@
-package cn.linhome.kotlinmvvmsamples.ui.home
+package cn.linhome.kotlinmvvmsamples.ui.project.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import cn.linhome.kotlinmvvmsamples.model.api.ResultData
 import cn.linhome.kotlinmvvmsamples.base.BaseViewModel
+import cn.linhome.kotlinmvvmsamples.model.api.ResultData
 import cn.linhome.kotlinmvvmsamples.model.bean.ArticleList
-import cn.linhome.kotlinmvvmsamples.model.bean.Banner
-import cn.linhome.kotlinmvvmsamples.model.repository.HomePageRepository
+import cn.linhome.kotlinmvvmsamples.model.repository.ProjectLastedRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
  *  des :
  *  Created by 30Code
- *  date : 2021/1/13
+ *  date : 2021/1/14
  */
-class HomePageViewModel(private val homePageRepository: HomePageRepository) : BaseViewModel() {
+class ProjectLastedViewModel(val projectLastedRepository: ProjectLastedRepository) : BaseViewModel() {
 
     private var currentPage = 0
 
@@ -27,14 +25,9 @@ class HomePageViewModel(private val homePageRepository: HomePageRepository) : Ba
         return uiState
     }
 
-    val mBanners : LiveData<List<Banner>> = liveData {
-        kotlin.runCatching {
-            val data = homePageRepository.getBanner()
-            if (data is ResultData.Success) {
-                emit(data.data)
-            }
-        }
-    }
+    val refreshLastedProject : () -> Unit = {getLatestProjectList(true)}
+
+    fun getLatestProjectList(isRefresh: Boolean = false) = getArticleList(isRefresh)
 
     private fun getArticleList(isRefresh: Boolean = false, cid: Int = 0) {
         viewModelScope.launch(Dispatchers.Main) {
@@ -43,7 +36,7 @@ class HomePageViewModel(private val homePageRepository: HomePageRepository) : Ba
                 currentPage = 0
             }
 
-            val result = homePageRepository.getArticleList(currentPage)
+            val result = projectLastedRepository.getLastedProject(currentPage)
             if (result is ResultData.Success) {
                 if (result.data.offset >= result.data.total) {
                     emitArticleUiState(showLoading = false, showEnd = true)
