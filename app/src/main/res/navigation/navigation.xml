@@ -10,13 +10,13 @@
         android:name="cn.linhome.kotlinmvvmsamples.ui.main.MainFragment"
         android:label="fragment_tab"
         tools:layout="activity_bottom_navigation">
-        <!--<action
+       <!-- <action
             android:id="@+id/action_tab_to_browser"
-            app:destination="@id/browserActivity" />
+            app:destination="@id/browserActivity" />-->
         <action
             android:id="@+id/action_tab_to_login"
             app:destination="@id/loginActivity" />
-        <action
+        <!--<action
             android:id="@+id/action_tab_to_share"
             app:destination="@id/shareActivity" />
         <action

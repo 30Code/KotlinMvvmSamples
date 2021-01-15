@@ -12,6 +12,8 @@
 
     <string name="press_again_exit">再按一次退出!</string>
 
+    <string name="search_tips">输入搜索内容</string>
+
     <!-- Login -->
     <string name="username">用户名</string>
     <string name="password">密码</string>

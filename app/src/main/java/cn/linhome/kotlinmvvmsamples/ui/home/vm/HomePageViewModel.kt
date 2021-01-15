@@ -8,16 +8,19 @@ import cn.linhome.kotlinmvvmsamples.model.api.ResultData
 import cn.linhome.kotlinmvvmsamples.base.BaseViewModel
 import cn.linhome.kotlinmvvmsamples.model.bean.ArticleList
 import cn.linhome.kotlinmvvmsamples.model.bean.Banner
+import cn.linhome.kotlinmvvmsamples.model.repository.CollectRepository
 import cn.linhome.kotlinmvvmsamples.model.repository.HomePageRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  *  des :
  *  Created by 30Code
  *  date : 2021/1/13
  */
-class HomePageViewModel(private val homePageRepository: HomePageRepository) : BaseViewModel() {
+class HomePageViewModel(private val homePageRepository: HomePageRepository,
+                        private val collectRepository: CollectRepository) : BaseViewModel() {
 
     private var currentPage = 0
 
@@ -59,6 +62,18 @@ class HomePageViewModel(private val homePageRepository: HomePageRepository) : Ba
                 emitArticleUiState(showLoading = false, showSuccess = result.data, isRefresh = isRefresh)
             } else if (result is ResultData.Error) {
                 emitArticleUiState(showLoading = false, showError = result.exception.message)
+            }
+        }
+    }
+
+    fun collectArticle(articleId : Int, isCollect: Boolean) {
+        launchOnUI {
+            withContext(Dispatchers.IO) {
+                if (isCollect) {
+                    collectRepository.collectArticle(articleId)
+                } else {
+                    collectRepository.unCollectArticle(articleId)
+                }
             }
         }
     }

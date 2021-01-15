@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import cn.linhome.kotlinmvvmsamples.dao.UserBeanDao
 
 /**
  *  des : BaseVMFragment
@@ -41,4 +42,12 @@ abstract class BaseVMFragment<T:ViewDataBinding>(@LayoutRes val layoutId: Int) :
     abstract fun initView()
     abstract fun initData()
     abstract fun startObserve()
+
+    fun isLogin() : Boolean {
+        val loginData = UserBeanDao.query()
+        if (loginData != null) {
+            return true
+        }
+        return false
+    }
 }

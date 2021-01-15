@@ -71,14 +71,15 @@ class SplashActivity : BaseActivity() {
 
     private val mDelayRunnable: FDelayRunnable = object : FDelayRunnable() {
         override fun run() {
-//            val loginData = UserBeanDao.query()
-//            if (loginData != null) {
-//                startActivity<MainActivity>()
-//            } else {
-//                startActivity<LoginActivity>()
-//            }
+            val loginData = UserBeanDao.query()
+            if (loginData != null) {
+                startActivity<MainActivity>()
+            } else {
+                startActivity<LoginActivity>()
+            }
 
-            startActivity<MainActivity>()
+//            startActivity<MainActivity>()
+
             finish()
         }
     }

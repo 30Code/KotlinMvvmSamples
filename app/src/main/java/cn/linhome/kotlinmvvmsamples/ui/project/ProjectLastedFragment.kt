@@ -1,5 +1,6 @@
 package cn.linhome.kotlinmvvmsamples.ui.project
 
+import androidx.navigation.Navigation
 import cn.linhome.kotlinmvvmsamples.BR
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.adapter.BaseBindAdapter
@@ -8,6 +9,7 @@ import cn.linhome.kotlinmvvmsamples.databinding.FragmentProjectTypeBinding
 import cn.linhome.kotlinmvvmsamples.model.bean.Article
 import cn.linhome.kotlinmvvmsamples.ui.project.vm.ProjectLastedViewModel
 import cn.linhome.kotlinmvvmsamples.view.CustomLoadMoreView
+import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.fragment_project_type.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -31,6 +33,8 @@ class ProjectLastedFragment : BaseVMFragment<FragmentProjectTypeBinding>(R.layou
 
     private fun initRecycleView() {
         projectLastedAdapter.run {
+            onItemChildClickListener = this@ProjectLastedFragment.itemClickListener
+
             setLoadMoreView(CustomLoadMoreView())
             setOnLoadMoreListener({loadMore()}, lastedProjectRecycleView)
         }
@@ -60,5 +64,23 @@ class ProjectLastedFragment : BaseVMFragment<FragmentProjectTypeBinding>(R.layou
 
             if (it.showEnd) projectLastedAdapter.loadMoreEnd()
         })
+    }
+
+    private val itemClickListener = BaseQuickAdapter.OnItemChildClickListener { _, view, position ->
+        when(view.id) {
+            R.id.articleStar -> {
+                if (isLogin()) {
+                    projectLastedAdapter.run {
+                        data[position].run {
+                            collect = !collect
+                            projectLastedViewModel.collectArticle(id, collect)
+                        }
+                        notifyDataSetChanged()
+                    }
+                } else {
+                    Navigation.findNavController(lastedProjectRecycleView).navigate(R.id.action_tab_to_login)
+                }
+            }
+        }
     }
 }

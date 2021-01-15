@@ -1,5 +1,6 @@
 package cn.linhome.kotlinmvvmsamples.model.repository
 
+import cn.linhome.kotlinmvvmsamples.dao.UserBeanDao
 import cn.linhome.kotlinmvvmsamples.model.api.ApiService
 import cn.linhome.kotlinmvvmsamples.model.api.BaseRepository
 import cn.linhome.kotlinmvvmsamples.model.api.doError
@@ -30,6 +31,8 @@ class LoginRepository(private val service : ApiService) : BaseRepository() {
         }
 
         service.login(userName, passWord).doSuccess { user ->
+            UserBeanDao.insertOrUpdate(user)
+
             emit(LoginUiState(isSuccess = user, enableLoginButton = true))
         }.doError { errorMsg ->
             emit(LoginUiState<LoginData>(isError = errorMsg, enableLoginButton = true))

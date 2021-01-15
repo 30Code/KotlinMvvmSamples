@@ -4,8 +4,10 @@ import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.base.BaseVMActivity
 import cn.linhome.kotlinmvvmsamples.databinding.ActivityLoginBinding
 import cn.linhome.kotlinmvvmsamples.ui.login.vm.LoginViewModel
+import cn.linhome.kotlinmvvmsamples.ui.main.MainActivity
 import cn.linhome.lib.utils.context.FToast
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.jetbrains.anko.startActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -36,12 +38,13 @@ class LoginActivity : BaseVMActivity() {
                     showLoading()
                 }
 
-                it.isSuccess.let {
+                it.isSuccess?.let {
                     hideLoading()
+                    startActivity<MainActivity>()
                     finish()
                 }
 
-                it.isError.let { err ->
+                it.isError?.let { err ->
                     hideLoading()
                     FToast.show(err)
                 }

@@ -1,15 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:binding="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:text="@string/search"
-        android:gravity="center"
-        android:textColor="@color/res_text_gray_l"
-        android:textSize="@dimen/res_text_l"
-        android:layout_centerInParent="true"/>
+    <data>
 
-</RelativeLayout>
+        <variable
+            name="viewModel"
+            type="cn.linhome.kotlinmvvmsamples.ui.main.vm.SearchViewModel" />
+
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
+
+    </data>
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       tools:ignore="MissingConstraints">
+
+       <cn.linhome.lib.input.FEditTextContainer
+           android:id="@+id/etc_search"
+           android:layout_width="match_parent"
+           android:layout_height="60dp"
+           android:layout_marginTop="30dp"
+           android:layout_marginBottom="8dp">
+
+           <cn.linhome.lib.input.FEditText
+               android:id="@+id/et_search"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:hint="@string/search_tips"
+               android:textColorHint="@color/res_text_gray_s"
+               android:textColor="@color/res_text_gray_m"
+               android:textSize="@dimen/res_text_l"
+               android:inputType="textEmailAddress"
+               android:text="@={viewModel.searchKey}"
+               binding:afterTextChanged="@{viewModel.searchInput}"/>
+
+           <cn.linhome.lib.input.stateview.EditTextClearImageView
+               android:layout_width="16dp"
+               android:layout_height="16dp"
+               android:layout_gravity="right|center_vertical"
+               android:layout_marginRight="10dp"/>
+
+       </cn.linhome.lib.input.FEditTextContainer>
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:id="@+id/cl_hot"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           binding:layout_constraintTop_toBottomOf="@+id/etc_search"
+           binding:layout_constraintBottom_toBottomOf="parent"
+           tools:ignore="MissingConstraints">
+
+           <com.google.android.material.textview.MaterialTextView
+               android:id="@+id/tv_hot"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="10dp"
+               android:layout_marginTop="20dp"
+               android:text="大家都在搜"
+               android:textSize="16sp"
+               android:textColor="@color/res_text_gray_m"/>
+
+           <com.zhy.view.flowlayout.TagFlowLayout
+               android:id="@+id/hotTagLayout"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="10dp"
+               app:max_select="1"
+               app:layout_constraintTop_toBottomOf="@+id/tv_hot"/>
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+       <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+           android:id="@+id/searchRefreshLayout"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           binding:layout_constraintTop_toBottomOf="@+id/etc_search"
+           binding:layout_constraintBottom_toBottomOf="parent"
+           binding:isRefresh="@{viewModel.uiState.showLoading}"
+           onRefresh="@{viewModel.refreshSearch}"
+           android:visibility="gone">
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/searchRecycleView"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+               itemBottomPadding="10dp"
+               adapter="@{adapter}">
+
+           </androidx.recyclerview.widget.RecyclerView>
+       </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

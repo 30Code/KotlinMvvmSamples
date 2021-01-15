@@ -2,6 +2,7 @@ package cn.linhome.kotlinmvvmsamples.ui.home
 
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.navigation.Navigation
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.adapter.HomePageArticleAdapter
 import cn.linhome.kotlinmvvmsamples.base.BaseVMFragment
@@ -11,6 +12,7 @@ import cn.linhome.kotlinmvvmsamples.utils.GlideImageLoader
 import cn.linhome.kotlinmvvmsamples.utils.dp2px
 import cn.linhome.kotlinmvvmsamples.view.CustomLoadMoreView
 import cn.linhome.lib.utils.context.FToast
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.fragment_homepage.*
@@ -50,6 +52,7 @@ class HomePageFragment : BaseVMFragment<FragmentHomepageBinding>(R.layout.fragme
 
     private fun initRecycleView() {
         homePageAdapter.run {
+            onItemChildClickListener = this@HomePageFragment.onItemChildClickListener
             if (headerLayoutCount > 0) removeAllHeaderView()
             addHeaderView(banner)
             setLoadMoreView(CustomLoadMoreView())
@@ -98,6 +101,24 @@ class HomePageFragment : BaseVMFragment<FragmentHomepageBinding>(R.layout.fragme
                     }
                 }
             })
+        }
+    }
+
+    private val onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { _, view, position ->
+        when (view.id) {
+            R.id.articleStar -> {
+                if (isLogin()) {
+                    homePageAdapter.run {
+                        data[position].run {
+                            collect = !collect
+                            mHomePageViewModel.collectArticle(id, collect)
+                        }
+                        notifyDataSetChanged()
+                    }
+                } else {
+                    Navigation.findNavController(homePageRecycleView).navigate(R.id.action_tab_to_login)
+                }
+            }
         }
     }
 

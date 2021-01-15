@@ -47,4 +47,22 @@ interface ApiService {
     @GET("/article/listproject/{page}/json")
     suspend fun getLastedProject(@Path("page") page: Int): BaseResponse<ArticleList>
 
+    @GET("/lg/collect/list/{page}/json")
+    suspend fun getCollectArticles(@Path("page") page: Int): BaseResponse<ArticleList>
+
+    @POST("/lg/collect/{id}/json")
+    suspend fun collectArticle(@Path("id") id: Int): BaseResponse<ArticleList>
+
+    @POST("/lg/uncollect_originId/{id}/json")
+    suspend fun cancelCollectArticle(@Path("id") id: Int): BaseResponse<ArticleList>
+
+    @GET("/friend/json")
+    suspend fun getWebsites(): BaseResponse<List<Hot>>
+
+    @GET("/hotkey/json")
+    suspend fun getHot(): BaseResponse<List<Hot>>
+
+    @FormUrlEncoded
+    @POST("/article/query/{page}/json")
+    suspend fun searchHot(@Path("page") page: Int, @Field("k") key: String): BaseResponse<ArticleList>
 }

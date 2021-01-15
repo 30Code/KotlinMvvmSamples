@@ -6,16 +6,19 @@ import androidx.lifecycle.viewModelScope
 import cn.linhome.kotlinmvvmsamples.base.BaseViewModel
 import cn.linhome.kotlinmvvmsamples.model.api.ResultData
 import cn.linhome.kotlinmvvmsamples.model.bean.ArticleList
+import cn.linhome.kotlinmvvmsamples.model.repository.CollectRepository
 import cn.linhome.kotlinmvvmsamples.model.repository.ProjectLastedRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  *  des :
  *  Created by 30Code
  *  date : 2021/1/14
  */
-class ProjectLastedViewModel(val projectLastedRepository: ProjectLastedRepository) : BaseViewModel() {
+class ProjectLastedViewModel(private val projectLastedRepository: ProjectLastedRepository,
+                             private val collectRepository: CollectRepository) : BaseViewModel() {
 
     private var currentPage = 0
 
@@ -46,6 +49,18 @@ class ProjectLastedViewModel(val projectLastedRepository: ProjectLastedRepositor
                 emitArticleUiState(showLoading = false, showSuccess = result.data, isRefresh = isRefresh)
             } else if (result is ResultData.Error) {
                 emitArticleUiState(showLoading = false, showError = result.exception.message)
+            }
+        }
+    }
+
+    fun collectArticle(articleId : Int, isCollect: Boolean) {
+        launchOnUI {
+            withContext(Dispatchers.IO) {
+                if (isCollect) {
+                    collectRepository.collectArticle(articleId)
+                } else {
+                    collectRepository.unCollectArticle(articleId)
+                }
             }
         }
     }

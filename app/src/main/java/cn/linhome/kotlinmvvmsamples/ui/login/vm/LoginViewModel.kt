@@ -30,7 +30,7 @@ class LoginViewModel(val repository: LoginRepository, val provider: CoroutinesDi
     @ExperimentalCoroutinesApi
     fun login() {
         launchOnUI {
-            repository.loginFlow(userName.get() ?: "", passWord.get() ?: "")
+            repository.loginFlow(userName.get() ?: "用户名不可为空", passWord.get() ?: "密码不可为空")
                 .collect {
                     uiState.postValue(it)
                 }
