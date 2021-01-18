@@ -37,6 +37,7 @@
                android:textColor="@color/res_text_gray_m"
                android:textSize="@dimen/res_text_l"
                android:inputType="textEmailAddress"
+               android:imeOptions="actionSearch"
                android:text="@={viewModel.searchKey}"
                binding:afterTextChanged="@{viewModel.searchInput}"/>
 
@@ -54,7 +55,8 @@
            android:layout_height="0dp"
            binding:layout_constraintTop_toBottomOf="@+id/etc_search"
            binding:layout_constraintBottom_toBottomOf="parent"
-           tools:ignore="MissingConstraints">
+           tools:ignore="MissingConstraints"
+           binding:isVisible="@{viewModel.isShowHotSearch()}">
 
            <com.google.android.material.textview.MaterialTextView
                android:id="@+id/tv_hot"
@@ -84,7 +86,7 @@
            binding:layout_constraintBottom_toBottomOf="parent"
            binding:isRefresh="@{viewModel.uiState.showLoading}"
            onRefresh="@{viewModel.refreshSearch}"
-           android:visibility="gone">
+           isVisible="@{viewModel.isShowSearchContent()}">
 
            <androidx.recyclerview.widget.RecyclerView
                android:id="@+id/searchRecycleView"

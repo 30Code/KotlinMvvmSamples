@@ -6,6 +6,7 @@ import cn.linhome.kotlinmvvmsamples.model.api.ApiService
 import cn.linhome.kotlinmvvmsamples.model.repository.*
 import cn.linhome.kotlinmvvmsamples.ui.home.vm.HomePageViewModel
 import cn.linhome.kotlinmvvmsamples.ui.login.vm.LoginViewModel
+import cn.linhome.kotlinmvvmsamples.ui.main.vm.SearchViewModel
 import cn.linhome.kotlinmvvmsamples.ui.project.vm.ProjectLastedViewModel
 import cn.linhome.kotlinmvvmsamples.ui.square.vm.SquareViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -25,7 +26,7 @@ val viewModelModule = module {
 //    viewModel { SystemViewModel(get(), get()) }
 //    viewModel { NavigationViewModel(get()) }
 //    viewModel { ProjectViewModel(get()) }
-//    viewModel { SearchViewModel(get(), get()) }
+    viewModel { SearchViewModel(get(), get()) }
 //    viewModel { ShareViewModel(get()) }
 }
 
