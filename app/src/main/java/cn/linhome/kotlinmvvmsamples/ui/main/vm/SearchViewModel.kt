@@ -11,6 +11,7 @@ import cn.linhome.kotlinmvvmsamples.model.bean.ArticleList
 import cn.linhome.kotlinmvvmsamples.model.bean.Hot
 import cn.linhome.kotlinmvvmsamples.model.repository.CollectRepository
 import cn.linhome.kotlinmvvmsamples.model.repository.SearchRepository
+import cn.linhome.lib.utils.FKeyboardUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -37,17 +38,21 @@ class SearchViewModel(private val searchRepository: SearchRepository, private va
         searchKey.set(key)
     }
 
-    val refreshSearch : () -> Unit = {
+    fun refreshSearch() {
         searchHot(isRefresh = false, searchKey.get().toString())
     }
 
     val searchInput: (String) -> Unit = {
-        if (TextUtils.isEmpty(it)) {
+        if (it.isNullOrEmpty()) {
             isShowHotSearch.set(true)
             isShowSearchContent.set(false)
+
+            setEditTextContent("")
         } else {
             isShowHotSearch.set(false)
             isShowSearchContent.set(true)
+
+            refreshSearch()
         }
     }
 
