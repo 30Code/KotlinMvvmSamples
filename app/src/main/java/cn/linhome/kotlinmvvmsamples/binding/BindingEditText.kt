@@ -14,6 +14,7 @@ import androidx.databinding.BindingAdapter
 fun EditText.afterTextChanged(action: (String) -> Unit) {
     addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
+
         }
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

@@ -85,7 +85,7 @@ class SearchFragment : BaseVMFragment<FragmentSearchBinding>(R.layout.fragment_s
         TextView.OnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) //键盘上点击搜索按钮
             {
-                mSearchViewModel.refreshSearch
+                mSearchViewModel.refreshSearch()
                 return@OnEditorActionListener true
             }
             false
