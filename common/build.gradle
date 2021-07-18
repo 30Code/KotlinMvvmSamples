@@ -1,0 +1,91 @@
+import com.hi.dhl.plugin.*
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion BuildConfig.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion BuildConfig.minSdkVersion
+        targetSdkVersion BuildConfig.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion kotlin_version
+        kotlinCompilerVersion Versions.compose_version
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    api Koin.android
+    api Koin.androidxScope
+    api Koin.viewmodel
+    api Koin.ext
+
+    api AndroidX.appcompat
+    api AndroidX.constraintLayout
+
+    api AndroidX.coreKtx
+    api AndroidX.lifecycleExtensions
+    api AndroidX.lifecycleViewmodelKtx
+    api AndroidX.lifecycleViewmodelCompose
+
+    api AndroidX.activityCompose
+
+    api AndroidX.composeUi
+    api AndroidX.composeUiTooling
+    api AndroidX.composeFoundation
+    api AndroidX.composeFoundationLayout
+    api AndroidX.composeMaterial
+    api AndroidX.composeMaterialIconsCore
+    api AndroidX.composeMaterialIconsExtended
+    api AndroidX.composeUiUtil
+    api AndroidX.composeRuntime
+    api AndroidX.composeRuntimeLivedata
+
+    api AndroidX.navigationFragmentKtx
+    api AndroidX.navigationUiKtx
+
+    api AndroidX.pagingRuntime
+
+    api AndroidX.cardview
+    api AndroidX.viewpager2
+    api AndroidX.swiperefreshlayout
+    api Google.flexbox
+    api Google.material
+
+    api Retrofit.retrofit
+    api Retrofit.gson
+    api Retrofit.okhttp3lLoggingInterceptor
+
+    api Other.arouter
+}

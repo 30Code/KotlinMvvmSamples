@@ -1,18 +1,20 @@
+import com.hi.dhl.plugin.*
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion BuildConfig.buildToolsVersion
 
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        applicationId 'cn.linhome.kotlinmvvmsamples'
+        minSdkVersion BuildConfig.minSdkVersion
+        targetSdkVersion BuildConfig.targetSdkVersion
+        //noinspection HighAppVersionCode
+        versionCode BuildConfig.versionCode
+        versionName BuildConfig.versionName
 
         multiDexEnabled true
 
@@ -25,6 +27,11 @@ android {
 
         kotlinOptions {
             jvmTarget = JavaVersion.VERSION_1_8
+        }
+
+        composeOptions {
+            kotlinCompilerExtensionVersion kotlin_version
+            kotlinCompilerVersion Versions.compose_version
         }
 
         vectorDrawables.useSupportLibrary = true
@@ -44,54 +51,18 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Kt.stdlibJdk7
     implementation "org.jetbrains.anko:anko:$anko_version"
-//    implementation 'androidx.core:core-ktx:1.3.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation 'com.google.android.material:material:1.3.0-beta01'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
-    implementation 'androidx.viewpager2:viewpager2:1.0.0'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation Room.runtime
+    implementation Room.ktx
+    kapt Room.compiler
 
-    implementation 'com.youth.banner:banner:1.4.10'
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
-    implementation 'com.hyman:flowlayout-lib:1.1.2'
+    implementation Glide.glide
+    kapt Glide.compiler
 
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-
-    // Koin AndroidX Scope features
-    implementation "org.koin:koin-androidx-scope:$koin_version"
-    // Koin AndroidX ViewModel features
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
-    // Koin AndroidX Fragment features
-    implementation "org.koin:koin-androidx-fragment:$koin_version"
-    // Koin AndroidX WorkManager
-    implementation "org.koin:koin-androidx-workmanager:$koin_version"
-    // Koin AndroidX Jetpack Compose
-    implementation "org.koin:koin-androidx-compose:$koin_version"
-    // Koin AndroidX Experimental features
-    implementation "org.koin:koin-androidx-ext:$koin_version"
-
-    //leakCanary
-    debugImplementation rootProject.ext.testDeps["leakcanary-debug"]
-//    releaseImplementation rootProject.ext.testDeps["leakcanary-release"]
-    // Support库
-    implementation rootProject.ext.supportLibs
-    // 基类库
-    implementation rootProject.ext.linHomeLibs
-    // kotlinx-coroutines
-    implementation rootProject.ext.kotlinxCoroutines
-    // 网络请求库
-    implementation rootProject.ext.networkLibs
-    // RxJava2
-    implementation rootProject.ext.rxJavaLibs
-    //commonLibs
-    implementation rootProject.ext.commonLibs
+    implementation project(path: ':common')
 }

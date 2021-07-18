@@ -1,2 +1,4 @@
 rootProject.name='KotlinMvvmSamples'
 include ':app'
+includeBuild 'VersionPlugin'
+include ':common'

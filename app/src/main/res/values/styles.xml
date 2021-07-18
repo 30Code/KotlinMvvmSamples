@@ -4,14 +4,14 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/res_main_color</item>
-        <item name="colorAccent">@color/res_main_color</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
     <style name="AppThemeInit" parent="AppTheme">
         <!-- 状态栏颜色 -->
-        <item name="colorPrimaryDark">@color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="android:windowBackground">@drawable/wel</item>
     </style>
 
@@ -52,7 +52,7 @@
     </style>
 
     <style name="Error_Text">
-        <item name="android:textColor">@color/red</item>
+        <item name="android:textColor">@color/while_most_color</item>
         <item name="android:textSize">12sp</item>
     </style>
 

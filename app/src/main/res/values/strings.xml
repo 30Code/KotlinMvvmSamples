@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KotlinMvvmSamples</string>
+    <string name="app_name">Jetpack_mvvm</string>
 
     <string name="home">首页</string>
     <string name="square">广场</string>
