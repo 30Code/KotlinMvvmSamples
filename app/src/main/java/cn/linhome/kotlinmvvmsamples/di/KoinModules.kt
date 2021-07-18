@@ -1,6 +1,8 @@
 package cn.linhome.kotlinmvvmsamples.di
 
 import cn.linhome.common.network.RetrofitManager
+import cn.linhome.common.vm.AppViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import java.util.*
 
@@ -15,7 +17,7 @@ val dataSourceModule = module {
 }
 
 val viewModelModule = module {
-
+    viewModel { AppViewModel() }
 }
 
 val repositoryModule = module {

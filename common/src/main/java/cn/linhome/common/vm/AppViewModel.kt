@@ -1,5 +1,6 @@
 package cn.linhome.common.vm
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cn.linhome.common.base.SingleLiveEvent
 
@@ -11,4 +12,13 @@ import cn.linhome.common.base.SingleLiveEvent
 class AppViewModel : ViewModel() {
     val showLoadingProgress = SingleLiveEvent<Boolean>()
 
+    val reloadHomeData = MutableLiveData<Boolean>()
+
+    val reloadCollectWebSite = SingleLiveEvent<Boolean>()
+
+    val needUpdateTodoList = SingleLiveEvent<Boolean>()
+
+    fun showLoading() = showLoadingProgress.postValue(true)
+
+    fun dismissLoading() = showLoadingProgress.postValue(false)
 }

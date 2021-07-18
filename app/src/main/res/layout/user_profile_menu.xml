@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/user_collections"
+        android:title="@string/collection">
+        <menu>
+            <item
+                android:id="@+id/favourites"
+                android:icon="@drawable/ic_favorite_outline_24dp"
+                android:title="@string/collections" />
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/share"
+        android:title="@string/share">
+        <menu>
+            <item
+                android:id="@+id/share_list"
+                android:icon="@drawable/ic_share_24dp"
+                android:title="@string/user_shares" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/todo_group"
+        android:title="@string/todo_title">
+        <menu>
+            <item
+                android:id="@+id/todo_list"
+                android:icon="@drawable/ic_todo_24dp"
+                android:title="@string/todo_list" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/app_about"
+        android:title="@string/info_about">
+        <menu>
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/ic_info_outline_24dp"
+                android:title="@string/about_us" />
+
+            <item
+                android:id="@+id/helper"
+                android:icon="@drawable/ic_data_usage_black_24dp"
+                android:title="@string/statement" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/go_star"
+        android:icon="@drawable/ic_star_border_24dp"
+        android:title="@string/star" />
+
+    <item
+        android:id="@+id/login_out"
+        android:icon="@drawable/ic_exit_to_app_24dp"
+        android:title="@string/login_out" />
+
+</menu>
