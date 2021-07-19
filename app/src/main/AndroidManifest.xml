@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="cn.linhome.kotlinmvvmsamples">
 
     <!-- 获取GSM网络信息状态，如当前的网络连接是否有效 -->
@@ -32,6 +33,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|uiMode"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
     </application>
 

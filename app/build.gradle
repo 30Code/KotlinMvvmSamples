@@ -30,8 +30,8 @@ android {
         }
 
         composeOptions {
-            kotlinCompilerExtensionVersion kotlin_version
-            kotlinCompilerVersion Versions.compose_version
+            kotlinCompilerExtensionVersion Versions.compose_version
+            kotlinCompilerVersion kotlin_version
         }
 
         vectorDrawables.useSupportLibrary = true
@@ -60,9 +60,6 @@ dependencies {
     implementation Room.runtime
     implementation Room.ktx
     kapt Room.compiler
-
-    implementation Glide.glide
-    kapt Glide.compiler
 
     implementation project(path: ':common')
 }

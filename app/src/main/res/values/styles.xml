@@ -52,7 +52,7 @@
     </style>
 
     <style name="Error_Text">
-        <item name="android:textColor">@color/while_most_color</item>
+        <item name="android:textColor">@color/red</item>
         <item name="android:textSize">12sp</item>
     </style>
 

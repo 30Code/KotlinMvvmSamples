@@ -6,8 +6,8 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 /**
- * @author kuky.
- * @description KLogger usage
+ * Created by 30Code
+ * des KLogger usage
  *
  * ```kotlin
  *      class Test : KLogger {

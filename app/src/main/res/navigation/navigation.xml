@@ -3,62 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@+id/tabFragment">
+    app:startDestination="@+id/mainFragment">
 
     <fragment
-        android:id="@+id/tabFragment"
+        android:id="@+id/mainFragment"
         android:name="cn.linhome.kotlinmvvmsamples.ui.main.MainFragment"
-        android:label="fragment_tab"
-        tools:layout="activity_bottom_navigation">
-       <!-- <action
-            android:id="@+id/action_tab_to_browser"
-            app:destination="@id/browserActivity" />-->
-        <action
-            android:id="@+id/action_tab_to_login"
-            app:destination="@id/loginActivity" />
-        <!--<action
-            android:id="@+id/action_tab_to_share"
-            app:destination="@id/shareActivity" />
-        <action
-            android:id="@+id/action_tab_to_colect"
-            app:destination="@id/collectActivity" />-->
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main">
+
     </fragment>
-
-    <activity
-        android:id="@+id/loginActivity"
-        android:name="cn.linhome.kotlinmvvmsamples.ui.login.LoginActivity"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login">
-
-    </activity>
-
-   <!-- <activity
-        android:id="@+id/shareActivity"
-        android:name="luyao.wanandroid.ui.share.ShareActivity"
-        android:label="activity_share"
-        tools:layout="@layout/activity_share">
-
-    </activity>
-
-    <activity
-        android:id="@+id/browserActivity"
-        android:name="luyao.wanandroid.ui.BrowserActivity"
-        android:label="activity_browser"
-        tools:layout="@layout/activity_browser">
-
-        <argument
-            android:name="url"
-            android:defaultValue="www.wanandroid.com"
-            app:argType="string" />
-
-    </activity>
-
-    <activity
-        android:id="@+id/collectActivity"
-        android:name="luyao.wanandroid.ui.collect.MyCollectActivity"
-        android:label="activity_collect"
-        tools:layout="@layout/activity_collect">
-
-    </activity>-->
 
 </navigation>

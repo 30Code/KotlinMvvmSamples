@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="netAvailable"
+            type="Boolean" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@color/half_red"
+            android:drawableStart="@drawable/ic_error_18dp"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="@string/net_disconnected"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/base_text_size_12"
+            android:visibility="@{netAvailable ? View.GONE : View.VISIBLE}" />
+
+    </FrameLayout>
+
+</layout>

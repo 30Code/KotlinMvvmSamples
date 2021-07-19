@@ -6,8 +6,16 @@ import android.view.KeyEvent
 import android.view.View
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.common.base.BaseActivity
+import cn.linhome.common.base.delayLaunch
 import cn.linhome.kotlinmvvmsamples.databinding.ActivitySplashBinding
+import cn.linhome.kotlinmvvmsamples.ui.main.MainActivity
+import org.jetbrains.anko.startActivity
 
+/**
+ *  des : SplashActivity
+ *  Created by 30Code
+ *  date : 2021/7/18
+ */
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override fun transparentStatusBar() {
@@ -23,10 +31,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     override fun getLayoutId(): Int = R.layout.activity_splash
 
     override fun initActivity(savedInstanceState: Bundle?) {
-//        delayLaunch(2000) {
-//            startActivity<MainActivity>()
-//            finish()
-//        }
+        delayLaunch(2000) {
+            startActivity<MainActivity>()
+            finish()
+        }
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {

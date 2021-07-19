@@ -3,6 +3,7 @@ import com.hi.dhl.plugin.*
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -34,16 +35,18 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion kotlin_version
-        kotlinCompilerVersion Versions.compose_version
+        kotlinCompilerExtensionVersion Versions.compose_version
+        kotlinCompilerVersion kotlin_version
     }
 
     buildFeatures {
         dataBinding = true
+        compose true
     }
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     api Koin.android
@@ -86,6 +89,13 @@ dependencies {
     api Retrofit.retrofit
     api Retrofit.gson
     api Retrofit.okhttp3lLoggingInterceptor
+
+//    implementation Room.runtime
+//    implementation Room.ktx
+//    kapt Room.compiler
+
+    api Glide.glide
+    kapt Glide.compiler
 
     api Other.arouter
 }

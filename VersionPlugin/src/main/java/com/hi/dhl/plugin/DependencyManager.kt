@@ -29,7 +29,7 @@ object Versions {
     val paging = "3.1.0-alpha02"
     val timber = "4.7.1"
     val kotlin = "1.5.10"
-    val koin = "2.2.2"
+    val koin = "2.1.6"
     val work = "2.2.0"
     val room = "2.4.0-alpha03"
     val cardview = "1.0.0"

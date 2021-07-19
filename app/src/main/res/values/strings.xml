@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Jetpack_mvvm</string>
 
+    <string name="home">首页</string>
+    <string name="system">体系</string>
+    <string name="navigation">导航</string>
+    <string name="project_type">项目分类</string>
+    <string name="tool">工具</string>
+
     <string name="collection">收藏</string>
     <string name="collections">我的收藏</string>
     <string name="collected_websites">网址收藏</string>
