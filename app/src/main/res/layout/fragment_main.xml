@@ -4,6 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="MissingConstraints" >
 
+    <data>
+
+        <variable
+            name="holder"
+            type="cn.linhome.kotlinmvvmsamples.ui.main.MainFragment" />
+
+    </data>
+
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer"
         android:layout_width="match_parent"

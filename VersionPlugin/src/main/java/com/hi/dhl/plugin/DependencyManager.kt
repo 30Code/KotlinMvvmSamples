@@ -148,3 +148,9 @@ object Other {
     val arouter = "com.alibaba:arouter-api:1.5.1"
 }
 
+object Librarys  {
+    val res = "com.github.30Code:res:1.0.5.v2"
+    val utils = "com.github.30Code:utils:1.0.4.v2"
+    val utilsextend = "com.github.30Code:utilsextend:1.0.4"
+}
+

@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#000000</color>
-    <color name="blue">#0000FF</color>
-    <color name="gray">#888888</color>
-    <color name="green">#00FF00</color>
-    <color name="orange">#FFA500</color>
-    <color name="red">#FF0000</color>
-    <color name="res_bg_activity">#f7f7f7</color>
-    <color name="res_blur_m">#70000000</color>
-    <color name="res_edit_focus">@color/res_main_color</color>
-    <color name="res_edit_unfocus">@color/res_stroke</color>
-    <color name="res_gray_press">#e5e5e5</color>
-    <color name="res_main_color">#FB6F08</color>
-    <color name="res_main_color_press">#ffcc66</color>
-    <color name="res_second_color">#fee203</color>
-    <color name="res_second_color_press">@color/res_second_color</color>
-    <color name="res_stroke">#e7e7f1</color>
-    <color name="res_stroke_deep">#e5e5e5</color>
-    <color name="res_text_gray_l">#333333</color>
-    <color name="res_text_gray_m">#666666</color>
-    <color name="res_text_gray_s">#999999</color>
-    <color name="res_text_hint">#cbcbcb</color>
-    <color name="res_text_shadow_color">#333333</color>
-    <color name="transparent">#00000000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="yellow">#FFFF00</color>
+    <color name="colorPrimary">#FF00BCD4</color>
+    <color name="colorAccent">#FFD81B60</color>
+
 </resources>
