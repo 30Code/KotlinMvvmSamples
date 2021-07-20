@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="article"
+            type="cn.linhome.common.bean.UserArticleDetail" />
+
+        <variable
+            name="title"
+            type="String" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        app:cardCornerRadius="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/article_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{title}"
+                android:textColor="@color/res_text_gray_l"
+                android:textSize="@dimen/res_text_l"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:minLines="2"
+                android:ellipsize="end"
+                tools:text="@string/articles"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/share_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{article.shareUser}"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/res_text_s"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:singleLine="true"
+                tools:text="@string/articles"
+                app:layout_constraintTop_toBottomOf="@+id/article_title"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/share_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@{article.niceShareDate}"
+                android:textColor="@color/res_text_gray_m"
+                android:textSize="@dimen/res_text_s"
+                tools:text="一天前"
+                app:layout_constraintTop_toBottomOf="@+id/share_user"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@{article.fresh ? @drawable/ic_fresh : @drawable/ic_rec}"
+                tools:src="@drawable/ic_fresh"
+                app:layout_constraintTop_toBottomOf="@+id/share_time"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

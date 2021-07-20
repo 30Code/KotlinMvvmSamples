@@ -2,6 +2,7 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
     tools:ignore="MissingConstraints" >
 
     <data>
@@ -9,6 +10,14 @@
         <variable
             name="holder"
             type="cn.linhome.kotlinmvvmsamples.ui.main.MainFragment" />
+
+        <variable
+            name="limit"
+            type="Integer" />
+
+        <variable
+            name="currentItem"
+            type="Integer" />
 
     </data>
 
@@ -26,7 +35,10 @@
                 android:id="@+id/mainViewpager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                bind:limitOffset="@{limit}"
+                bind:currentItem="@{currentItem}"
+                bind:smoothScroll="@{false}"/>
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/navView"

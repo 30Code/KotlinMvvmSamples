@@ -81,19 +81,21 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         mBinding?.run {
             holder = this@MainFragment
 
-            mainViewpager.isUserInputEnabled = false
-            mainViewpager.offscreenPageLimit = 2
-            mainViewpager.adapter = object : FragmentStateAdapter(this@MainFragment) {
-                override fun createFragment(position: Int) = mListFragment[position]
+            limit = 2
+            mainViewpager.run {
+                isUserInputEnabled = false
+                adapter = object : FragmentStateAdapter(this@MainFragment) {
+                    override fun createFragment(position: Int) = mListFragment[position]
 
-                override fun getItemCount() = mListFragment.size
+                    override fun getItemCount() = mListFragment.size
+                }
             }
+
 
             navView.setOnNavigationItemSelectedListener(onNavigationItemSelected)
 
             mViewModel.hasLogin.observe(this@MainFragment, {
-                userProfileDrawer.menu.let { menus ->
-                    menus.findItem(R.id.user_collections).isVisible = it
+                userProfileDrawer.menu.let { menus -> menus.findItem(R.id.user_collections).isVisible = it
                     menus.findItem(R.id.login_out).isVisible = it
                     menus.findItem(R.id.todo_group).isVisible = it
                     menus.findItem(R.id.share).isVisible = it
@@ -135,7 +137,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun switchFragment(position: Int): Boolean {
-        mBinding?.mainViewpager?.setCurrentItem(position, false)
+        mBinding?.currentItem = position
+//        mBinding?.mainViewpager?.setCurrentItem(position, false)
         return true
     }
 

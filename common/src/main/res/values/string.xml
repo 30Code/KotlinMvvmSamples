@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="on_loading_more">正在努力加载更多..</string>
+    <string name="retry_load_hint">加载出错, 点击重新加载..</string>
+
+    <string name="no_network">请求数据出错啦!</string>
+    <string name="text_place_holder">--</string>
+    <string name="net_disconnected">当前网络连接不可用</string>
+    <string name="empty_data">未查找到任何数据~</string>
+    <string name="loading_data">正在努力加载数据中..</string>
+    <string name="reload_data">加载出错啦~点击重新加载</string>
+
+</resources>
