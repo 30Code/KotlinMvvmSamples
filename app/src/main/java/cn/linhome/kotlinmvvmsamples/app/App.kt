@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import cn.linhome.kotlinmvvmsamples.di.*
+import cn.linhome.lib.utils.context.FContext
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -19,6 +20,8 @@ class App  : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = applicationContext
+
+        FContext.set(instance)
 
         startKoin {
             androidLogger(Level.ERROR)

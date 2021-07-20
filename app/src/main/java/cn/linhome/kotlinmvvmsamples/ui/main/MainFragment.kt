@@ -8,6 +8,8 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import cn.linhome.common.Constant
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.handleResult
@@ -15,6 +17,10 @@ import cn.linhome.common.vm.AppViewModel
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.databinding.FragmentMainBinding
 import cn.linhome.kotlinmvvmsamples.databinding.UserProfileHeaderBinding
+import cn.linhome.kotlinmvvmsamples.ui.home.HomeFragment
+import cn.linhome.kotlinmvvmsamples.ui.project.ProjectFragment
+import cn.linhome.kotlinmvvmsamples.ui.share.ShareFragment
+import cn.linhome.kotlinmvvmsamples.ui.system.SystemFragment
 import cn.linhome.lib.utils.context.FPreferencesUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Job
@@ -42,6 +48,21 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     private var mCoinsJob: Job? = null
 
+    private val mListFragment = arrayListOf<Fragment>()
+    private val mHomeFragment by lazy { HomeFragment() }
+    private val mProjectFragment by lazy { ProjectFragment() }
+    private val mSystemFragment by lazy { SystemFragment() }
+    private val mShareFragment by lazy { ShareFragment() }
+
+    init {
+        mListFragment.run {
+            add(mHomeFragment)
+            add(mProjectFragment)
+            add(mSystemFragment)
+            add(mShareFragment)
+        }
+    }
+
     override fun getLayoutId(): Int = R.layout.fragment_main
 
     private val mHeaderBinding by lazy {
@@ -59,6 +80,14 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun initFragment(view: View, savedInstanceState: Bundle?) {
         mBinding?.run {
             holder = this@MainFragment
+
+            mainViewpager.isUserInputEnabled = false
+            mainViewpager.offscreenPageLimit = 2
+            mainViewpager.adapter = object : FragmentStateAdapter(this@MainFragment) {
+                override fun createFragment(position: Int) = mListFragment[position]
+
+                override fun getItemCount() = mListFragment.size
+            }
 
             navView.setOnNavigationItemSelectedListener(onNavigationItemSelected)
 
@@ -95,14 +124,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             R.id.blog -> {
                 switchFragment(1)
             }
-            R.id.search -> {
+            R.id.project -> {
                 switchFragment(2)
             }
-            R.id.project -> {
-                switchFragment(3)
-            }
             R.id.profile -> {
-                switchFragment(4)
+                switchFragment(3)
             }
         }
         true

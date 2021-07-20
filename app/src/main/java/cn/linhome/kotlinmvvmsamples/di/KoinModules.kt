@@ -4,6 +4,8 @@ import cn.linhome.common.network.RetrofitManager
 import cn.linhome.common.ui.LoadingDialog
 import cn.linhome.common.vm.AppViewModel
 import cn.linhome.kotlinmvvmsamples.ui.main.MainActivity
+import cn.linhome.kotlinmvvmsamples.ui.main.MainRepository
+import cn.linhome.kotlinmvvmsamples.ui.main.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import java.util.*
@@ -20,10 +22,11 @@ val dataSourceModule = module {
 
 val viewModelModule = module {
     viewModel { AppViewModel() }
+    viewModel { MainViewModel(get()) }
 }
 
 val repositoryModule = module {
-
+    single { MainRepository(get()) }
 }
 
 val fragmentModule = module {
