@@ -10,4 +10,8 @@
         <item name="android:windowExitAnimation">@null</item>
     </style>
 
+    <style name="TabTextStyle" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
+
 </resources>

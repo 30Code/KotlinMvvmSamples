@@ -12,6 +12,10 @@
             type="cn.linhome.kotlinmvvmsamples.ui.main.MainFragment" />
 
         <variable
+            name="adapter"
+            type="androidx.viewpager2.adapter.FragmentStateAdapter" />
+
+        <variable
             name="limit"
             type="Integer" />
 
@@ -36,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                bind:adapter="@{adapter}"
                 bind:limitOffset="@{limit}"
                 bind:currentItem="@{currentItem}"
                 bind:smoothScroll="@{false}"/>

@@ -146,6 +146,7 @@ object Depend {
 
 object Other {
     val arouter = "com.alibaba:arouter-api:1.5.1"
+    val autosize = "me.jessyan:autosize:1.2.1"
 }
 
 object Librarys  {

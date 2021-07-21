@@ -24,6 +24,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun initActivity(savedInstanceState: Bundle?) {
+
+        mBinding?.run {
+            netAvailable = true
+        }
+
         mAppViewModel.showLoadingProgress.observe(this, {
             if (it) {
                 mLoadingDialog.showAllowStateLoss(supportFragmentManager, "loading")

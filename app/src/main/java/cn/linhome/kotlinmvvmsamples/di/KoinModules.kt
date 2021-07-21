@@ -6,6 +6,9 @@ import cn.linhome.common.vm.AppViewModel
 import cn.linhome.kotlinmvvmsamples.ui.main.MainActivity
 import cn.linhome.kotlinmvvmsamples.ui.main.MainRepository
 import cn.linhome.kotlinmvvmsamples.ui.main.MainViewModel
+import cn.linhome.kotlinmvvmsamples.ui.project.ProjectFragment
+import cn.linhome.kotlinmvvmsamples.ui.project.ProjectRepository
+import cn.linhome.kotlinmvvmsamples.ui.project.ProjectViewModel
 import cn.linhome.kotlinmvvmsamples.ui.share.ShareFragment
 import cn.linhome.kotlinmvvmsamples.ui.share.UserArticlePagingAdapter
 import cn.linhome.kotlinmvvmsamples.ui.share.UserArticleRepository
@@ -28,11 +31,13 @@ val viewModelModule = module {
     viewModel { AppViewModel() }
     viewModel { MainViewModel(get()) }
     viewModel { UserArticleViewModel(get()) }
+    viewModel { ProjectViewModel(get()) }
 }
 
 val repositoryModule = module {
     single { MainRepository(get()) }
     single { UserArticleRepository(get()) }
+    single { ProjectRepository(get()) }
 }
 
 val fragmentModule = module {
@@ -41,8 +46,12 @@ val fragmentModule = module {
 
 val adapterModule = module {
     scope<ShareFragment> {
-        scoped { UserArticlePagingAdapter }
+        scoped { UserArticlePagingAdapter() }
     }
+
+//    scope<ProjectFragment> {
+//        scoped {  }
+//    }
 }
 
 val dialogModule = module {

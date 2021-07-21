@@ -1,4 +1,4 @@
-package cn.linhome.common.base
+package cn.linhome.common.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import cn.linhome.common.base.KLogger
+import cn.linhome.common.base.OnItemClickListener
+import cn.linhome.common.base.OnItemLongClickListener
 
 /**
  *  des : paging adapter 基类, 如果需要多布局, 请使用 MergeAdapter

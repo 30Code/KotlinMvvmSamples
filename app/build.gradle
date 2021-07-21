@@ -61,5 +61,7 @@ dependencies {
     implementation Room.ktx
     kapt Room.compiler
 
+    implementation Other.autosize
+
     implementation project(path: ':common')
 }

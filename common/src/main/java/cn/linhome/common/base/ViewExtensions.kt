@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
+import cn.linhome.common.bean.ProjectCategoryData
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +31,11 @@ fun TabLayout.setupWithViewPager2(viewPager2: ViewPager2, titles: Array<String>)
 fun TabLayout.setupWithViewPager2(viewPager2: ViewPager2, titles: IntArray): TabLayoutMediator =
     TabLayoutMediator(this, viewPager2) { tab, position ->
         tab.setText(titles[position])
+    }.apply { attach() }
+
+fun TabLayout.setupWithViewPager2(viewPager2: ViewPager2, listCategory: MutableList<ProjectCategoryData>): TabLayoutMediator =
+    TabLayoutMediator(this, viewPager2) { tab, position ->
+        tab.text = listCategory[position].name
     }.apply { attach() }
 
 fun RecyclerView.scrollToTop(sizeOneLine: Int = 2, threshold: Int = 10) {

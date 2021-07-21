@@ -82,15 +82,14 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             holder = this@MainFragment
 
             limit = 2
+            adapter = object : FragmentStateAdapter(this@MainFragment) {
+                override fun createFragment(position: Int) = mListFragment[position]
+
+                override fun getItemCount() = mListFragment.size
+            }
             mainViewpager.run {
                 isUserInputEnabled = false
-                adapter = object : FragmentStateAdapter(this@MainFragment) {
-                    override fun createFragment(position: Int) = mListFragment[position]
-
-                    override fun getItemCount() = mListFragment.size
-                }
             }
-
 
             navView.setOnNavigationItemSelectedListener(onNavigationItemSelected)
 

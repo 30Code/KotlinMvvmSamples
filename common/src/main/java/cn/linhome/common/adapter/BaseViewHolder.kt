@@ -1,4 +1,4 @@
-package cn.linhome.common.base
+package cn.linhome.common.adapter
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

@@ -4,8 +4,8 @@ import android.graphics.Paint
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import androidx.recyclerview.widget.DiffUtil
-import cn.linhome.common.base.BasePagingDataAdapter
-import cn.linhome.common.base.BaseViewHolder
+import cn.linhome.common.adapter.BasePagingDataAdapter
+import cn.linhome.common.adapter.BaseViewHolder
 import cn.linhome.common.base.renderHtml
 import cn.linhome.common.bean.UserArticleDetail
 import cn.linhome.kotlinmvvmsamples.R

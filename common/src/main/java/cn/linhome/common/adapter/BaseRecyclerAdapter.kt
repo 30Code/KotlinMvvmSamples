@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import cn.linhome.common.base.BaseViewHolder
 import cn.linhome.common.base.KLogger
 import cn.linhome.common.base.OnItemClickListener
 import cn.linhome.common.base.OnItemLongClickListener

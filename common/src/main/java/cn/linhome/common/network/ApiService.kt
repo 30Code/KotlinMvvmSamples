@@ -1,9 +1,7 @@
 package cn.linhome.common.network
 
 import cn.linhome.common.base.BaseResultData
-import cn.linhome.common.bean.CoinsData
-import cn.linhome.common.bean.UserArticleData
-import cn.linhome.common.bean.UserData
+import cn.linhome.common.bean.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -49,4 +47,19 @@ interface ApiService {
     suspend fun shareArticles(
         @Path("page") page: Int, @Header("Cookie") cookie: String
     ): BaseResultData<UserArticleData>
+
+    /**
+     * 项目分类
+     */
+    @GET("/project/tree/json")
+    suspend fun projectCategory(): BaseResultData<MutableList<ProjectCategoryData>>
+
+    /**
+     * 返回项目分类下的所有项目列表，cid 查看 [ProjectCategoryData] #id
+     */
+    @GET("/project/list/{page}/json")
+    suspend fun projectList(
+        @Path("page") page: Int,
+        @Query("cid") cid: Int,
+        @Header("Cookie") cookie: String): BaseResultData<ProjectDetailResult>
 }

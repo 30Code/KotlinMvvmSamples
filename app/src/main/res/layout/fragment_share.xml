@@ -67,16 +67,14 @@
             <TextView
                 android:id="@+id/article_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:drawablePadding="4dp"
+                android:layout_height="45dp"
+                android:background="@color/white"
                 android:gravity="center"
-                android:padding="12dp"
-                android:singleLine="true"
                 android:text="@{indicator}"
                 android:textColor="@color/colorAccent"
                 app:layout_constraintTop_toTopOf="parent"
-                bind:gesture="@{gesture}" />
+                bind:gesture="@{gesture}"
+                tools:text="@string/share_articles"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_article_list"
