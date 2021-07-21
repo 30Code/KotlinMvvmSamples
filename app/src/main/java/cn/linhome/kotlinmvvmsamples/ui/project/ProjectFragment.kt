@@ -2,6 +2,8 @@ package cn.linhome.kotlinmvvmsamples.ui.project
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.setupWithViewPager2
 import cn.linhome.common.bean.ProjectCategoryData
@@ -25,18 +27,35 @@ class ProjectFragment : BaseFragment<FragmentProjectBinding>() {
     override fun getLayoutId(): Int = R.layout.fragment_project
 
     override fun actionOnViewInflate() {
-        launch {
-            mViewModel.getCategories().collectLatest {
-                mListProjectCategory.clear()
-                mListProjectCategory.addAll(it)
-//                mBinding?.vpProject?.adapter?.notifyDataSetChanged()
-            }
-        }
+        getListProjectCategory()
     }
 
     override fun initFragment(view: View, savedInstanceState: Bundle?) {
         mBinding?.run {
+            vpProject.run {
+                adapter = object : FragmentStateAdapter(this@ProjectFragment) {
+                    override fun getItemCount(): Int = mListProjectCategory.size
+
+                    override fun createFragment(position: Int): Fragment = chooseFragment(position)
+
+                }
+            }
+
             tabLayout.setupWithViewPager2(vpProject, mListProjectCategory)
+        }
+    }
+
+    private fun chooseFragment(position: Int): Fragment {
+        return ProjectTypeFragment.newInstance(mListProjectCategory[position].id)
+    }
+
+    private fun getListProjectCategory() {
+        launch {
+            mViewModel.getCategories().collectLatest {
+                mListProjectCategory.clear()
+                mListProjectCategory.addAll(it)
+                mBinding?.vpProject?.adapter?.notifyDataSetChanged()
+            }
         }
     }
 }

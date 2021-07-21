@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.*
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
+import cn.linhome.common.R
 import cn.linhome.common.adapter.BasePagingDataAdapter
 import cn.linhome.common.adapter.BaseRecyclerAdapter
 import cn.linhome.common.widget.ErrorReload
@@ -31,6 +32,24 @@ fun bindCircleImage(imageView : ImageView, imgRes : Drawable) {
         .load(imgRes)
         .apply(RequestOptions.bitmapTransform(RoundedCorners(360)))
         .into(imageView)
+}
+
+/**
+ * 绑定图片加载
+ * @param url 图片地址
+ * @param placeholder 占位图
+ * @param errorHolder 出错占位图
+ */
+@BindingAdapter(value = ["bind:imgUrl", "bind:placeHolder", "bind:error"], requireAll = false)
+fun loadImageWithPlace(view : ImageView, url : String, placeholder: Drawable, errorHolder: Drawable) {
+    Glide.with((view.context))
+        .load(url)
+        .apply(
+            RequestOptions
+                .centerCropTransform()
+                .placeholder(placeholder)
+                .error(errorHolder)
+        ).into(view)
 }
 
 /**

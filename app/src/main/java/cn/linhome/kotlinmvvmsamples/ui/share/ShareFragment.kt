@@ -68,7 +68,7 @@ class ShareFragment : BaseFragment<FragmentShareBinding>() {
                     }
                 }
             }.withLoadStateFooter(PagingLoadStateAdapter {
-                mAdapter.refresh()
+                mAdapter.retry()
             })
 
             itemClick = OnItemClickListener { position, view ->
@@ -90,7 +90,7 @@ class ShareFragment : BaseFragment<FragmentShareBinding>() {
             }
 
             errorReload = ErrorReload {
-                mAdapter.refresh()
+                mAdapter.retry()
             }
         }
     }
