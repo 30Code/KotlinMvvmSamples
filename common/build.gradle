@@ -98,6 +98,8 @@ dependencies {
     kapt Glide.compiler
 
     api Other.arouter
+    api Other.banner
+    api Other.fab
 
     api Librarys.res
     api Librarys.utils

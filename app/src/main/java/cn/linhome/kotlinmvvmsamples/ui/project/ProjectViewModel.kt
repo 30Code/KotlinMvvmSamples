@@ -6,8 +6,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import cn.linhome.common.base.constPagerConfig
-import cn.linhome.common.bean.ProjectCategoryData
-import cn.linhome.common.bean.ProjectDetailData
+import cn.linhome.common.entity.ProjectCategoryData
+import cn.linhome.common.entity.ProjectDetailData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

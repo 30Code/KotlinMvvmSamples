@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import cn.linhome.common.adapter.BasePagingDataAdapter
 import cn.linhome.common.adapter.BaseViewHolder
 import cn.linhome.common.base.renderHtml
-import cn.linhome.common.bean.ProjectDetailData
+import cn.linhome.common.entity.ProjectDetailData
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.databinding.ItemProjectTypeBinding
 

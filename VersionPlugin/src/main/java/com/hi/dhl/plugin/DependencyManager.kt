@@ -145,6 +145,8 @@ object Depend {
 }
 
 object Other {
+    val banner = "com.youth.banner:banner:1.4.10"
+    val fab =  "com.github.clans:fab:1.6.4"
     val arouter = "com.alibaba:arouter-api:1.5.1"
     val autosize = "me.jessyan:autosize:1.2.1"
     val leakcanary = "com.squareup.leakcanary:leakcanary-android:2.7"

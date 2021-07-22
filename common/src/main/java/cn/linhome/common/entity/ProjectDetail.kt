@@ -1,13 +1,13 @@
-package cn.linhome.common.bean
+package cn.linhome.common.entity
 
 /**
- *  des : UserArticle
+ *  des : ProjectDetail
  *  Created by 30Code
- *  date : 2021/7/20
+ *  date : 2021/7/21
  */
-data class UserArticleData(
+data class ProjectDetailResult(
     val curPage: Int,
-    val datas: MutableList<UserArticleDetail>,
+    val datas: MutableList<ProjectDetailData>,
     val offset: Int,
     val over: Boolean,
     val pageCount: Int,
@@ -15,9 +15,8 @@ data class UserArticleData(
     val total: Int
 )
 
-data class UserArticleDetail(
+data class ProjectDetailData(
     val apkLink: String,
-    val audit: Int,
     val author: String,
     val chapterId: Int,
     val chapterName: String,
@@ -29,20 +28,21 @@ data class UserArticleDetail(
     val id: Int,
     val link: String,
     val niceDate: String,
-    val niceShareDate: String,
     val origin: String,
     val prefix: String,
     val projectLink: String,
     val publishTime: Long,
-    val selfVisible: Int,
-    val shareDate: Long,
-    val shareUser: String,
     val superChapterId: Int,
     val superChapterName: String,
-    val tags: List<Any>,
+    val tags: MutableList<ProjectTag>,
     val title: String,
     val type: Int,
     val userId: Int,
     val visible: Int,
     val zan: Int
+)
+
+data class ProjectTag(
+    val name: String,
+    val url: String
 )

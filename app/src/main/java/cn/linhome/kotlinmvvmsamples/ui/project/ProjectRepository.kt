@@ -1,7 +1,7 @@
 package cn.linhome.kotlinmvvmsamples.ui.project
 
 import cn.linhome.common.Constant
-import cn.linhome.common.bean.ProjectDetailData
+import cn.linhome.common.entity.ProjectDetailData
 import cn.linhome.common.network.ApiService
 import cn.linhome.lib.utils.context.FPreferencesUtil
 import kotlinx.coroutines.Dispatchers

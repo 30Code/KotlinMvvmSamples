@@ -3,6 +3,10 @@ package cn.linhome.kotlinmvvmsamples.di
 import cn.linhome.common.network.RetrofitManager
 import cn.linhome.common.ui.LoadingDialog
 import cn.linhome.common.vm.AppViewModel
+import cn.linhome.kotlinmvvmsamples.ui.home.HomeArticlePagingAdapter
+import cn.linhome.kotlinmvvmsamples.ui.home.HomeArticleRepository
+import cn.linhome.kotlinmvvmsamples.ui.home.HomeArticleViewModel
+import cn.linhome.kotlinmvvmsamples.ui.home.HomeFragment
 import cn.linhome.kotlinmvvmsamples.ui.main.MainActivity
 import cn.linhome.kotlinmvvmsamples.ui.main.MainRepository
 import cn.linhome.kotlinmvvmsamples.ui.main.MainViewModel
@@ -31,14 +35,16 @@ val dataSourceModule = module {
 val viewModelModule = module {
     viewModel { AppViewModel() }
     viewModel { MainViewModel(get()) }
-    viewModel { UserArticleViewModel(get()) }
+    viewModel { HomeArticleViewModel(get()) }
     viewModel { ProjectViewModel(get()) }
+    viewModel { UserArticleViewModel(get()) }
 }
 
 val repositoryModule = module {
     single { MainRepository(get()) }
-    single { UserArticleRepository(get()) }
+    single { HomeArticleRepository(get()) }
     single { ProjectRepository(get()) }
+    single { UserArticleRepository(get()) }
 }
 
 val fragmentModule = module {
@@ -46,12 +52,14 @@ val fragmentModule = module {
 }
 
 val adapterModule = module {
-    scope<ShareFragment> {
-        scoped { UserArticlePagingAdapter() }
+    scope<HomeFragment> {
+        scoped { HomeArticlePagingAdapter() }
     }
-
     scope<ProjectTypeFragment> {
         scoped { ProjectTypePagingAdapter() }
+    }
+    scope<ShareFragment> {
+        scoped { UserArticlePagingAdapter() }
     }
 }
 

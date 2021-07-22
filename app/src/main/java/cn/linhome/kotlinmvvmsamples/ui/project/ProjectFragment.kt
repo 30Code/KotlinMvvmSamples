@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.setupWithViewPager2
-import cn.linhome.common.bean.ProjectCategoryData
+import cn.linhome.common.entity.ProjectCategoryData
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.databinding.FragmentProjectBinding
 import kotlinx.coroutines.flow.collectLatest
@@ -33,6 +33,7 @@ class ProjectFragment : BaseFragment<FragmentProjectBinding>() {
     override fun initFragment(view: View, savedInstanceState: Bundle?) {
         mBinding?.run {
             vpProject.run {
+                offscreenPageLimit = 3
                 adapter = object : FragmentStateAdapter(this@ProjectFragment) {
                     override fun getItemCount(): Int = mListProjectCategory.size
 

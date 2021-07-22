@@ -1,4 +1,4 @@
-package cn.linhome.kotlinmvvmsamples.ui.share
+package cn.linhome.kotlinmvvmsamples.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,15 +10,15 @@ import cn.linhome.common.entity.UserArticleDetail
 import kotlinx.coroutines.flow.Flow
 
 /**
- *  des : UserArticleViewModel
+ *  des : HomeArticleViewModel
  *  Created by 30Code
- *  date : 2021/7/20
+ *  date : 2021/7/22
  */
-class UserArticleViewModel(val repository: UserArticleRepository) : ViewModel() {
+class HomeArticleViewModel(val repository: HomeArticleRepository) : ViewModel() {
 
-    fun getSharedArticles() : Flow<PagingData<UserArticleDetail>> {
+    fun getHomeArticles() : Flow<PagingData<UserArticleDetail>> {
         return Pager(constPagerConfig) {
-            UserArticlePagingSource(repository)
+            HomeArticlePagingSource(repository)
         }.flow.cachedIn(viewModelScope)
     }
 

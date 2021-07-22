@@ -1,6 +1,5 @@
-package cn.linhome.kotlinmvvmsamples.ui.share
+package cn.linhome.kotlinmvvmsamples.ui.home
 
-import android.graphics.Paint
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import androidx.recyclerview.widget.DiffUtil
@@ -9,20 +8,20 @@ import cn.linhome.common.adapter.BaseViewHolder
 import cn.linhome.common.base.renderHtml
 import cn.linhome.common.entity.UserArticleDetail
 import cn.linhome.kotlinmvvmsamples.R
-import cn.linhome.kotlinmvvmsamples.databinding.ItemUserArticleBinding
+import cn.linhome.kotlinmvvmsamples.databinding.ItemHomeArticleBinding
 import java.lang.Exception
 
 /**
  *  des :
  *  Created by 30Code
- *  date : 2021/7/20
+ *  date : 2021/7/22
  */
-class UserArticlePagingSource(val repository: UserArticleRepository) : PagingSource<Int, UserArticleDetail>() {
+class HomeArticlePagingSource(val repository: HomeArticleRepository) : PagingSource<Int, UserArticleDetail>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserArticleDetail> {
         val page = params.key ?: 0
         return try {
-            val articles = repository.fetchUserArticles(page) ?: mutableListOf()
+            val articles = repository.getHomeArticles(page) ?: mutableListOf()
             LoadResult.Page(
                 data = articles,
                 prevKey = if (page == 0) null else page - 1,
@@ -37,26 +36,26 @@ class UserArticlePagingSource(val repository: UserArticleRepository) : PagingSou
 
 }
 
-class UserArticlePagingAdapter : BasePagingDataAdapter<UserArticleDetail, ItemUserArticleBinding>(
+class HomeArticlePagingAdapter : BasePagingDataAdapter<UserArticleDetail, ItemHomeArticleBinding>(
     DIFF_CALLBACK) {
 
     var userListener : ((Int, String) -> Unit)? = null
 
-    override fun getLayoutId(): Int = R.layout.item_user_article
+    override fun getLayoutId(): Int = R.layout.item_home_article
 
     override fun setVariable(
         data: UserArticleDetail,
         position: Int,
-        holder: BaseViewHolder<ItemUserArticleBinding>
+        holder: BaseViewHolder<ItemHomeArticleBinding>
     ) {
         holder.binding.article = data
         holder.binding.title = data.title.renderHtml()
-        holder.binding.shareUser.let {
-            it.paint.flags = it.paint.flags or Paint.UNDERLINE_TEXT_FLAG
-            it.setOnClickListener {
-                userListener?.invoke(data.userId, data.shareUser)
-            }
-        }
+//        holder.binding.shareUser.let {
+//            it.paint.flags = it.paint.flags or Paint.UNDERLINE_TEXT_FLAG
+//            it.setOnClickListener {
+//                userListener?.invoke(data.userId, data.shareUser)
+//            }
+//        }
     }
 
     companion object {

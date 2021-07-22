@@ -9,7 +9,7 @@
 
         <variable
             name="article"
-            type="cn.linhome.common.bean.UserArticleDetail" />
+            type="cn.linhome.common.entity.UserArticleDetail" />
 
         <variable
             name="title"

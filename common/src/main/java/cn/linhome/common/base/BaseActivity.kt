@@ -26,7 +26,7 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), Corouti
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        StatusBarUtil.StatusBarLightMode(this)
+//        StatusBarUtil.StatusBarLightMode(this)
 
         ActivityStackManager.addActivity(this)
 //        if (needTransparentStatus()) transparentStatusBar()
@@ -51,13 +51,13 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), Corouti
     }
 
     /** 透明状态栏 */
-    open fun transparentStatusBar() {
-        window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-        window.statusBarColor = Color.TRANSPARENT
-        supportActionBar?.hide()
-    }
+//    open fun transparentStatusBar() {
+//        window.decorView.systemUiVisibility =
+//            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+//                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//        window.statusBarColor = Color.TRANSPARENT
+//        supportActionBar?.hide()
+//    }
 
     abstract fun getLayoutId(): Int
 

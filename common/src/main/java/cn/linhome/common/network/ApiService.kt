@@ -1,7 +1,7 @@
 package cn.linhome.common.network
 
 import cn.linhome.common.base.BaseResultData
-import cn.linhome.common.bean.*
+import cn.linhome.common.entity.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -42,7 +42,15 @@ interface ApiService {
     @GET("/lg/coin/userinfo/json")
     suspend fun fetchUserCoins(@Header("Cookie") cookie: String): BaseResultData<CoinsData?>
 
-    // 广场分享文章列表
+    /**
+     * 首页文章列表
+     */
+    @GET("/article/list/{page}/json")
+    suspend fun getHomeArticles(@Path("page") page : Int) :BaseResultData<UserArticleData>
+
+    /**
+     * 广场分享文章列表
+     */
     @GET("/user_article/list/{page}/json")
     suspend fun shareArticles(
         @Path("page") page: Int, @Header("Cookie") cookie: String

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cn.linhome.common.Constant
 import cn.linhome.common.base.BaseResultData
-import cn.linhome.common.bean.UserData
+import cn.linhome.common.entity.UserData
 import cn.linhome.lib.utils.context.FPreferencesUtil
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response

@@ -1,4 +1,4 @@
-package cn.linhome.common.bean
+package cn.linhome.common.entity
 
 /**
  *  des : UserData

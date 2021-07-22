@@ -8,7 +8,7 @@
 
         <variable
             name="project"
-            type="cn.linhome.common.bean.ProjectDetailData" />
+            type="cn.linhome.common.entity.ProjectDetailData" />
 
         <variable
             name="title"
