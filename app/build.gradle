@@ -63,5 +63,7 @@ dependencies {
 
     implementation Other.autosize
 
+    debugImplementation Other.leakcanary
+
     implementation project(path: ':common')
 }

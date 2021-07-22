@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import cn.linhome.common.utils.StatusBarUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -25,8 +26,10 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), Corouti
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        StatusBarUtil.StatusBarLightMode(this)
+
         ActivityStackManager.addActivity(this)
-        if (needTransparentStatus()) transparentStatusBar()
+//        if (needTransparentStatus()) transparentStatusBar()
         mBinding.lifecycleOwner = this
         initActivity(savedInstanceState)
     }
