@@ -25,6 +25,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 class ShareFragment : BaseFragment<FragmentShareBinding>() {
 
+    private val TAG = "ShareFragment "
+
     private val mAppViewModel by sharedViewModel<AppViewModel>()
 
     private val mViewModel by viewModel<UserArticleViewModel>()
@@ -53,9 +55,10 @@ class ShareFragment : BaseFragment<FragmentShareBinding>() {
 
                 }
 
-                addLoadStateListener { loadState ->
-                    refreshing = loadState.refresh is LoadState.Loading
-                    statusCode = when (loadState.refresh) {
+                addLoadStateListener {
+                    refreshing = it.refresh is LoadState.Loading
+
+                    statusCode = when (it.refresh) {
                         is LoadState.Loading -> RequestStatusCode.Loading
                         is LoadState.Error -> RequestStatusCode.Error
                         else -> {

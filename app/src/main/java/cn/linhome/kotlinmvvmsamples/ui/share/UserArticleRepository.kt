@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
  */
 class UserArticleRepository(val api :ApiService) {
 
-    suspend fun fetchUserArticles(page: Int): MutableList<UserArticleDetail>? = withContext(Dispatchers.IO) {
+    suspend fun fetchUserArticles(page: Int): MutableList<UserArticleDetail> = withContext(Dispatchers.IO) {
         val cookie = FPreferencesUtil.getString(Constant.DiskKey.COOKIE, "")
         api.shareArticles(page, cookie).data.datas
     }

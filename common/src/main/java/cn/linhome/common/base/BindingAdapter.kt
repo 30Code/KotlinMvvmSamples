@@ -72,14 +72,22 @@ fun bindOffscreenPageLimit(viewPager2: ViewPager2, limit: Int) {
  * 绑定 SwipeRefreshLayout 颜色，刷新状态，监听事件
  */
 @BindingAdapter(
-    value = ["bind:refreshColor", "bind:refreshState", "bind:refreshListener", "bind:refreshEnable"],
+    value = ["bind:refreshColor", "bind:refreshState", "bind:refreshListener"],
     requireAll = false
 )
-fun bindSwipeRefreshLayout(refreshLayout: SwipeRefreshLayout, color: Int, refreshState: Boolean,
-                           listener: SwipeRefreshLayout.OnRefreshListener, enable: Boolean) {
+fun bindRefreshColor(
+    refreshLayout: SwipeRefreshLayout,
+    color: Int,
+    refreshState: Boolean,
+    listener: SwipeRefreshLayout.OnRefreshListener
+) {
     refreshLayout.setColorSchemeResources(color)
     refreshLayout.isRefreshing = refreshState
     refreshLayout.setOnRefreshListener(listener)
+}
+
+@BindingAdapter("bind:refreshEnable")
+fun bindRefreshEnable(refreshLayout: SwipeRefreshLayout, enable: Boolean) {
     refreshLayout.isEnabled = enable
 }
 

@@ -14,17 +14,15 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="@color/white">
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                app:tabIndicatorColor="@color/colorAccent"
-                app:tabIndicatorFullWidth="false"
-                app:tabIndicatorHeight="1dp"
-                app:tabRippleColor="#FFEFEFEF"
-                app:tabSelectedTextColor="@color/colorAccent"/>
+                app:tabIndicatorColor="#ADBE107E"
+                app:tabMode="scrollable"
+                app:tabTextAppearance="@style/TabTextStyle" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

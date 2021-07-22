@@ -49,24 +49,32 @@
         android:layout_height="match_parent"
         bind:refreshColor="@{refreshColor}"
         bind:refreshListener="@{refreshListener}"
-        bind:refreshState="@{refreshing}">
+        bind:refreshState="@{refreshing}"
+        android:background="@color/res_bg_activity">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical"
-            bind:adapter="@{adapter}"
-            bind:pagingItemClick="@{itemClick}"
-            bind:pagingItemLongClick="@{itemLongClick}"
-            tools:itemCount="20"
-            tools:listitem="@layout/item_project_type"/>
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
 
-        <cn.linhome.common.widget.RequestStatusView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            bind:errorReload="@{errorReload}"
-            bind:requestStatusCode="@{statusCode}"/>
+           <androidx.recyclerview.widget.RecyclerView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+               android:orientation="vertical"
+               android:visibility="@{statusCode == RequestStatusCode.Succeed ? View.VISIBLE : View.GONE}"
+               bind:adapter="@{adapter}"
+               bind:pagingItemClick="@{itemClick}"
+               bind:pagingItemLongClick="@{itemLongClick}"
+               tools:itemCount="20"
+               tools:listitem="@layout/item_project_type"/>
+
+           <cn.linhome.common.widget.RequestStatusView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               bind:errorReload="@{errorReload}"
+               bind:requestStatusCode="@{statusCode}"/>
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
