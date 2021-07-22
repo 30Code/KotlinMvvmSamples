@@ -57,7 +57,7 @@
         android:layout_height="match_parent"
         bind:refreshColor="@{refreshColor}"
         bind:refreshListener="@{refreshListener}"
-        bind:refreshState="@{refreshing"
+        bind:refreshState="@{refreshing}"
         android:background="@color/res_bg_activity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
