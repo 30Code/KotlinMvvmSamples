@@ -1,4 +1,4 @@
-package cn.linhome.kotlinmvvmsamples.ui.home
+package cn.linhome.home.ui
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -7,8 +7,8 @@ import cn.linhome.common.adapter.BasePagingDataAdapter
 import cn.linhome.common.adapter.BaseViewHolder
 import cn.linhome.common.base.renderHtml
 import cn.linhome.common.entity.UserArticleDetail
-import cn.linhome.kotlinmvvmsamples.R
-import cn.linhome.kotlinmvvmsamples.databinding.ItemHomeArticleBinding
+import cn.linhome.home.R
+import cn.linhome.home.databinding.ItemHomeArticleBinding
 import java.lang.Exception
 
 /**

@@ -47,7 +47,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api Kt.stdlibJdk
+    api Anko.anko
 
     api Koin.android
     api Koin.androidxScope
@@ -83,6 +84,7 @@ dependencies {
     api AndroidX.cardview
     api AndroidX.viewpager2
     api AndroidX.swiperefreshlayout
+    api AndroidX.recyclerview
     api Google.flexbox
     api Google.material
 
@@ -90,18 +92,20 @@ dependencies {
     api Retrofit.gson
     api Retrofit.okhttp3lLoggingInterceptor
 
-//    implementation Room.runtime
-//    implementation Room.ktx
-//    kapt Room.compiler
+    api Room.runtime
+    api Room.ktx
+    kapt Room.compiler
 
     api Glide.glide
     kapt Glide.compiler
 
+    api Other.autosize
     api Other.arouter
     api Other.banner
     api Other.fab
+    debugApi Other.leakcanary
 
     api Librarys.res
     api Librarys.utils
-    api Librarys.utilsextend
+//    api Librarys.utilsextend
 }

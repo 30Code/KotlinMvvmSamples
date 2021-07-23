@@ -1,12 +1,9 @@
 package cn.linhome.kotlinmvvmsamples.di
 
+import cn.linhome.common.network.ApiService
 import cn.linhome.common.network.RetrofitManager
 import cn.linhome.common.ui.LoadingDialog
 import cn.linhome.common.vm.AppViewModel
-import cn.linhome.kotlinmvvmsamples.ui.home.HomeArticlePagingAdapter
-import cn.linhome.kotlinmvvmsamples.ui.home.HomeArticleRepository
-import cn.linhome.kotlinmvvmsamples.ui.home.HomeArticleViewModel
-import cn.linhome.kotlinmvvmsamples.ui.home.HomeFragment
 import cn.linhome.kotlinmvvmsamples.ui.main.MainActivity
 import cn.linhome.kotlinmvvmsamples.ui.main.MainRepository
 import cn.linhome.kotlinmvvmsamples.ui.main.MainViewModel
@@ -28,21 +25,19 @@ import java.util.*
  *  date : 2021/7/18
  */
 val dataSourceModule = module {
-    single { RetrofitManager.apiService }
+    single { RetrofitManager.initRetrofit().getService(ApiService::class.java) }
     single { Calendar.getInstance() }
 }
 
 val viewModelModule = module {
     viewModel { AppViewModel() }
     viewModel { MainViewModel(get()) }
-    viewModel { HomeArticleViewModel(get()) }
     viewModel { ProjectViewModel(get()) }
     viewModel { UserArticleViewModel(get()) }
 }
 
 val repositoryModule = module {
     single { MainRepository(get()) }
-    single { HomeArticleRepository(get()) }
     single { ProjectRepository(get()) }
     single { UserArticleRepository(get()) }
 }
@@ -52,9 +47,6 @@ val fragmentModule = module {
 }
 
 val adapterModule = module {
-    scope<HomeFragment> {
-        scoped { HomeArticlePagingAdapter() }
-    }
     scope<ProjectTypeFragment> {
         scoped { ProjectTypePagingAdapter() }
     }

@@ -104,8 +104,7 @@ object Fragment {
 }
 
 object Kt {
-    val stdlibJdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
-    val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+    val stdlibJdk = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
     val test = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
 }
@@ -118,6 +117,8 @@ object Koin {
 }
 
 object Anko {
+    val anko = "org.jetbrains.anko:anko:${Versions.anko}"
+
     val common = "org.jetbrains.anko:anko-common:${Versions.anko}"
     val sqlite = "org.jetbrains.anko:anko-sqlite:${Versions.anko}"
     val coroutines = "org.jetbrains.anko:anko-coroutines:${Versions.anko}"
@@ -135,15 +136,6 @@ object Glide {
     val compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 }
 
-object Depend {
-
-    val junit = "junit:junit:${Versions.junit}"
-    val androidTestJunit = "androidx.test.ext:junit:${Versions.junitExt}"
-    val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
-    val jDatabinding = "com.hi-dhl:jdatabinding:${Versions.jDatabinding}"
-    val timber = "com.jakewharton.timber:timber:${Versions.timber}"
-}
-
 object Other {
     val banner = "com.youth.banner:banner:2.1.0"
     val fab =  "com.github.clans:fab:1.6.4"
@@ -155,6 +147,6 @@ object Other {
 object Librarys  {
     val res = "com.github.30Code:res:1.0.5.v2"
     val utils = "com.github.30Code:utils:1.0.4.v2"
-    val utilsextend = "com.github.30Code:utilsextend:1.0.4"
+//    val utilsextend = "com.github.30Code:utilsextend:1.0.4"
 }
 

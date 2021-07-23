@@ -14,10 +14,10 @@ import cn.linhome.common.Constant
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.handleResult
 import cn.linhome.common.vm.AppViewModel
+import cn.linhome.home.ui.HomeFragment
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.databinding.FragmentMainBinding
 import cn.linhome.kotlinmvvmsamples.databinding.UserProfileHeaderBinding
-import cn.linhome.kotlinmvvmsamples.ui.home.HomeFragment
 import cn.linhome.kotlinmvvmsamples.ui.project.ProjectFragment
 import cn.linhome.kotlinmvvmsamples.ui.share.ShareFragment
 import cn.linhome.kotlinmvvmsamples.ui.system.SystemFragment

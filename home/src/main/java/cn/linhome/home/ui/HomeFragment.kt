@@ -1,4 +1,4 @@
-package cn.linhome.kotlinmvvmsamples.ui.home
+package cn.linhome.home.ui
 
 import android.os.Bundle
 import android.view.View
@@ -11,8 +11,9 @@ import cn.linhome.common.base.OnItemLongClickListener
 import cn.linhome.common.vm.AppViewModel
 import cn.linhome.common.widget.ErrorReload
 import cn.linhome.common.widget.RequestStatusCode
-import cn.linhome.kotlinmvvmsamples.R
-import cn.linhome.kotlinmvvmsamples.databinding.FragmentHomeBinding
+import cn.linhome.home.R
+import cn.linhome.home.databinding.FragmentHomeBinding
+import cn.linhome.home.vm.HomeArticleViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

@@ -43,12 +43,6 @@ interface ApiService {
     suspend fun fetchUserCoins(@Header("Cookie") cookie: String): BaseResultData<CoinsData?>
 
     /**
-     * 首页文章列表
-     */
-    @GET("/article/list/{page}/json")
-    suspend fun getHomeArticles(@Path("page") page : Int) :BaseResultData<UserArticleData>
-
-    /**
      * 广场分享文章列表
      */
     @GET("/user_article/list/{page}/json")

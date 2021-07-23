@@ -57,7 +57,7 @@
             android:textColor="@color/res_text_gray_m"
             android:textSize="@dimen/res_text_s"
             android:text="@{title}"
-            tools:text="@string/articles"
+            tools:text="articles"
             android:maxLines="2"
             android:ellipsize="end"
             app:layout_constraintTop_toTopOf="parent"
