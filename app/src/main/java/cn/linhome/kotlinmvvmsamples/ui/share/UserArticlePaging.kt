@@ -33,7 +33,7 @@ class UserArticlePagingSource(val repository: UserArticleRepository) : PagingSou
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, UserArticleDetail>): Int? = state.anchorPosition
+    override fun getRefreshKey(state: PagingState<Int, UserArticleDetail>): Int? = null
 
 }
 

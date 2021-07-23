@@ -17,12 +17,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="95dp"
         android:background="@color/white"
-        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="10dp">
+        android:paddingTop="8dp">
 
         <ImageView
             android:id="@+id/articleImg"
@@ -51,27 +50,28 @@
             app:layout_constraintBottom_toBottomOf="@id/articleAuthor"
             app:layout_constraintLeft_toRightOf="@id/articleAuthor"/>
 
-
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/articleTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/res_text_gray_m"
-            android:textSize="16sp"
+            android:textSize="@dimen/res_text_s"
             android:text="@{title}"
             tools:text="@string/articles"
-            android:paddingTop="5dp"
-            android:paddingBottom="8dp"
-            app:layout_constraintTop_toBottomOf="@id/articleAuthor"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <ImageView
             android:id="@+id/articleAuthorImg"
             android:layout_width="14dp"
             android:layout_height="14dp"
             android:src="@drawable/ic_time"
-            app:layout_constraintTop_toBottomOf="@id/articleTitle"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginBottom="8dp"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/articleTime"
@@ -95,6 +95,11 @@
             app:layout_constraintTop_toTopOf="@id/articleTime"
             app:layout_constraintBottom_toBottomOf="@id/articleTime"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/res_stroke_s"
+            android:background="@color/res_stroke_deep"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

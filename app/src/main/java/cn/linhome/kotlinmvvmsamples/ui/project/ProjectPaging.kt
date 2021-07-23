@@ -31,7 +31,7 @@ class ProjectPagingSource(val repository: ProjectRepository, val pid : Int) : Pa
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, ProjectDetailData>): Int? = state.anchorPosition
+    override fun getRefreshKey(state: PagingState<Int, ProjectDetailData>): Int? = null
 
 }
 
