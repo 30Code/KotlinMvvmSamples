@@ -7,6 +7,12 @@ package cn.linhome.common
  */
 object Constant {
 
+    object ARouterPath {
+        const val PATH_WEBVIEW: String = "/webview/WebviewActivity"
+        const val PATH_LOGIN: String = "/login/LoginActivity"
+        const val PATH_REGISTER: String = "/login/RegisterActivity"
+    }
+
     object DiskKey {
         const val COOKIE = "cookie"
         const val USERID = "user_id"

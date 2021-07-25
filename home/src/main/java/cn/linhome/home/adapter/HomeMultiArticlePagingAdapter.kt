@@ -7,9 +7,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import cn.linhome.common.base.renderHtml
 import cn.linhome.common.entity.UserArticleDetail
+import cn.linhome.home.R
 import cn.linhome.home.databinding.ItemBannerBinding
 import cn.linhome.home.databinding.ItemHomeArticleBinding
 import cn.linhome.home.entity.BannerData
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.youth.banner.adapter.BannerImageAdapter
+import com.youth.banner.holder.BannerImageHolder
 
 /**
  *  des : HomeArticleAdapter
@@ -79,7 +84,23 @@ class HomeMultiArticlePagingAdapter : PagingDataAdapter<UserArticleDetail, Recyc
     internal class BannerVH(val binding : ItemBannerBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindData(data : MutableList<BannerData>) {
-
+            binding.bannerArticle.adapter = object : BannerImageAdapter<BannerData>(data) {
+                override fun onBindView(
+                    holder: BannerImageHolder?,
+                    data: BannerData?,
+                    position: Int,
+                    size: Int
+                ) {
+                    Glide.with((holder!!.imageView.context))
+                        .load(data?.imagePath)
+                        .apply(
+                            RequestOptions
+                                .centerCropTransform()
+                                .placeholder(R.color.res_bg_activity)
+                                .error(R.color.res_bg_activity)
+                        ).into(holder.imageView)
+                }
+            }
         }
 
     }
