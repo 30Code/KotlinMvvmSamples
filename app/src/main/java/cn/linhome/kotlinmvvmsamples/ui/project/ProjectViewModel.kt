@@ -6,7 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import cn.linhome.common.base.constPagerConfig
-import cn.linhome.common.entity.ProjectCategoryData
+import cn.linhome.common.entity.ArticleCategoriesData
 import cn.linhome.common.entity.ProjectDetailData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -21,7 +21,7 @@ class ProjectViewModel(val repository: ProjectRepository) : ViewModel() {
     /**
      * 项目分类
      */
-    fun getCategories() : Flow<MutableList<ProjectCategoryData>> {
+    fun getCategories() : Flow<MutableList<ArticleCategoriesData>> {
         return flow {
             emit(repository.getProjectCategories())
         }

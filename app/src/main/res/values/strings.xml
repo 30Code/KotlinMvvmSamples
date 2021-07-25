@@ -2,6 +2,7 @@
     <string name="app_name">Jetpack_mvvm</string>
 
     <string name="home">首页</string>
+    <string name="blog">公众号</string>
     <string name="system">体系</string>
     <string name="navigation">导航</string>
     <string name="project_type">项目分类</string>

@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.setupWithViewPager2
-import cn.linhome.common.entity.ProjectCategoryData
+import cn.linhome.common.entity.ArticleCategoriesData
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.databinding.FragmentProjectBinding
 import kotlinx.coroutines.flow.collectLatest
@@ -20,7 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 class ProjectFragment : BaseFragment<FragmentProjectBinding>() {
 
-    private val mListProjectCategory = mutableListOf<ProjectCategoryData>()
+    private val mListProjectCategory = mutableListOf<ArticleCategoriesData>()
 
     private val mViewModel by viewModel<ProjectViewModel>()
 

@@ -54,10 +54,10 @@ interface ApiService {
      * 项目分类
      */
     @GET("/project/tree/json")
-    suspend fun projectCategory(): BaseResultData<MutableList<ProjectCategoryData>>
+    suspend fun projectCategory(): BaseResultData<MutableList<ArticleCategoriesData>>
 
     /**
-     * 返回项目分类下的所有项目列表，cid 查看 [ProjectCategoryData] #id
+     * 返回项目分类下的所有项目列表，cid 查看 [ArticleCategoriesData] #id
      */
     @GET("/project/list/{page}/json")
     suspend fun projectList(

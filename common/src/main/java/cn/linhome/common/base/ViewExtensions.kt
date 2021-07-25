@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
-import cn.linhome.common.entity.ProjectCategoryData
+import cn.linhome.common.entity.ArticleCategoriesData
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.Dispatchers
@@ -33,7 +33,7 @@ fun TabLayout.setupWithViewPager2(viewPager2: ViewPager2, titles: IntArray): Tab
         tab.setText(titles[position])
     }.apply { attach() }
 
-fun TabLayout.setupWithViewPager2(viewPager2: ViewPager2, listCategory: MutableList<ProjectCategoryData>): TabLayoutMediator =
+fun TabLayout.setupWithViewPager2(viewPager2: ViewPager2, listCategory: MutableList<ArticleCategoriesData>): TabLayoutMediator =
     TabLayoutMediator(this, viewPager2) { tab, position ->
         tab.text = listCategory[position].name
     }.apply { attach() }

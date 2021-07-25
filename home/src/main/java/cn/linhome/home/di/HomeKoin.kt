@@ -1,6 +1,7 @@
 package cn.linhome.home.di
 
 import cn.linhome.common.network.RetrofitManager
+import cn.linhome.home.adapter.HomeMultiArticlePagingAdapter
 import cn.linhome.home.api.HomeApiService
 import cn.linhome.home.ui.HomeArticlePagingAdapter
 import cn.linhome.home.ui.HomeArticleRepository
@@ -23,7 +24,10 @@ val moduleHome = module {
     single { HomeArticleRepository(get()) }
 
     scope<HomeFragment> {
-        scoped { HomeArticlePagingAdapter() }
+        scoped {
+//            HomeArticlePagingAdapter()
+            HomeMultiArticlePagingAdapter()
+        }
     }
 
 }

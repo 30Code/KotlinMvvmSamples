@@ -9,12 +9,13 @@
     <item
         android:id="@+id/blog"
         android:icon="@drawable/ic_blog"
-        android:title="@string/project_type" />
+        android:title="@string/blog" />
 
     <item
         android:id="@+id/project"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/system" />
+        android:title="@string/project_type" />
+
     <item
         android:id="@+id/profile"
         android:icon="@drawable/ic_profile"

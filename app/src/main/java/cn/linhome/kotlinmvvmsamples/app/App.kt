@@ -3,6 +3,7 @@ package cn.linhome.kotlinmvvmsamples.app
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import cn.linhome.blogs.di.moduleBlogs
 import cn.linhome.home.di.moduleHome
 import cn.linhome.kotlinmvvmsamples.BuildConfig
 import cn.linhome.kotlinmvvmsamples.di.*
@@ -41,7 +42,7 @@ class App  : Application() {
             androidFileProperties()
             modules(
                 dataSourceModule, repositoryModule, viewModelModule,
-                fragmentModule, dialogModule, adapterModule, moduleHome
+                fragmentModule, dialogModule, adapterModule, moduleHome, moduleBlogs
             )
         }
     }

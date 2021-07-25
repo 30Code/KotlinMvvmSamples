@@ -12,6 +12,7 @@ import cn.linhome.common.vm.AppViewModel
 import cn.linhome.common.widget.ErrorReload
 import cn.linhome.common.widget.RequestStatusCode
 import cn.linhome.home.R
+import cn.linhome.home.adapter.HomeMultiArticlePagingAdapter
 import cn.linhome.home.databinding.FragmentHomeBinding
 import cn.linhome.home.vm.HomeArticleViewModel
 import kotlinx.coroutines.flow.catch
@@ -32,14 +33,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val mViewModel by viewModel<HomeArticleViewModel>()
 
-    private val mAdapter by lifecycleScope.inject<HomeArticlePagingAdapter>()
+    private val mAdapter by lifecycleScope.inject<HomeMultiArticlePagingAdapter>()
 
     override fun getLayoutId(): Int = R.layout.fragment_home
 
     override fun actionOnViewInflate() {
+        getBanner()
         getHomeArticles()
 
         mAppViewModel.reloadHomeData.observe(this, {
+            getBanner()
             mAdapter.refresh()
         })
     }
@@ -48,6 +51,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         mBinding?.run {
             refreshColor = R.color.colorAccent
             refreshListener = SwipeRefreshLayout.OnRefreshListener {
+                getBanner()
                 mAdapter.refresh()
             }
 
@@ -75,15 +79,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             )
 
             itemClick = OnItemClickListener { position, view ->
-                mAdapter.getItemData(position)?.let {
-
-                }
+//                mAdapter.getItemData(position)?.let {
+//
+//                }
             }
 
             itemLongClick = OnItemLongClickListener { position, view ->
-                mAdapter.getItemData(position)?.let {
-
-                }
+//                mAdapter.getItemData(position)?.let {
+//
+//                }
             }
 
             errorReload = ErrorReload {
@@ -100,6 +104,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }.collectLatest {
                     mAdapter.submitData(it)
                 }
+        }
+    }
+
+    private fun getBanner() {
+        launch {
+            mViewModel.getBanner().collectLatest {
+                mAdapter.addListBanner(it)
+                mAdapter.notifyItemChanged(0)
+            }
         }
     }
 }

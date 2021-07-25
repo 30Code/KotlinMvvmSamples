@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import cn.linhome.blogs.ui.BlogCategoriesFragment
 import cn.linhome.common.Constant
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.handleResult
@@ -20,7 +21,6 @@ import cn.linhome.kotlinmvvmsamples.databinding.FragmentMainBinding
 import cn.linhome.kotlinmvvmsamples.databinding.UserProfileHeaderBinding
 import cn.linhome.kotlinmvvmsamples.ui.project.ProjectFragment
 import cn.linhome.kotlinmvvmsamples.ui.share.ShareFragment
-import cn.linhome.kotlinmvvmsamples.ui.system.SystemFragment
 import cn.linhome.lib.utils.context.FPreferencesUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Job
@@ -50,15 +50,15 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     private val mListFragment = arrayListOf<Fragment>()
     private val mHomeFragment by lazy { HomeFragment() }
+    private val mBlogCategoriesFragment by lazy { BlogCategoriesFragment() }
     private val mProjectFragment by lazy { ProjectFragment() }
-    private val mSystemFragment by lazy { SystemFragment() }
     private val mShareFragment by lazy { ShareFragment() }
 
     init {
         mListFragment.run {
             add(mHomeFragment)
+            add(mBlogCategoriesFragment)
             add(mProjectFragment)
-            add(mSystemFragment)
             add(mShareFragment)
         }
     }

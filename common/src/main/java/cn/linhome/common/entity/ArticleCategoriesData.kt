@@ -5,7 +5,7 @@ package cn.linhome.common.entity
  *  Created by 30Code
  *  date : 2021/7/21
  */
-data class ProjectCategoryData(
+data class ArticleCategoriesData(
     val children: List<Any>,
     val courseId: Int,
     val id: Int,
