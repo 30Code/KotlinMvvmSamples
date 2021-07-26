@@ -96,4 +96,6 @@
     <string name="on_loading_more">正在努力加载更多..</string>
     <string name="retry_load_hint">加载出错, 点击重新加载..</string>
 
+    <string name="is_loading">正在加载...</string>
+
 </resources>

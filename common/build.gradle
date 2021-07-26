@@ -108,4 +108,5 @@ dependencies {
     api Librarys.res
     api Librarys.utils
 //    api Librarys.utilsextend
+    api Librarys.webview
 }
