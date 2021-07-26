@@ -5,16 +5,19 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import cn.linhome.common.Constant
 import cn.linhome.common.base.renderHtml
 import cn.linhome.common.entity.UserArticleDetail
 import cn.linhome.home.R
 import cn.linhome.home.databinding.ItemBannerBinding
 import cn.linhome.home.databinding.ItemHomeArticleBinding
 import cn.linhome.home.entity.BannerData
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
+import com.youth.banner.listener.OnBannerListener
 
 /**
  *  des : HomeArticleAdapter
@@ -76,30 +79,53 @@ class HomeMultiArticlePagingAdapter : PagingDataAdapter<UserArticleDetail, Recyc
 
         val articleVH = ArticleVH(ItemHomeArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
         articleVH.itemView.setOnClickListener {
-
+            val data = getItem(articleVH.layoutPosition - 1)
+            if (data != null) {
+                toWebView(data.link, data.title)
+            }
         }
         return articleVH
+    }
+
+    private fun toWebView(link : String, title : String) {
+        ARouter.getInstance()
+            .build(Constant.ARouterPath.PATH_WEBVIEW)
+            .withString(Constant.ExtraType.EXTRA_URL, link)
+            .withString(Constant.ExtraType.EXTRA_TITLE, title)
+            .navigation()
     }
 
     internal class BannerVH(val binding : ItemBannerBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindData(data : MutableList<BannerData>) {
-            binding.bannerArticle.adapter = object : BannerImageAdapter<BannerData>(data) {
-                override fun onBindView(
-                    holder: BannerImageHolder?,
-                    data: BannerData?,
-                    position: Int,
-                    size: Int
-                ) {
-                    Glide.with((holder!!.imageView.context))
-                        .load(data?.imagePath)
-                        .apply(
-                            RequestOptions
-                                .centerCropTransform()
-                                .placeholder(R.color.res_bg_activity)
-                                .error(R.color.res_bg_activity)
-                        ).into(holder.imageView)
+            binding.bannerArticle.run {
+                adapter = object : BannerImageAdapter<BannerData>(data) {
+                    override fun onBindView(
+                        holder: BannerImageHolder?,
+                        data: BannerData?,
+                        position: Int,
+                        size: Int
+                    ) {
+                        Glide.with((holder!!.imageView.context))
+                            .load(data?.imagePath)
+                            .apply(
+                                RequestOptions
+                                    .centerCropTransform()
+                                    .placeholder(R.color.res_bg_activity)
+                                    .error(R.color.res_bg_activity)
+                            ).into(holder.imageView)
+
+                        setOnBannerListener { banner, position ->
+                            ARouter.getInstance()
+                                .build(Constant.ARouterPath.PATH_WEBVIEW)
+                                .withString(Constant.ExtraType.EXTRA_URL, data?.url)
+                                .withString(Constant.ExtraType.EXTRA_TITLE, data?.title)
+                                .navigation()
+                        }
+                    }
                 }
+
+
             }
         }
 

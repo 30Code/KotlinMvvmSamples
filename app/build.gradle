@@ -20,6 +20,13 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+
+        }
+
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
@@ -61,4 +68,7 @@ dependencies {
     }
 
     implementation project(path: ':common')
+
+    implementation Other.arouter
+    kapt Other.arouterCompiler
 }

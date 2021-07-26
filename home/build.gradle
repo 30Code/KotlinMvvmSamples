@@ -21,6 +21,13 @@ android {
         versionName BuildConfig.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+
+        }
     }
 
     buildTypes {
@@ -62,4 +69,7 @@ android {
 
 dependencies {
     implementation project(path: ':common')
+
+    implementation Other.arouter
+    kapt Other.arouterCompiler
 }

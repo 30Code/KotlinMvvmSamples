@@ -18,6 +18,13 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+
+        }
     }
 
     buildTypes {
@@ -99,8 +106,10 @@ dependencies {
     api Glide.glide
     kapt Glide.compiler
 
+    implementation Other.arouter
+    kapt Other.arouterCompiler
+
     api Other.autosize
-    api Other.arouter
     api Other.banner
     api Other.fab
     debugApi Other.leakcanary

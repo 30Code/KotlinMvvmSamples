@@ -2,6 +2,7 @@ package cn.linhome.kotlinmvvmsamples.ui.webview
 
 import android.os.Bundle
 import android.webkit.WebView
+import cn.linhome.common.Constant
 import cn.linhome.common.base.BaseActivity
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.databinding.ActivityWebviewBinding
@@ -9,11 +10,16 @@ import cn.linhome.lib.webview.FWebViewHandler
 import cn.linhome.lib.webview.FWebViewManager
 import cn.linhome.lib.webview.client.FWebChromeClient
 import cn.linhome.lib.webview.client.FWebViewClient
+import com.alibaba.android.arouter.facade.annotation.Route
 import java.net.HttpCookie
 
+/**
+ *  des : WebViewActivity
+ *  Created by 30Code
+ *  date : 2021/7/26
+ */
+@Route(path = Constant.ARouterPath.PATH_WEBVIEW)
 class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
-
-    val URL = ""
 
     private var mWebViewClient: FWebViewClient? = null
     private var mWebChromeClient: FWebChromeClient? = null
@@ -21,11 +27,14 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
     override fun getLayoutId(): Int = R.layout.activity_webview
 
     override fun initActivity(savedInstanceState: Bundle?) {
+        val url = intent.extras?.getString(Constant.ExtraType.EXTRA_URL)
+        val titleStr = intent.extras?.getString(Constant.ExtraType.EXTRA_TITLE)
+
         FWebViewManager.getInstance().setWebViewHandler(mWebViewHandler) //设置WebViewHandler
 
         mBinding.run {
             toolbar.run {
-                title = getString(R.string.is_loading)
+                title = titleStr
                 setNavigationIcon(R.drawable.arrow_back)
                 setNavigationOnClickListener {
                     onBackPressed()
@@ -33,11 +42,11 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
             }
 
 
-            webview.webViewClient = getWebViewClient() //设置WebViewClient
+//            webview.webViewClient = getWebViewClient() //设置WebViewClient
 
             webview.webChromeClient = getWebChromeClient() //设置WebChromeClient
 
-            webview.get(URL) //请求某个地址
+            webview.get(url) //请求某个地址
         }
 
     }

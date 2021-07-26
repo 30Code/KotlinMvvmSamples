@@ -51,11 +51,11 @@ class App  : Application() {
      * 初始化ARouter
      */
     private fun initARouter() {
-        ARouter.init(this)
         if (BuildConfig.DEBUG) {
-            ARouter.openDebug()
             ARouter.openLog()
+            ARouter.openDebug()
         }
+        ARouter.init(this)
     }
 
     companion object {
