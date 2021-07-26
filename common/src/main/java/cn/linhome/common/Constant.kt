@@ -13,6 +13,16 @@ object Constant {
         const val PATH_REGISTER: String = "/login/RegisterActivity"
     }
 
+    /**
+     * intent 传值类型
+     */
+    object ExtraType {
+        //String
+        const val EXTRA_URL = "extra_url"
+        //String
+        const val EXTRA_TITLE = "extra_title"
+    }
+
     object DiskKey {
         const val COOKIE = "cookie"
         const val USERID = "user_id"
