@@ -10,4 +10,7 @@
     <color name="coin_color">#FFFFA726</color>
     <color name="half_accent">#AAD81B60</color>
 
+    <color name="blue_grey">#607d8b</color>
+    <color name="textColorPrimary">#616161</color>
+
 </resources>

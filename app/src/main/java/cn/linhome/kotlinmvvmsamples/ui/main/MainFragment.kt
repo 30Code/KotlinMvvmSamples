@@ -4,7 +4,11 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -81,6 +85,17 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         mBinding?.run {
             holder = this@MainFragment
 
+            toolbar.run {
+                titleContent = getString(R.string.home)
+                (activity as (MainActivity)).setSupportActionBar(this)
+            }
+
+            drawerLayout.run {
+                val toggle = ActionBarDrawerToggle(activity, this, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+                addDrawerListener(toggle)
+                toggle.syncState()
+            }
+
             limit = 2
             adapter = object : FragmentStateAdapter(this@MainFragment) {
                 override fun createFragment(position: Int) = mListFragment[position]
@@ -136,8 +151,15 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun switchFragment(position: Int): Boolean {
-        mBinding?.currentItem = position
-//        mBinding?.mainViewpager?.setCurrentItem(position, false)
+        mBinding?.run {
+            currentItem = position
+            when(position) {
+                0 -> titleContent = getString(R.string.home)
+                1 -> titleContent = getString(R.string.wx_chapter)
+                2 -> titleContent = getString(R.string.project_type)
+                3 -> titleContent = getString(R.string.share_articles)
+            }
+        }
         return true
     }
 
@@ -222,5 +244,19 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     fun userCoins(view: View) {
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        activity?.menuInflater?.inflate(R.menu.menu_main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_search -> {
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

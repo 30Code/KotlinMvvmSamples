@@ -74,7 +74,8 @@
                 android:textColor="@color/colorAccent"
                 app:layout_constraintTop_toTopOf="parent"
                 bind:gesture="@{gesture}"
-                tools:text="@string/share_articles"/>
+                tools:text="@string/share_articles"
+                android:visibility="gone"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_article_list"

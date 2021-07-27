@@ -7,12 +7,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.linhome.blogs.R
 import cn.linhome.blogs.databinding.FragmentBlogArticlesListBinding
 import cn.linhome.blogs.vm.BlogsArticleViewModel
+import cn.linhome.common.Constant
 import cn.linhome.common.adapter.PagingLoadStateAdapter
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.OnItemClickListener
 import cn.linhome.common.base.OnItemLongClickListener
 import cn.linhome.common.widget.ErrorReload
 import cn.linhome.common.widget.RequestStatusCode
+import com.alibaba.android.arouter.launcher.ARouter
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -75,7 +77,11 @@ class BlogArticlesFragment : BaseFragment<FragmentBlogArticlesListBinding>() {
 
             itemClick = OnItemClickListener { position, view ->
                 mAdapter.getItemData(position)?.let {
-
+                    ARouter.getInstance()
+                        .build(Constant.ARouterPath.PATH_WEBVIEW)
+                        .withString(Constant.ExtraType.EXTRA_URL, it.link)
+                        .withString(Constant.ExtraType.EXTRA_TITLE, it.title)
+                        .navigation()
                 }
             }
 

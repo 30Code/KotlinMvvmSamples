@@ -65,6 +65,7 @@ dependencies {
     if (!singleModule.toBoolean()) {
         implementation project(path: ':home')
         implementation project(path: ':blogs')
+        implementation project(path: ':login')
     }
 
     implementation project(path: ':common')
