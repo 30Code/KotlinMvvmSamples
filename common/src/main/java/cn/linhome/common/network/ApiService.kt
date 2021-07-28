@@ -2,7 +2,6 @@ package cn.linhome.common.network
 
 import cn.linhome.common.base.BaseResultData
 import cn.linhome.common.entity.*
-import retrofit2.Response
 import retrofit2.http.*
 
 /**
@@ -11,24 +10,6 @@ import retrofit2.http.*
  *  date : 2021/7/18
  */
 interface ApiService {
-
-    /**
-     * 登录
-     */
-    @POST("/user/login")
-    @FormUrlEncoded
-    suspend fun login(@Field("username") username : String,
-                      @Field("password") password: String) : Response<BaseResultData<UserData>>
-
-    /**
-     * 注册
-     */
-    @POST("/user/register")
-    @FormUrlEncoded
-    suspend fun register(
-        @Field("username") username: String,
-        @Field("password") password: String,
-        @Field("repassword") repassword: String): Response<BaseResultData<UserData>>
 
     /**
      * 退出
@@ -64,4 +45,18 @@ interface ApiService {
         @Path("page") page: Int,
         @Query("cid") cid: Int,
         @Header("Cookie") cookie: String): BaseResultData<ProjectDetailResult>
+
+    // 收藏文章，项目
+    @POST("/lg/collect/{id}/json")
+    suspend fun collectArticleOrProject(
+        @Path("id") id: Int, @Header("Cookie") cookie: String
+    ): BaseResultData<Any?>
+
+    // 取消收藏，收藏列表
+    @POST("/lg/uncollect/{articleId}/json")
+    @FormUrlEncoded
+    suspend fun unCollectCollection(
+        @Path("articleId") articleId: Int, @Field("originId") originId: Int,
+        @Header("Cookie") cookie: String
+    ): BaseResultData<Any?>
 }

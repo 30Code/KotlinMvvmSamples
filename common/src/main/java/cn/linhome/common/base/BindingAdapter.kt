@@ -1,13 +1,15 @@
 package cn.linhome.common.base
 
 import android.graphics.drawable.Drawable
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.*
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
-import cn.linhome.common.R
 import cn.linhome.common.adapter.BasePagingDataAdapter
 import cn.linhome.common.adapter.BaseRecyclerAdapter
 import cn.linhome.common.widget.ErrorReload
@@ -180,5 +182,21 @@ fun bindViewGesture(view: View, doubleClickListener: DoubleClickListener) {
 fun bindRequestStatus(statusView: RequestStatusView, requestStatusCode: RequestStatusCode?, errorReload: ErrorReload?) {
     statusView.injectRequestStatus(requestStatusCode ?: RequestStatusCode.Succeed)
     statusView.errorReload = errorReload
+}
+
+@BindingAdapter(value = ["bind:afterTextChanged"])
+fun EditText.afterTextChanged(action: (String) -> Unit) {
+    addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            action(s.toString())
+        }
+    })
 }
 

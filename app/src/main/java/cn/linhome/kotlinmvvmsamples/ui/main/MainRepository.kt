@@ -22,20 +22,6 @@ class MainRepository(val api : ApiService) {
     }
 
     /**
-     * 登录
-     */
-    suspend fun login(username: String, password: String) = withContext(Dispatchers.IO) {
-        api.login(username, password)
-    }
-
-    /**
-     * 注册
-     */
-    suspend fun register(username: String, password: String, repass: String) = withContext(Dispatchers.IO) {
-        api.register(username, password, repass)
-    }
-
-    /**
      * 登出
      */
     suspend fun loginOut() = withContext(Dispatchers.IO) {

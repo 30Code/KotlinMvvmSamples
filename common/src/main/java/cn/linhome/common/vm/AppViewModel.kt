@@ -10,6 +10,7 @@ import cn.linhome.common.base.SingleLiveEvent
  *  date : 2021/7/18
  */
 class AppViewModel : ViewModel() {
+
     val showLoadingProgress = SingleLiveEvent<Boolean>()
 
     val reloadHomeData = MutableLiveData<Boolean>()

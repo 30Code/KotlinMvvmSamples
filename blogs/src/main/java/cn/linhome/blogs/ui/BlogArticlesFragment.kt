@@ -12,12 +12,17 @@ import cn.linhome.common.adapter.PagingLoadStateAdapter
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.OnItemClickListener
 import cn.linhome.common.base.OnItemLongClickListener
+import cn.linhome.common.base.handleResult
+import cn.linhome.common.entity.UserArticleDetail
+import cn.linhome.common.vm.CollectionViewModel
 import cn.linhome.common.widget.ErrorReload
 import cn.linhome.common.widget.RequestStatusCode
 import com.alibaba.android.arouter.launcher.ARouter
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import org.jetbrains.anko.toast
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -31,6 +36,8 @@ class BlogArticlesFragment : BaseFragment<FragmentBlogArticlesListBinding>() {
     private val mCid by lazy { arguments?.getInt(CID) }
 
     private val mViewModel by viewModel<BlogsArticleViewModel>()
+
+    private val mCollectionViewModel by viewModel<CollectionViewModel>()
 
     private val mAdapter by lifecycleScope.inject<BlogArticlesPagingAdapter>()
 
@@ -57,6 +64,12 @@ class BlogArticlesFragment : BaseFragment<FragmentBlogArticlesListBinding>() {
             }
 
             adapter = mAdapter.apply {
+                collectListener = {data: UserArticleDetail, position: Int ->
+                    if (!data.collect) {
+                        collectArticle(data, position)
+                    }
+                }
+                
                 addLoadStateListener {
                     refreshing = it.refresh is LoadState.Loading
                     statusCode = when (it.refresh) {
@@ -94,6 +107,26 @@ class BlogArticlesFragment : BaseFragment<FragmentBlogArticlesListBinding>() {
             errorReload = ErrorReload {
                 mAdapter.retry()
             }
+        }
+    }
+
+    /**
+     * 收藏
+     */
+    private fun collectArticle(data: UserArticleDetail, position: Int) {
+        launch {
+            mCollectionViewModel.collectArticle(data.id)
+                .catch {
+                    context?.toast(R.string.no_network)
+                }.onStart {
+
+                }.collectLatest {
+                    it.handleResult {
+                        mAdapter.getItemData(position)?.collect = true
+                        mAdapter.notifyItemChanged(position)
+                        context?.toast(R.string.add_favourite_succeed)
+                    }
+                }
         }
     }
 

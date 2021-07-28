@@ -26,6 +26,7 @@ import cn.linhome.kotlinmvvmsamples.databinding.UserProfileHeaderBinding
 import cn.linhome.kotlinmvvmsamples.ui.project.ProjectFragment
 import cn.linhome.kotlinmvvmsamples.ui.share.ShareFragment
 import cn.linhome.lib.utils.context.FPreferencesUtil
+import com.alibaba.android.arouter.launcher.ARouter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.catch
@@ -68,6 +69,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_main
+
+    override fun onResume() {
+        super.onResume()
+        showDrawerData()
+    }
 
     private val mHeaderBinding by lazy {
         DataBindingUtil.inflate<UserProfileHeaderBinding>(
@@ -123,12 +129,20 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                     if (isNullOrBlank()) "A" else toCharArray()[0].toString().toUpperCase(Locale.getDefault())
                 }
 
-                if (it) {
-                    getCoins()
-                }
+//                if (it) {
+//                    getCoins()
+//                }
             })
 
             handleUserProfile()
+        }
+    }
+
+    private fun showDrawerData() {
+        val userId = FPreferencesUtil.getInt(Constant.DiskKey.USERID, 0)
+        if (userId > 0) {
+            mViewModel.hasLogin.postValue(true)
+            getCoins()
         }
     }
 
@@ -201,6 +215,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     private fun handleUserProfile() {
         mBinding?.userProfileDrawer?.setNavigationItemSelectedListener { menu ->
             when(menu.itemId) {
+                R.id.about -> showAboutUs()
                 R.id.login_out -> requireContext().alert("是否退出登录") {
                     yesButton { loginOut() }
                     noButton {  }
@@ -232,6 +247,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     fun closeMenu(animate: Boolean = true) {
 
+    }
+
+    private fun showAboutUs() {
+        ARouter.getInstance().build(Constant.ARouterPath.PATH_LOGIN).navigation()
     }
 
     fun showWxDialog(view: View) {

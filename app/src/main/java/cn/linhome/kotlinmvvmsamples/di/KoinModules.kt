@@ -2,8 +2,10 @@ package cn.linhome.kotlinmvvmsamples.di
 
 import cn.linhome.common.network.ApiService
 import cn.linhome.common.network.RetrofitManager
+import cn.linhome.common.ui.CollectionRepository
 import cn.linhome.common.ui.LoadingDialog
 import cn.linhome.common.vm.AppViewModel
+import cn.linhome.common.vm.CollectionViewModel
 import cn.linhome.kotlinmvvmsamples.ui.main.MainActivity
 import cn.linhome.kotlinmvvmsamples.ui.main.MainRepository
 import cn.linhome.kotlinmvvmsamples.ui.main.MainViewModel
@@ -34,12 +36,14 @@ val viewModelModule = module {
     viewModel { MainViewModel(get()) }
     viewModel { ProjectViewModel(get()) }
     viewModel { UserArticleViewModel(get()) }
+    viewModel { CollectionViewModel(get()) }
 }
 
 val repositoryModule = module {
     single { MainRepository(get()) }
     single { ProjectRepository(get()) }
     single { UserArticleRepository(get()) }
+    single { CollectionRepository(get()) }
 }
 
 val fragmentModule = module {
@@ -56,9 +60,9 @@ val adapterModule = module {
 }
 
 val dialogModule = module {
-    scope<MainActivity> {
-        scoped {
-            LoadingDialog()
-        }
-    }
+//    scope<MainActivity> {
+//        scoped {
+//            LoadingDialog()
+//        }
+//    }
 }

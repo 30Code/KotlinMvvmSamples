@@ -11,4 +11,7 @@
     <string name="loading_data">正在努力加载数据中..</string>
     <string name="reload_data">加载出错啦~点击重新加载</string>
 
+    <string name="add_favourite_succeed">添加收藏成功</string>
+    <string name="remove_favourite_succeed">成功移除收藏</string>
+
 </resources>

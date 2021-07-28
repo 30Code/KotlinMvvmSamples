@@ -1,17 +1,17 @@
 package cn.linhome.common.base
 
 import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import cn.linhome.common.utils.StatusBarUtil
+import cn.linhome.common.ui.LoadingDialog
+import cn.linhome.common.vm.AppViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  *  des : BaseActivity
@@ -19,6 +19,9 @@ import kotlinx.coroutines.cancel
  *  date : 2021/7/18
  */
 abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), CoroutineScope by MainScope(), KLogger {
+
+    val mAppViewModel by viewModel<AppViewModel>()
+    private val mLoadingDialog by lazy { LoadingDialog() }
 
     protected val mBinding: VB by lazy {
         DataBindingUtil.setContentView(this, getLayoutId()) as VB
@@ -32,6 +35,18 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), Corouti
 //        if (needTransparentStatus()) transparentStatusBar()
         mBinding.lifecycleOwner = this
         initActivity(savedInstanceState)
+
+        showLoadingDialog()
+    }
+
+    private fun showLoadingDialog() {
+        mAppViewModel.showLoadingProgress.observe(this, {
+            if (it) {
+                mLoadingDialog.showAllowStateLoss(supportFragmentManager, "loading")
+            } else {
+                mLoadingDialog.dismiss()
+            }
+        })
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

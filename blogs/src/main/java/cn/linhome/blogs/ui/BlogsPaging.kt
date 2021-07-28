@@ -38,6 +38,8 @@ class BlogsPagingSource(val repository: BlogsRepository, val cid : Int) : Paging
 class BlogArticlesPagingAdapter : BasePagingDataAdapter<UserArticleDetail, ItemBlogArticleBinding>(
     DIFF_CALLBACK) {
 
+    var collectListener : ((data: UserArticleDetail, position: Int) -> Unit)? = null
+
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserArticleDetail>() {
             override fun areItemsTheSame(oldItem: UserArticleDetail, newItem: UserArticleDetail): Boolean =
@@ -55,7 +57,13 @@ class BlogArticlesPagingAdapter : BasePagingDataAdapter<UserArticleDetail, ItemB
         position: Int,
         holder: BaseViewHolder<ItemBlogArticleBinding>
     ) {
-        holder.binding.article = data
-        holder.binding.title = data.title.renderHtml()
+        holder.binding.run {
+            article = data
+            title = data.title.renderHtml()
+
+            articleStar.setOnClickListener {
+                collectListener?.invoke(data, position)
+            }
+        }
     }
 }

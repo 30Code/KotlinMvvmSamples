@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 主题颜色 -->
+    <color name="res_main_color">@color/colorPrimary</color>
+    <!-- 主题颜色按下颜色 -->
+    <color name="res_main_color_press">@color/colorPrimary</color>
+
+    <!-- 黑色模糊（中） -->
+    <color name="res_blur_m">#80000000</color>
+
+</resources>

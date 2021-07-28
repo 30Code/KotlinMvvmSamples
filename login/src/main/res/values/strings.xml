@@ -1,9 +1,12 @@
 <resources>
-    <string name="username">用户名</string>
-    <string name="password">密码</string>
+    <string name="username">用户名：</string>
+    <string name="input_username">请输入用户名</string>
+    <string name="password">密码：</string>
+    <string name="input_password">请输入密码</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
     <string name="no_account">没有账号？去注册</string>
+
     <string name="username_not_empty">用户名不能为空</string>
     <string name="password_not_empty">密码不能为空</string>
     <string name="have_account">已有账户？去登录</string>
@@ -21,7 +24,6 @@
     <string name="login_ing">登录中...</string>
     <string name="register_ing">注册中...</string>
     <string name="user_login">用户登录</string>
-    <string name="login_tip">请使用WanAndroid账号登录！</string>
     <string name="user_register">注册用户</string>
     <string name="register_tip">用户注册后才可以登录！</string>
 </resources>

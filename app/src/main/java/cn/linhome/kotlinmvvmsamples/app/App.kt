@@ -8,6 +8,7 @@ import cn.linhome.home.di.moduleHome
 import cn.linhome.kotlinmvvmsamples.BuildConfig
 import cn.linhome.kotlinmvvmsamples.di.*
 import cn.linhome.lib.utils.context.FContext
+import cn.linhome.login.di.moduleLogin
 import com.alibaba.android.arouter.launcher.ARouter
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
@@ -42,7 +43,7 @@ class App  : Application() {
             androidFileProperties()
             modules(
                 dataSourceModule, repositoryModule, viewModelModule,
-                fragmentModule, dialogModule, adapterModule, moduleHome, moduleBlogs
+                fragmentModule, dialogModule, adapterModule, moduleHome, moduleBlogs, moduleLogin
             )
         }
     }

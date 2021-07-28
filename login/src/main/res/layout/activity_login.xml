@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="holder"
+            type="cn.linhome.login.ui.LoginActivity" />
+
+        <variable
+            name="viewModel"
+            type="cn.linhome.login.vm.LoginViewModel" />
+
+        <variable
+            name="isEnable"
+            type="Boolean" />
 
     </data>
 
@@ -23,96 +35,88 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/tv_user_login"
+            android:id="@+id/iv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="43dp"
+            android:text="@string/username"
+            android:textSize="@dimen/base_text_size_18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <EditText
+            android:id="@+id/et_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/user_login"
-            android:textColor="@color/res_text_gray_m"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="25dp"
+            android:hint="@string/input_username"
+            android:textColor="@color/res_text_gray_l"
+            android:textColorHint="@color/res_text_hint"
             android:textSize="@dimen/base_text_size_18"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="24dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_phone" />
 
         <TextView
-            android:id="@+id/tv_login_tip"
+            android:id="@+id/tv_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="19dp"
+            android:text="@string/password"
+            android:textSize="@dimen/base_text_size_18"
+            android:inputType="text"
+            android:singleLine="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_user_name" />
+
+        <EditText
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="@string/login_tip"
-            android:textSize="@dimen/res_text_m"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_login"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="24dp"/>
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="25dp"
+            android:hint="@string/input_password"
+            android:textColor="@color/res_text_gray_l"
+            android:textColorHint="@color/res_text_hint"
+            android:textSize="@dimen/base_text_size_18"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_password" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tl_user_name"
-            style="@style/TextInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/tv_login_tip"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="8dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_user_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/username"
-                android:inputType="textEmailAddress" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tl_pwd"
-            style="@style/TextInputLayout"
-            app:passwordToggleEnabled="true"
-            app:layout_constraintTop_toBottomOf="@+id/tl_user_name"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_pwd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/password"
-                android:inputType="textPassword" />
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/bt_login"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/res_layer_main_color"
-            android:gravity="center"
+            android:layout_height="55dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="25dp"
+            android:onClick="@{holder::login}"
+            android:background="@{isEnable ? @drawable/res_layer_main_color_corner_l : @drawable/res_layer_gray_corner_l}"
             android:text="@string/login"
-            android:textSize="@dimen/base_text_size_17"
             android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@+id/tl_pwd"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"/>
+            android:textSize="@dimen/base_text_size_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
         <TextView
-            android:id="@+id/tv_register"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_to_register"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:gravity="right"
+            android:layout_marginTop="15dp"
             android:text="@string/no_account"
-            android:textSize="@dimen/res_text_m"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login"
-            app:layout_constraintRight_toRightOf="@+id/btn_login"
-            android:layout_marginRight="24dp"/>
+            android:textSize="@dimen/res_text_l"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_login" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
