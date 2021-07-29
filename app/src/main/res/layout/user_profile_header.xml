@@ -51,9 +51,9 @@
                 android:contentDescription="@null"
                 android:onClick="@{holder::showWxDialog}"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher"
+                android:src="@color/colorPrimary"
                 android:visibility="@{loginState ? View.GONE : View.VISIBLE}"
-                bind:circleImg="@{@drawable/ic_launcher}" />
+                bind:circleImg="@{@color/colorPrimary}" />
 
             <TextView
                 android:layout_width="60dp"
@@ -96,8 +96,8 @@
             android:drawablePadding="4dp"
             android:onClick="@{holder::headerLogin}"
             android:text="@{name}"
-            android:textColor="@color/half_black"
-            android:textSize="16sp"
+            android:textColor="@color/res_text_gray_l"
+            android:textSize="@dimen/res_text_m"
             app:layout_constraintBottom_toTopOf="@id/guide"
             app:layout_constraintStart_toEndOf="@id/avatar_container"
             tools:text="kk" />

@@ -10,12 +10,13 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import cn.linhome.blogs.ui.BlogCategoriesFragment
-import cn.linhome.common.Constant
+import cn.linhome.common.constant.Constant
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.handleResult
 import cn.linhome.common.vm.AppViewModel
@@ -209,7 +210,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun onPause() {
         super.onPause()
-        closeMenu()
     }
 
     private fun handleUserProfile() {
@@ -245,12 +245,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         }
     }
 
-    fun closeMenu(animate: Boolean = true) {
-
-    }
-
     private fun showAboutUs() {
-        ARouter.getInstance().build(Constant.ARouterPath.PATH_LOGIN).navigation()
+
     }
 
     fun showWxDialog(view: View) {
@@ -258,11 +254,18 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     fun headerLogin(view: View) {
-
+        if (mViewModel.hasLogin.value == false) {
+            ARouter.getInstance().build(Constant.ARouterPath.PATH_LOGIN).navigation()
+            closeDrawer()
+        }
     }
 
     fun userCoins(view: View) {
 
+    }
+
+    private fun closeDrawer() {
+        mBinding?.drawerLayout?.closeDrawer(GravityCompat.START)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -81,6 +81,18 @@
                 android:fitsSystemWindows="true"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floating_action_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="@color/colorPrimary"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="60dp"
+                app:layout_behavior="cn.linhome.common.widget.behavior.ScaleDownShowBehavior"
+                app:srcCompat="@drawable/ic_arrow_upward_white_24dp" />
+
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/navView"
                 style="@style/Widget.MaterialComponents.BottomNavigationView"

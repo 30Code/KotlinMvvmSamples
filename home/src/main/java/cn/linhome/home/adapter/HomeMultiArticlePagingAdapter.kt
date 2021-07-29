@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import cn.linhome.common.Constant
+import cn.linhome.common.constant.Constant
 import cn.linhome.common.base.renderHtml
 import cn.linhome.common.entity.UserArticleDetail
 import cn.linhome.home.R
@@ -17,7 +17,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
-import com.youth.banner.listener.OnBannerListener
 
 /**
  *  des : HomeArticleAdapter

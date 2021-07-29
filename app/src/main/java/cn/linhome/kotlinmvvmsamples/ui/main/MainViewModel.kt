@@ -2,7 +2,7 @@ package cn.linhome.kotlinmvvmsamples.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import cn.linhome.common.Constant
+import cn.linhome.common.constant.Constant
 import cn.linhome.lib.utils.context.FPreferencesUtil
 import kotlinx.coroutines.flow.flow
 

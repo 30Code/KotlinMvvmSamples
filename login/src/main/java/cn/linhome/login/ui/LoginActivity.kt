@@ -2,9 +2,8 @@ package cn.linhome.login.ui
 
 import android.os.Bundle
 import android.view.View
-import cn.linhome.common.Constant
+import cn.linhome.common.constant.Constant
 import cn.linhome.common.base.BaseActivity
-import cn.linhome.common.vm.AppViewModel
 import cn.linhome.login.R
 import cn.linhome.login.databinding.ActivityLoginBinding
 import cn.linhome.login.vm.LoginViewModel

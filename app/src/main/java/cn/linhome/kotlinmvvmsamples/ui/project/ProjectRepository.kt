@@ -1,9 +1,7 @@
 package cn.linhome.kotlinmvvmsamples.ui.project
 
-import cn.linhome.common.Constant
 import cn.linhome.common.entity.ProjectDetailData
-import cn.linhome.common.network.ApiService
-import cn.linhome.lib.utils.context.FPreferencesUtil
+import cn.linhome.common.api.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -25,8 +23,8 @@ class ProjectRepository(val api : ApiService) {
      * 加载分类下的项目列表
      */
     suspend fun getProjects(page : Int, pid : Int) : MutableList<ProjectDetailData> = withContext(Dispatchers.IO) {
-        val cookie = FPreferencesUtil.getString(Constant.DiskKey.COOKIE, "")
-        api.projectList(page, pid, cookie).data.datas
+//        val cookie = FPreferencesUtil.getString(Constant.DiskKey.COOKIE, "")
+        api.projectList(page, pid).data.datas
     }
 
 }

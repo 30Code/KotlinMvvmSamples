@@ -7,7 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.linhome.blogs.R
 import cn.linhome.blogs.databinding.FragmentBlogArticlesListBinding
 import cn.linhome.blogs.vm.BlogsArticleViewModel
-import cn.linhome.common.Constant
+import cn.linhome.common.constant.Constant
 import cn.linhome.common.adapter.PagingLoadStateAdapter
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.OnItemClickListener

@@ -1,4 +1,4 @@
-package cn.linhome.common
+package cn.linhome.common.constant
 
 /**
  *  des :
@@ -6,6 +6,8 @@ package cn.linhome.common
  *  date : 2021/7/19
  */
 object Constant {
+
+    const val BASE_URL = "https://www.wanandroid.com"
 
     object ARouterPath {
         const val PATH_WEBVIEW: String = "/webview/WebviewActivity"

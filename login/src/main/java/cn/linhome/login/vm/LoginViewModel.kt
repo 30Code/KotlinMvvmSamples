@@ -3,7 +3,7 @@ package cn.linhome.login.vm
 import android.text.TextUtils
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
-import cn.linhome.common.Constant
+import cn.linhome.common.constant.Constant
 import cn.linhome.common.base.BaseResultData
 import cn.linhome.common.entity.UserData
 import cn.linhome.lib.utils.context.FPreferencesUtil

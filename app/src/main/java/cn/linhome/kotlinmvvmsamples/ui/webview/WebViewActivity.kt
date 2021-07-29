@@ -2,7 +2,7 @@ package cn.linhome.kotlinmvvmsamples.ui.webview
 
 import android.os.Bundle
 import android.webkit.WebView
-import cn.linhome.common.Constant
+import cn.linhome.common.constant.Constant
 import cn.linhome.common.base.BaseActivity
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.databinding.ActivityWebviewBinding
