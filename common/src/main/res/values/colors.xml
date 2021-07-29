@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#3F51B5</color>
     <color name="colorAccent">#3F51B5</color>
 
+    <color name="coin_color">#FFFFA726</color>
 </resources>

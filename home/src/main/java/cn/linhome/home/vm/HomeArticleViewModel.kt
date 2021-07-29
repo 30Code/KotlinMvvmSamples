@@ -8,7 +8,7 @@ import androidx.paging.cachedIn
 import cn.linhome.common.base.constPagerConfig
 import cn.linhome.common.entity.UserArticleDetail
 import cn.linhome.home.ui.HomeArticlePagingSource
-import cn.linhome.home.ui.HomeArticleRepository
+import cn.linhome.home.ui.home.HomeArticleRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

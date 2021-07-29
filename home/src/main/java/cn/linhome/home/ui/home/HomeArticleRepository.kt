@@ -1,4 +1,4 @@
-package cn.linhome.home.ui
+package cn.linhome.home.ui.home
 
 import cn.linhome.common.entity.UserArticleDetail
 import cn.linhome.home.api.HomeApiService

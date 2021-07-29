@@ -20,7 +20,7 @@ import cn.linhome.common.constant.Constant
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.handleResult
 import cn.linhome.common.vm.AppViewModel
-import cn.linhome.home.ui.HomeFragment
+import cn.linhome.home.ui.home.HomeFragment
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.databinding.FragmentMainBinding
 import cn.linhome.kotlinmvvmsamples.databinding.UserProfileHeaderBinding

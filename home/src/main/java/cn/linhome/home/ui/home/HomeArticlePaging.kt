@@ -9,6 +9,7 @@ import cn.linhome.common.base.renderHtml
 import cn.linhome.common.entity.UserArticleDetail
 import cn.linhome.home.R
 import cn.linhome.home.databinding.ItemHomeArticleBinding
+import cn.linhome.home.ui.home.HomeArticleRepository
 import java.lang.Exception
 
 /**
