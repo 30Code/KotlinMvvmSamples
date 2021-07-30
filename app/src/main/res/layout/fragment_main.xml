@@ -91,7 +91,8 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="60dp"
                 app:layout_behavior="cn.linhome.common.widget.behavior.ScaleDownShowBehavior"
-                app:srcCompat="@drawable/ic_arrow_upward_white_24dp" />
+                app:srcCompat="@drawable/ic_arrow_upward_white_24dp"
+                android:visibility="gone"/>
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/navView"

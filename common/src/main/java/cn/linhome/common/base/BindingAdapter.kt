@@ -9,6 +9,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.*
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import cn.linhome.common.adapter.BasePagingDataAdapter
 import cn.linhome.common.adapter.BaseRecyclerAdapter
@@ -24,6 +25,15 @@ import com.bumptech.glide.request.RequestOptions
  *  Created by 30Code
  *  date : 2021/7/18
  */
+/**
+ * 单独加载图片，没有 PlaceHolder
+ */
+@BindingAdapter("bind:img")
+fun loadImage(view: ImageView, url: String) {
+    Glide.with(view.context)
+        .load(url).apply(RequestOptions.centerCropTransform())
+        .into(view)
+}
 
 /**
  * 绑定本地圆形头像
@@ -52,6 +62,24 @@ fun loadImageWithPlace(view : ImageView, url : String, placeholder: Drawable, er
                 .placeholder(placeholder)
                 .error(errorHolder)
         ).into(view)
+}
+
+/**
+ * 绑定 ViewPager 的一些属性
+ */
+@BindingAdapter("bind:limitOffset")
+fun bindOffscreenPageLimit(viewPager: ViewPager, limit: Int) {
+    viewPager.offscreenPageLimit = limit
+}
+
+@BindingAdapter(value = ["bind:reversed", "bind:transformer"], requireAll = false)
+fun bindTransformer(viewPager: ViewPager, reversed: Boolean, transformer: ViewPager.PageTransformer) {
+    viewPager.setPageTransformer(reversed, transformer)
+}
+
+@BindingAdapter(value = ["bind:currentItem", "bind:smoothScroll"])
+fun bindCurrentItem(viewPager: ViewPager, current: Int, smoothScroll: Boolean) {
+    viewPager.setCurrentItem(current, smoothScroll)
 }
 
 /**

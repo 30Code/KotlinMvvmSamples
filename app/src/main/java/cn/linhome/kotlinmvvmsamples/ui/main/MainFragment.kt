@@ -14,6 +14,7 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import cn.linhome.blogs.ui.BlogCategoriesFragment
 import cn.linhome.common.constant.Constant
@@ -215,6 +216,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     private fun handleUserProfile() {
         mBinding?.userProfileDrawer?.setNavigationItemSelectedListener { menu ->
             when(menu.itemId) {
+                R.id.favourites -> toCollection()
                 R.id.about -> showAboutUs()
                 R.id.login_out -> requireContext().alert("是否退出登录") {
                     yesButton { loginOut() }
@@ -245,6 +247,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         }
     }
 
+    private fun toCollection() {
+        findNavController().navigate(R.id.action_mainFragment_to_collectionFragment)
+        closeDrawer()
+    }
+
     private fun showAboutUs() {
 
     }
@@ -261,7 +268,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     fun userCoins(view: View) {
-
+        findNavController().navigate(R.id.action_mainFragment_to_coinFragment)
+        closeDrawer()
     }
 
     private fun closeDrawer() {

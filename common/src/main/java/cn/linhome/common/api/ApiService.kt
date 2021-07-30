@@ -54,10 +54,22 @@ interface ApiService {
      * http://www.wanandroid.com/lg/uncollect_originId/2333/json
      * @param id
      */
+    @POST("lg/uncollect_originId/{id}/json")
     suspend fun cancelCollectArticle(@Path("id") id: Int): BaseResultData<Any?>
 
     /**
+     *  获取收藏列表
+     *  http://www.wanandroid.com/lg/collect/list/0/json
+     *  @param page
+     */
+    @GET("/lg/collect/list/{page}/json")
+    suspend fun getCollectedArticles(@Path("page") page: Int): BaseResultData<UserCollectData>
+
+    /**
      * 收藏列表中取消收藏文章
+     * http://www.wanandroid.com/lg/uncollect/2805/json
+     * @param id
+     * @param originId
      */
     @POST("/lg/uncollect/{articleId}/json")
     @FormUrlEncoded

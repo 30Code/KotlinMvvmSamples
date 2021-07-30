@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <import type="cn.linhome.common.widget.RequestStatusCode"/>
+
+        <variable
+            name="refreshColor"
+            type="Integer" />
+
+        <variable
+            name="refreshing"
+            type="Boolean" />
+
+        <variable
+            name="refreshListener"
+            type="androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener" />
+
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.ConcatAdapter" />
+
+        <variable
+            name="divider"
+            type="androidx.recyclerview.widget.RecyclerView.ItemDecoration" />
+
+        <variable
+            name="statusCode"
+            type="RequestStatusCode" />
+
+        <variable
+            name="errorReload"
+            type="cn.linhome.common.widget.ErrorReload" />
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        bind:refreshColor="@{refreshColor}"
+        bind:refreshListener="@{refreshListener}"
+        bind:refreshState="@{refreshing}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_coin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                bind:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                bind:adapter="@{adapter}"
+                android:visibility="@{statusCode == RequestStatusCode.Succeed ? View.VISIBLE : View.GONE}"
+                bind:divider="@{divider}"
+                bind:hasFixedSize="@{true}"
+                tools:listitem="@layout/item_coin_record"/>
+
+            <cn.linhome.common.widget.RequestStatusView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                bind:errorReload="@{errorReload}"
+                bind:requestStatusCode="@{statusCode}"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>
