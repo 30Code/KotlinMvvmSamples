@@ -3,10 +3,10 @@ package cn.linhome.kotlinmvvmsamples.di
 import cn.linhome.common.api.ApiService
 import cn.linhome.common.network.RetrofitManager
 import cn.linhome.common.ui.CollectionRepository
+import cn.linhome.common.ui.LoadingDialog
 import cn.linhome.common.vm.AppViewModel
 import cn.linhome.common.vm.CollectionViewModel
-import cn.linhome.kotlinmvvmsamples.ui.main.MainRepository
-import cn.linhome.kotlinmvvmsamples.ui.main.MainViewModel
+import cn.linhome.kotlinmvvmsamples.ui.main.*
 import cn.linhome.kotlinmvvmsamples.ui.project.ProjectRepository
 import cn.linhome.kotlinmvvmsamples.ui.project.ProjectTypeFragment
 import cn.linhome.kotlinmvvmsamples.ui.project.ProjectTypePagingAdapter
@@ -58,9 +58,13 @@ val adapterModule = module {
 }
 
 val dialogModule = module {
-//    scope<MainActivity> {
-//        scoped {
-//            LoadingDialog()
-//        }
-//    }
+    scope<MainActivity> {
+        scoped {
+            LoadingDialog()
+        }
+    }
+
+    scope<MainFragment> {
+        scoped { AboutUsDialogFragment() }
+    }
 }

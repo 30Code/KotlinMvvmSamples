@@ -6,7 +6,6 @@ import androidx.paging.LoadState
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.linhome.common.adapter.PagingLoadStateAdapter
 import cn.linhome.common.base.*
-import cn.linhome.common.vm.AppViewModel
 import cn.linhome.common.widget.ErrorReload
 import cn.linhome.common.widget.RequestStatusCode
 import cn.linhome.kotlinmvvmsamples.R
@@ -15,7 +14,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -27,8 +25,6 @@ class ShareFragment : BaseFragment<FragmentShareBinding>() {
 
     private val TAG = "ShareFragment "
 
-    private val mAppViewModel by sharedViewModel<AppViewModel>()
-
     private val mViewModel by viewModel<UserArticleViewModel>()
 
     private val mAdapter by lifecycleScope.inject<UserArticlePagingAdapter>()
@@ -37,10 +33,6 @@ class ShareFragment : BaseFragment<FragmentShareBinding>() {
 
     override fun actionOnViewInflate() {
         fetchSharedArticles()
-
-        mAppViewModel.reloadHomeData.observe(this, {
-            mAdapter.refresh()
-        })
     }
 
     override fun initFragment(view: View, savedInstanceState: Bundle?) {

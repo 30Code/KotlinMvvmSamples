@@ -19,6 +19,7 @@ import kotlinx.coroutines.cancel
  *  date : 2021/7/18
  */
 abstract class BaseFragment<VB : ViewDataBinding> : Fragment(), CoroutineScope by MainScope(), KLogger {
+
     protected var mBinding : VB? = null
 
     override fun onCreateView(

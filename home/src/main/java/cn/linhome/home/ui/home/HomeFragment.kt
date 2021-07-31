@@ -8,7 +8,6 @@ import cn.linhome.common.adapter.PagingLoadStateAdapter
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.OnItemClickListener
 import cn.linhome.common.base.OnItemLongClickListener
-import cn.linhome.common.vm.AppViewModel
 import cn.linhome.common.widget.ErrorReload
 import cn.linhome.common.widget.RequestStatusCode
 import cn.linhome.home.R
@@ -19,7 +18,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -28,8 +26,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  *  date : 2021/7/20
  */
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-
-    private val mAppViewModel by sharedViewModel<AppViewModel>()
 
     private val mViewModel by viewModel<HomeArticleViewModel>()
 
@@ -40,11 +36,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun actionOnViewInflate() {
         getBanner()
         getHomeArticles()
-
-        mAppViewModel.reloadHomeData.observe(this, {
-            getBanner()
-            mAdapter.refresh()
-        })
     }
 
     override fun initFragment(view: View, savedInstanceState: Bundle?) {

@@ -40,6 +40,7 @@ import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
+import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.util.*
 
@@ -51,7 +52,10 @@ import java.util.*
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     private val mAppViewModel by sharedViewModel<AppViewModel>()
+
     private val mViewModel by sharedViewModel<MainViewModel>()
+
+    private val mAboutUsDialog by lifecycleScope.inject<AboutUsDialogFragment>()
 
     private var mCoinsJob: Job? = null
 
@@ -135,6 +139,14 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 //                    getCoins()
 //                }
             })
+
+            floatingActionBtn.run {
+                setOnClickListener {
+                    ARouter.getInstance()
+                        .build(Constant.ARouterPath.PATH_SEARCH)
+                        .navigation()
+                }
+            }
 
             handleUserProfile()
         }
@@ -253,7 +265,15 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun showAboutUs() {
-
+        mAboutUsDialog.apply {
+            aboutUsHandler = { url ->
+                ARouter.getInstance().build(Constant.ARouterPath.PATH_WEBVIEW)
+                    .withString(Constant.ExtraType.EXTRA_URL, url)
+                    .withString(Constant.ExtraType.EXTRA_TITLE, "30Code")
+                    .navigation()
+                closeDrawer()
+            }
+        }.showAllowStateLoss(childFragmentManager, "about")
     }
 
     fun showWxDialog(view: View) {

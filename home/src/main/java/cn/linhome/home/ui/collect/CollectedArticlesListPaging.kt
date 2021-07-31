@@ -38,6 +38,8 @@ class CollectedArticlesListPagingSource(private val repository: CollectedArticle
 class CollectedArticlesListPagingAdapter : BasePagingDataAdapter<UserCollectDetail, ItemCollectBinding>(
     DIFF_CALLBACK) {
 
+    var unCollectListener : ((data: UserCollectDetail, position: Int) -> Unit)? = null
+
     override fun getLayoutId(): Int = R.layout.item_collect
 
     override fun setVariable(
@@ -53,6 +55,14 @@ class CollectedArticlesListPagingAdapter : BasePagingDataAdapter<UserCollectDeta
 
             }
             title = data.title.renderHtml()
+
+            isVisibility = data.envelopePic.isNotBlank()
+
+            ivLike.let {
+                it.setOnClickListener {
+                    unCollectListener?.invoke(data, position)
+                }
+            }
         }
     }
 

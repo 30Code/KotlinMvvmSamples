@@ -61,9 +61,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             mViewModel.login(username, password).catch {
                 baseContext?.toast(R.string.no_network)
             }.onStart {
-                mAppViewModel.showLoading()
+//                mAppViewModel.showLoading()
             }.onCompletion {
-                mAppViewModel.dismissLoading()
+//                mAppViewModel.dismissLoading()
             }.collectLatest {
                 if (it.body()?.errorCode == 0) {
                     mViewModel.saveUserInfo(it)

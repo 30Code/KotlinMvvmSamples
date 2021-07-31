@@ -9,7 +9,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.linhome.common.adapter.PagingLoadStateAdapter
 import cn.linhome.common.base.BaseFragment
 import cn.linhome.common.base.OnItemClickListener
+import cn.linhome.common.base.handleResult
 import cn.linhome.common.constant.Constant
+import cn.linhome.common.entity.UserCollectDetail
+import cn.linhome.common.vm.AppViewModel
 import cn.linhome.common.widget.RequestStatusCode
 import cn.linhome.home.R
 import cn.linhome.home.databinding.FragmentCollectBinding
@@ -17,8 +20,12 @@ import cn.linhome.home.vm.CollectedArticlesListViewModel
 import com.alibaba.android.arouter.launcher.ARouter
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import org.jetbrains.anko.toast
 import org.koin.androidx.scope.lifecycleScope
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -27,6 +34,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  *  date : 2021/7/30
  */
 class CollectArticlesListFragment : BaseFragment<FragmentCollectBinding>() {
+
+    private val mAppViewModel by sharedViewModel<AppViewModel>()
 
     private val mViewModel by viewModel<CollectedArticlesListViewModel>()
 
@@ -59,6 +68,9 @@ class CollectArticlesListFragment : BaseFragment<FragmentCollectBinding>() {
             }
 
             adapter = mAdapter.apply {
+                unCollectListener = { data: UserCollectDetail, position: Int ->
+                    unCollectionArticle(data, position)
+                }
                 addLoadStateListener { loadState ->
                     refreshing = loadState.refresh is LoadState.Loading
                     statusCode = when (loadState.refresh) {
@@ -84,6 +96,26 @@ class CollectArticlesListFragment : BaseFragment<FragmentCollectBinding>() {
                         .navigation()
                 }
             }
+        }
+    }
+
+    /**
+     * 取消收藏
+     */
+    private fun unCollectionArticle(data: UserCollectDetail, position: Int) {
+        launch {
+            mViewModel.removeCollectedArticle(data.id, data.originId)
+                .catch {
+                    context?.toast(R.string.no_network)
+                }.onStart {
+                    mAppViewModel.showLoading()
+                }.onCompletion {
+                    mAppViewModel.dismissLoading()
+                }.collectLatest {
+                    it.handleResult {
+                        mAdapter.notifyItemRemoved(position)
+                    }
+                }
         }
     }
 }

@@ -13,6 +13,7 @@ object Constant {
         const val PATH_WEBVIEW: String = "/webview/WebviewActivity"
         const val PATH_LOGIN: String = "/login/LoginActivity"
         const val PATH_REGISTER: String = "/login/RegisterActivity"
+        const val PATH_SEARCH: String = "/search/SearchActivity"
     }
 
     /**

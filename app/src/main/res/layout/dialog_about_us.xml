@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="holder"
+            type="cn.linhome.kotlinmvvmsamples.ui.main.AboutUsDialogFragment" />
+
+        <variable
+            name="kSpan"
+            type="android.text.SpannableStringBuilder" />
+
+        <variable
+            name="movementMethod"
+            type="android.text.method.MovementMethod" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/res_layer_white_corner"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/about_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:paddingBottom="20dp"
+            android:text="@string/about_us"
+            android:textColor="@color/res_text_gray_l"
+            android:textSize="@dimen/base_text_size_18"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/avatar_k"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:contentDescription="@null"
+            bind:circleImg="@{@drawable/ic_like}"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toBottomOf="@id/about_title"
+            tools:src="@drawable/ic_like" />
+
+        <TextView
+            android:id="@+id/description_k"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:lineSpacingExtra="4dp"
+            android:text="@{kSpan}"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintStart_toEndOf="@id/avatar_k"
+            bind:layout_constraintTop_toTopOf="@id/avatar_k"
+            bind:movementMethod="@{movementMethod}"
+            tools:text="30Code 逗比码农一枚，主要做 Android，会写点 Flutter，传说中的样样通样样松~~" />
+
+        <Button
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:onClick="@{holder::ensure}"
+            android:text="@string/ensure"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintTop_toBottomOf="@id/description_k" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

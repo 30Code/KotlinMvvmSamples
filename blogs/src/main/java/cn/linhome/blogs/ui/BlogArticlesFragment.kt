@@ -14,16 +14,19 @@ import cn.linhome.common.base.OnItemClickListener
 import cn.linhome.common.base.OnItemLongClickListener
 import cn.linhome.common.base.handleResult
 import cn.linhome.common.entity.UserArticleDetail
+import cn.linhome.common.vm.AppViewModel
 import cn.linhome.common.vm.CollectionViewModel
 import cn.linhome.common.widget.ErrorReload
 import cn.linhome.common.widget.RequestStatusCode
 import com.alibaba.android.arouter.launcher.ARouter
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import org.jetbrains.anko.toast
 import org.koin.androidx.scope.lifecycleScope
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -34,6 +37,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class BlogArticlesFragment : BaseFragment<FragmentBlogArticlesListBinding>() {
 
     private val mCid by lazy { arguments?.getInt(CID) }
+
+    private val mAppViewModel by sharedViewModel<AppViewModel>()
 
     private val mViewModel by viewModel<BlogsArticleViewModel>()
 
@@ -119,7 +124,9 @@ class BlogArticlesFragment : BaseFragment<FragmentBlogArticlesListBinding>() {
                 .catch {
                     context?.toast(R.string.no_network)
                 }.onStart {
-
+                    mAppViewModel.showLoading()
+                }.onCompletion {
+                    mAppViewModel.dismissLoading()
                 }.collectLatest {
                     it.handleResult {
                         mAdapter.getItemData(position)?.collect = true
