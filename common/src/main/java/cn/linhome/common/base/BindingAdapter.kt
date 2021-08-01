@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.*
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -210,6 +211,14 @@ fun bindViewGesture(view: View, doubleClickListener: DoubleClickListener) {
 fun bindRequestStatus(statusView: RequestStatusView, requestStatusCode: RequestStatusCode?, errorReload: ErrorReload?) {
     statusView.injectRequestStatus(requestStatusCode ?: RequestStatusCode.Succeed)
     statusView.errorReload = errorReload
+}
+
+/**
+ * 绑定 EditText 一些属性
+ */
+@BindingAdapter("bind:editAction")
+fun bindEditAction(editText: EditText, editorActionListener: TextView.OnEditorActionListener) {
+    editText.setOnEditorActionListener(editorActionListener)
 }
 
 @BindingAdapter(value = ["bind:afterTextChanged"])

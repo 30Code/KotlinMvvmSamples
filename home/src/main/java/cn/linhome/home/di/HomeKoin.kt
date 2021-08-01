@@ -3,6 +3,8 @@ package cn.linhome.home.di
 import androidx.fragment.app.Fragment
 import cn.linhome.common.adapter.ViewPager2FragmentAdapter
 import cn.linhome.common.network.RetrofitManager
+import cn.linhome.common.ui.LoadingDialog
+import cn.linhome.home.adapter.HistorySearchAdapter
 import cn.linhome.home.adapter.HomeMultiArticlePagingAdapter
 import cn.linhome.home.api.HomeApiService
 import cn.linhome.home.ui.coin.CoinRankPagingAdapter
@@ -14,9 +16,13 @@ import cn.linhome.home.ui.collect.CollectedArticlesListPagingAdapter
 import cn.linhome.home.ui.collect.CollectedArticlesListRepository
 import cn.linhome.home.ui.home.HomeArticleRepository
 import cn.linhome.home.ui.home.HomeFragment
+import cn.linhome.home.ui.search.SearchActivity
+import cn.linhome.home.ui.search.SearchPagingAdapter
+import cn.linhome.home.ui.search.SearchRepository
 import cn.linhome.home.vm.CoinViewModel
 import cn.linhome.home.vm.CollectedArticlesListViewModel
 import cn.linhome.home.vm.HomeArticleViewModel
+import cn.linhome.home.vm.SearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -30,10 +36,12 @@ val moduleHome = module {
     single { RetrofitManager.initRetrofit().getService(HomeApiService::class.java) }
 
     viewModel { HomeArticleViewModel(get()) }
+    viewModel { SearchViewModel(get()) }
     viewModel { CoinViewModel(get()) }
     viewModel { CollectedArticlesListViewModel(get()) }
 
     single { HomeArticleRepository(get()) }
+    single { SearchRepository(get()) }
     single { CoinRepository(get()) }
     single { CollectedArticlesListRepository(get()) }
 
@@ -41,6 +49,14 @@ val moduleHome = module {
         scoped {
 //            HomeArticlePagingAdapter()
             HomeMultiArticlePagingAdapter()
+        }
+    }
+
+    scope<SearchActivity> {
+        scoped { HistorySearchAdapter() }
+
+        scoped {
+            SearchPagingAdapter()
         }
     }
 
@@ -61,4 +77,9 @@ val moduleHome = module {
         scoped { CollectedArticlesListPagingAdapter() }
     }
 
+    scope<SearchActivity> {
+        scoped {
+            LoadingDialog()
+        }
+    }
 }

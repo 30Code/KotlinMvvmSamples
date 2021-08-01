@@ -74,10 +74,6 @@
     <string name="login_text">登录</string>
     <string name="register_text">注册</string>
 
-    <string name="search_hint">输入搜索关键词</string>
-    <string name="hot_search_keys">热门搜索</string>
-    <string name="history_search_keys">历史搜索</string>
-
     <string name="blog_articles">最新博文</string>
     <string name="wx_chapter">公众号</string>
     <string name="share_articles">分享广场</string>

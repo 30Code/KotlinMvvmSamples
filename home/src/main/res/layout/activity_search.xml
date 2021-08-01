@@ -1,19 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <import type="android.view.View" />
 
+        <import type="cn.linhome.common.widget.RequestStatusCode" />
+
+        <variable
+            name="enable"
+            type="Boolean" />
+
+        <variable
+            name="refreshColor"
+            type="Integer" />
+
+        <variable
+            name="refreshing"
+            type="Boolean" />
+
+        <variable
+            name="needOverScroll"
+            type="Boolean" />
+
+        <variable
+            name="hasHistory"
+            type="Boolean" />
+
+        <variable
+            name="refreshListener"
+            type="androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener" />
+
+        <variable
+            name="editAction"
+            type="android.widget.TextView.OnEditorActionListener" />
+
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
+
+        <variable
+            name="listener"
+            type="cn.linhome.common.base.OnItemClickListener" />
+
+        <variable
+            name="longListener"
+            type="cn.linhome.common.base.OnItemLongClickListener" />
+
+        <variable
+            name="statusCode"
+            type="RequestStatusCode" />
+
+        <variable
+            name="errorReload"
+            type="cn.linhome.common.widget.ErrorReload" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="0dp">
 
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:titleTextColor="@color/white"
+                android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <EditText
+                    android:id="@+id/search_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/search_bg"
+                    android:drawableStart="@drawable/ic_search_grey_18dp"
+                    android:drawablePadding="8dp"
+                    android:ellipsize="start"
+                    android:gravity="center_vertical"
+                    android:hint="@string/search_hint"
+                    android:textColorHint="@color/res_text_hint"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textColor="@color/res_text_gray_l"
+                    android:textSize="14sp"
+                    bind:editAction="@{editAction}" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_hot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_hot_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hot_search_keys"
+                        android:textColor="@color/res_text_gray_l"
+                        android:textSize="@dimen/res_text_l"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"/>
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/keys_box"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:flexWrap="wrap"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_hot_title"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:id="@+id/tv_history"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/history_search_keys"
+                        android:textColor="@color/res_text_gray_l"
+                        android:textSize="@dimen/res_text_l"
+                        android:visibility="@{(hasHistory &amp;&amp; !needOverScroll) ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/keys_box"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="5dp"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            bind:refreshColor="@{refreshColor}"
+            bind:refreshEnable="@{enable}"
+            bind:refreshListener="@{refreshListener}"
+            bind:refreshState="@{refreshing}"
+            android:paddingTop="8dp"
+            android:fitsSystemWindows="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/search_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:overScrollMode="@{needOverScroll ? View.OVER_SCROLL_IF_CONTENT_SCROLLS : View.OVER_SCROLL_NEVER}"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:scrollbarThumbVertical="@drawable/custom_scroll_bar"
+                    android:scrollbars="vertical"
+                    android:visibility="@{statusCode == RequestStatusCode.Succeed ? View.VISIBLE : View.GONE}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    bind:adapter="@{adapter}"
+                    bind:listItemClick="@{listener}"
+                    bind:pagingItemClick="@{listener}"
+                    bind:pagingItemLongClick="@{longListener}"
+                    tools:listitem="@layout/item_home_article" />
+
+                <cn.linhome.common.widget.RequestStatusView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    bind:errorReload="@{errorReload}"
+                    bind:requestStatusCode="@{statusCode}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

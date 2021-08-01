@@ -9,6 +9,7 @@ import cn.linhome.common.base.renderHtml
 import cn.linhome.common.entity.UserCollectDetail
 import cn.linhome.home.R
 import cn.linhome.home.databinding.ItemCollectBinding
+import cn.linhome.lib.utils.context.FContext
 
 /**
  *  des : CollectedArticlesListPagingSource
@@ -52,7 +53,7 @@ class CollectedArticlesListPagingAdapter : BasePagingDataAdapter<UserCollectDeta
             if (data.author.isNotEmpty()) {
                 author = data.author
             } else {
-
+                author = FContext.get().resources.getString(R.string.anonymous)
             }
             title = data.title.renderHtml()
 

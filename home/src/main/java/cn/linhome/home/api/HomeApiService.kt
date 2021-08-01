@@ -5,6 +5,7 @@ import cn.linhome.common.entity.*
 import cn.linhome.home.entity.BannerData
 import cn.linhome.home.entity.CoinRankData
 import cn.linhome.home.entity.CoinRecordData
+import cn.linhome.home.entity.HotKeyData
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -26,6 +27,19 @@ interface HomeApiService {
      */
     @GET("/article/list/{page}/json")
     suspend fun getHomeArticles(@Path("page") page : Int) :BaseResultData<UserArticleData>
+
+    /**
+     * 热词搜索
+     */
+    @GET("/hotkey/json")
+    suspend fun getListHotKeys() : BaseResultData<MutableList<HotKeyData>>
+
+    /**
+     * 搜索文章
+     */
+    @POST("/article/query/{page}/json")
+    @FormUrlEncoded
+    suspend fun getSearchArticles(@Path("page") page : Int, @Field("k") keyword : String) : BaseResultData<UserArticleData>
 
     /**
      * 个人积分获取记录
