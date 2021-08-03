@@ -60,115 +60,100 @@
 
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            app:elevation="0dp">
+            android:layout_height="?actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:titleTextColor="@color/white"
+            android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:titleTextColor="@color/white"
-                android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <EditText
-                    android:id="@+id/search_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/search_bg"
-                    android:drawableStart="@drawable/ic_search_grey_18dp"
-                    android:drawablePadding="8dp"
-                    android:ellipsize="start"
-                    android:gravity="center_vertical"
-                    android:hint="@string/search_hint"
-                    android:textColorHint="@color/res_text_hint"
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:padding="8dp"
-                    android:singleLine="true"
-                    android:textColor="@color/res_text_gray_l"
-                    android:textSize="14sp"
-                    bind:editAction="@{editAction}" />
-
-            </com.google.android.material.appbar.MaterialToolbar>
-
-            <androidx.coordinatorlayout.widget.CoordinatorLayout
+            <EditText
+                android:id="@+id/search_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/search_bg"
+                android:drawableStart="@drawable/ic_search_grey_18dp"
+                android:drawablePadding="8dp"
+                android:ellipsize="start"
+                android:gravity="center_vertical"
+                android:hint="@string/search_hint"
+                android:textColorHint="@color/res_text_hint"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/res_text_gray_l"
+                android:textSize="14sp"
+                bind:editAction="@{editAction}" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_hot"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+        </com.google.android.material.appbar.MaterialToolbar>
 
-                    <TextView
-                        android:id="@+id/tv_hot_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/hot_search_keys"
-                        android:textColor="@color/res_text_gray_l"
-                        android:textSize="@dimen/res_text_l"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{(hasHistory &amp;&amp; !needOverScroll) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-                    <com.google.android.flexbox.FlexboxLayout
-                        android:id="@+id/keys_box"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:flexWrap="wrap"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_hot_title"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="12dp" />
+            <TextView
+                android:id="@+id/tv_hot_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hot_search_keys"
+                android:textColor="@color/res_text_gray_l"
+                android:textSize="@dimen/res_text_l"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"/>
 
-                    <TextView
-                        android:id="@+id/tv_history"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/history_search_keys"
-                        android:textColor="@color/res_text_gray_l"
-                        android:textSize="@dimen/res_text_l"
-                        android:visibility="@{(hasHistory &amp;&amp; !needOverScroll) ? View.VISIBLE : View.GONE}"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/keys_box"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="5dp"/>
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/keys_box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:flexWrap="wrap"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hot_title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/history_search_keys"
+                android:textColor="@color/res_text_gray_l"
+                android:textSize="@dimen/res_text_l"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/keys_box"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"/>
 
-            </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             bind:refreshColor="@{refreshColor}"
             bind:refreshEnable="@{enable}"
             bind:refreshListener="@{refreshListener}"
             bind:refreshState="@{refreshing}"
-            android:paddingTop="8dp"
-            android:fitsSystemWindows="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_constraintTop_toBottomOf="@+id/cl_hot"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -202,6 +187,6 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

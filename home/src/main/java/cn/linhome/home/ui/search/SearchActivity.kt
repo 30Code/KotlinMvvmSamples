@@ -1,6 +1,8 @@
 package cn.linhome.home.ui.search
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.paging.LoadState
@@ -86,6 +88,24 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
                     mSearchAdapter.refresh()
                 }
             }
+
+            searchContent.addTextChangedListener(object : TextWatcher{
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (s.isNullOrBlank()) {
+                        mViewModel.resultMode.postValue(false)
+                        mBinding.searchContent.hideSoftInput()
+                    }
+                }
+
+            })
 
             editAction = TextView.OnEditorActionListener { v, actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH && !v.text.isNullOrBlank()) {
