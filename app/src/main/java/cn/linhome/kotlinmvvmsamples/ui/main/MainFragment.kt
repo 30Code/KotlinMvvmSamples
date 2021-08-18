@@ -29,6 +29,8 @@ import cn.linhome.kotlinmvvmsamples.ui.project.ProjectFragment
 import cn.linhome.kotlinmvvmsamples.ui.share.ShareFragment
 import cn.linhome.lib.utils.context.FPreferencesUtil
 import com.alibaba.android.arouter.launcher.ARouter
+import com.google.android.material.badge.BadgeDrawable.TOP_END
+import com.google.android.material.badge.BadgeDrawable.TOP_START
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.catch
@@ -101,6 +103,28 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 titleContent = getString(R.string.home)
                 (activity as (MainActivity)).setSupportActionBar(this)
             }
+
+            navView.itemIconTintList = null
+
+            val badgeHome = navView.getOrCreateBadge(R.id.home)
+            badgeHome.backgroundColor = resources.getColor(R.color.red)
+            badgeHome.badgeTextColor = resources.getColor(R.color.white)
+            badgeHome.badgeGravity = TOP_END
+            badgeHome.maxCharacterCount = 3
+            badgeHome.number = 52
+
+            val badgeBlog = navView.getOrCreateBadge(R.id.blog)
+            badgeBlog.backgroundColor = resources.getColor(R.color.red)
+            badgeBlog.badgeTextColor = resources.getColor(R.color.white)
+            badgeBlog.badgeGravity = TOP_END
+            badgeBlog.maxCharacterCount = 3
+            badgeBlog.number = 103
+
+            val badgeProject = navView.getOrCreateBadge(R.id.project)
+            badgeProject.backgroundColor = resources.getColor(R.color.red)
+
+            val badgeProfile = navView.getOrCreateBadge(R.id.profile)
+            badgeProfile.backgroundColor = resources.getColor(R.color.red)
 
             drawerLayout.run {
                 val toggle = ActionBarDrawerToggle(activity, this, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)

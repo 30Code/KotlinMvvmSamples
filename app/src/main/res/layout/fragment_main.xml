@@ -103,11 +103,9 @@
                 android:background="@color/white"
                 android:layout_gravity="bottom"
                 android:elevation="16dp"
-                app:labelVisibilityMode="labeled"
-                app:itemIconTint="@drawable/nav_item_color_state"
-                app:itemTextColor="@drawable/nav_item_color_state"
+                app:labelVisibilityMode="unlabeled"
                 app:layout_behavior="cn.linhome.common.widget.behavior.BottomNavigationBehavior"
-                app:menu="@menu/bottom_nav_menu"/>
+                app:menu="@menu/bottom_nav_menu" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
