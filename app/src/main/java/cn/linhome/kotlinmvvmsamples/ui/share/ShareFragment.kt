@@ -6,10 +6,12 @@ import androidx.paging.LoadState
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.linhome.common.adapter.PagingLoadStateAdapter
 import cn.linhome.common.base.*
+import cn.linhome.common.constant.Constant
 import cn.linhome.common.widget.ErrorReload
 import cn.linhome.common.widget.RequestStatusCode
 import cn.linhome.kotlinmvvmsamples.R
 import cn.linhome.kotlinmvvmsamples.databinding.FragmentShareBinding
+import com.alibaba.android.arouter.launcher.ARouter
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -68,7 +70,10 @@ class ShareFragment : BaseFragment<FragmentShareBinding>() {
 
             itemClick = OnItemClickListener { position, view ->
                 mAdapter.getItemData(position)?.let {
-
+                    ARouter.getInstance().build(Constant.ARouterPath.PATH_WEBVIEW)
+                        .withString(Constant.ExtraType.EXTRA_TITLE, it.title)
+                        .withString(Constant.ExtraType.EXTRA_URL, it.link)
+                        .navigation()
                 }
             }
 
