@@ -43,7 +43,7 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion Versions.compose_version
-        kotlinCompilerVersion kotlin_version
+        kotlinCompilerVersion Versions.kotlin
     }
 
     buildFeatures {

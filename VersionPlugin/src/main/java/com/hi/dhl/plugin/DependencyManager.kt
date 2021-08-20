@@ -113,7 +113,7 @@ object Koin {
     val ext = "org.koin:koin-androidx-ext:${Versions.koin}"
     val android = "org.koin:koin-android:${Versions.koin}"
     val viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
-    val androidxScope = "org.koin:koin-androidx-scope:$${Versions.koin}"
+    val androidxScope = "org.koin:koin-androidx-scope:${Versions.koin}"
 }
 
 object Anko {
